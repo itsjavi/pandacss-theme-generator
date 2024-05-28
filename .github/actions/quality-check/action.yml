@@ -1,0 +1,14 @@
+name: 'Check code quality'
+description: 'Checks code quality: prettier, linters, build and test'
+env:
+  APP_STAGE: dev
+runs:
+  using: 'composite'
+  steps:
+    - shell: bash
+      name: Lint
+      run: pnpm lint
+
+    - shell: bash
+      name: Tests
+      run: pnpm test

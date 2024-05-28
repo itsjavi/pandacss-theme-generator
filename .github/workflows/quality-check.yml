@@ -1,0 +1,36 @@
+name: Check code quality for PRs
+
+env:
+  NODE_VERSION: 20.13.1
+  PNPM_VERSION: 9.1.1
+  NEXT_TELEMETRY_DISABLED: 1
+
+on:
+  workflow_dispatch:
+  push:
+    branches:
+      - main
+
+concurrency:
+  group: checkCodeQuality-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  qualityCheck:
+    name: Check code quality
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: 'Setup project'
+        uses: ./.github/actions/setup-project
+        env:
+          NODE_AUTH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: 'Check code quality'
+        uses: ./.github/actions/quality-check
+        env:
+          NODE_AUTH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: 'Build project'
+        run: pnpm build

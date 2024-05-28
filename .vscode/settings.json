@@ -1,0 +1,31 @@
+{
+  "editor.wordWrapColumn": 120,
+  "editor.rulers": [
+    120
+  ],
+  "editor.codeActionsOnSave": {
+    "source.addMissingImports": "explicit",
+    "source.organizeImports": "explicit"
+  },
+  "[javascript]": {
+    "editor.defaultFormatter": "biomejs.biome"
+  },
+  "[javascriptreact]": {
+    "editor.defaultFormatter": "biomejs.biome"
+  },
+  "[typescript]": {
+    "editor.defaultFormatter": "biomejs.biome"
+  },
+  "[typescriptreact]": {
+    "editor.defaultFormatter": "biomejs.biome"
+  },
+  "typescript.preferences.autoImportFileExcludePatterns": [
+    "*.min.json",
+    "styled-jsx*",
+    "lucide-react",
+    "next/link",
+  ],
+  "workbench.editor.customLabels.patterns": {
+    "app/**/*.{tsx,ts}": "@/app/*/${dirname(0)}/${filename}.${extname}"
+  }
+}

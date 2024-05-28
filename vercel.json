@@ -1,0 +1,9 @@
+{
+  "$schema": "https://openapi.vercel.sh/vercel.json",
+  "crons": [
+    {
+      "path": "/admin/cron/delete-expired-tokens",
+      "schedule": "0 10 * * *"
+    }
+  ]
+}
