@@ -34,6 +34,24 @@ const hero = cva({
           fontSize: '2xl',
         },
       },
+      md: {
+        fontSize: '2xl',
+        smDown: {
+          fontSize: 'xl',
+        },
+      },
+      sm: {
+        fontSize: 'xl',
+        smDown: {
+          fontSize: 'lg',
+        },
+      },
+      xs: {
+        fontSize: 'lg',
+        smDown: {
+          fontSize: 'md',
+        },
+      },
     },
   },
   defaultVariants: {

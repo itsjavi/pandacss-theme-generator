@@ -323,19 +323,19 @@ export default definePreset({
             value: '2.25rem',
           },
           '5xl': {
-            value: '3rem',
+            value: '2.5rem',
           },
           '6xl': {
-            value: '3.75rem',
+            value: '3rem',
           },
           '7xl': {
-            value: '4.5rem',
+            value: '3.5rem',
           },
           '8xl': {
-            value: '6rem',
+            value: '4.5rem',
           },
           '9xl': {
-            value: '8rem',
+            value: '6rem',
           },
         },
         fontWeights: {

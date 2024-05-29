@@ -5,7 +5,9 @@ import { HStack } from '@/styled-system/jsx'
 import { SearchIcon } from 'lucide-react'
 import Image from 'next/image'
 import Link from 'next/link'
+import { usePathname } from 'next/navigation'
 import type { ComponentProps } from 'react'
+import { PrimaryButtonSm } from '../ui/button'
 import { ActionInput } from '../ui/input'
 import DarkModeToggle from '../views/dark-mode-toggle'
 
@@ -16,9 +18,10 @@ const className = css({
   flexDirection: 'column',
   // justifyContent: 'space-between',
   gap: '4',
-  padding: '4',
+  paddingX: '4',
+  paddingY: '2',
   //----
-  top: '-2px',
+  // top: '-2px',
   zIndex: 'sticky',
   fontSize: 'sm',
   colorPalette: 'blue',
@@ -103,6 +106,8 @@ type LayoutHeaderProps = ComponentProps<'header'> & {
 }
 
 export default function LayoutHeader({ children, withSearch, withLogo, ...props }: LayoutHeaderProps) {
+  const pathname = usePathname()
+  const isHomePage = pathname === '/'
   //const stickyRef = usePinnedSticky(-2).ref as React.RefObject<HTMLElement>
   const searchInput = (
     <>
@@ -129,7 +134,7 @@ export default function LayoutHeader({ children, withSearch, withLogo, ...props 
                     borderRadius: 'sm',
                     borderColor: 'currentColor',
                     // transform: 'scale(1.5)',
-                    marginLeft: '2',
+                    // marginLeft: '2',
                   })}
                 >
                   <Image alt="logo" src="/android-chrome-192x192.png" width={32} height={32} />
@@ -139,9 +144,10 @@ export default function LayoutHeader({ children, withSearch, withLogo, ...props 
             {withSearch && <div className={topSearch}>{searchInput}</div>}
             {/* <Link href="/docs">Docs</Link> */}
             <Link href="/components">Components</Link>
-            <Link href="/examples">Examples</Link>
+            <Link href="/theme">Theme</Link>
           </HStack>
           <HStack gap="6">
+            {!isHomePage && <PrimaryButtonSm>Get code</PrimaryButtonSm>}
             <DarkModeToggle className={css({ px: '0', width: 'auto', minW: '0px' })} />
           </HStack>
         </div>

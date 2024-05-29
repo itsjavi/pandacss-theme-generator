@@ -1,5 +1,7 @@
 'use client' // Error components must be Client Components
 
+import ContainerCentered from '@/components/layout/container-centered'
+import FullLayout from '@/components/layout/full-layout'
 import { BlackButton } from '@/components/ui/button'
 import { useEffect } from 'react'
 
@@ -16,16 +18,18 @@ export default function ({
   }, [error])
 
   return (
-    <>
-      <h1>Something went wrong</h1>
-      <p>
-        An error occurred while loading this page. Please try again later. If the problem persists, contact support with
-        the following error code:{' '}
-        <pre className="badge-lg">
-          <code>{error.digest}</code>
-        </pre>
-      </p>
-      <BlackButton onClick={reset}>Try again</BlackButton>
-    </>
+    <FullLayout withHeaderLogo withBgPattern withFooter>
+      <ContainerCentered>
+        <h1>Something went wrong</h1>
+        <p>
+          An error occurred while loading this page. Please try again later. If the problem persists, contact support
+          with the following error code:{' '}
+          <pre className="badge-lg">
+            <code>{error.digest}</code>
+          </pre>
+        </p>
+        <BlackButton onClick={reset}>Try again</BlackButton>
+      </ContainerCentered>
+    </FullLayout>
   )
 }

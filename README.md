@@ -2,7 +2,7 @@
 
 https://pandacss-theme-generator.vercel.app
 
-## Inspired in
+## Inspired by
 
 - [Panda CSS Playground](https://github.com/chakra-ui/panda/blob/main/playground)
 - [Park UI](https://park-ui.com)

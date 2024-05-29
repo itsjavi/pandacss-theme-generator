@@ -93,8 +93,11 @@ const buttonStyle = cva({
         },
       },
       solid: {
-        background: 'colorPalette.600',
-        color: 'contrast.black',
+        background: 'colorPalette.solid1',
+        color: 'contrast.white',
+        _hover: {
+          background: 'colorPalette.solid2',
+        },
       },
       subtle: {
         // colorPalette: 'accent',
@@ -191,12 +194,12 @@ export interface ButtonProps extends ComponentProps<typeof Button> {}
 export const BlackButton = createVariantComponent(ark.button, buttonStyle, {
   variant: 'darkest',
   colorPalette: 'gray',
-  shadow: 'lg',
+  // shadow: 'lg',
 })
 export const BlackButtonSm = createVariantComponent(ark.button, buttonStyle, {
   variant: 'darkest',
   colorPalette: 'gray',
-  shadow: 'lg',
+  // shadow: 'lg',
   size: 'sm',
 })
 export const PrimaryButton = createVariantComponent(ark.button, buttonStyle, {
@@ -207,30 +210,30 @@ export const PrimaryButton = createVariantComponent(ark.button, buttonStyle, {
 export const PrimaryButtonSm = createVariantComponent(ark.button, buttonStyle, {
   variant: 'solid',
   colorPalette: 'primary',
-  shadow: 'lg',
+  // shadow: 'lg',
   size: 'sm',
 })
 export const AccentButton = createVariantComponent(ark.button, buttonStyle, {
   variant: 'solid',
   colorPalette: 'accent',
-  shadow: 'lg',
+  // shadow: 'lg',
 })
 export const AccentButtonSm = createVariantComponent(ark.button, buttonStyle, {
   variant: 'solid',
   colorPalette: 'accent',
-  shadow: 'lg',
+  // shadow: 'lg',
   size: 'sm',
 })
 export const DangerButton = createVariantComponent(ark.button, buttonStyle, {
   variant: 'solid',
   colorPalette: 'danger',
-  shadow: 'lg',
+  // shadow: 'lg',
   size: 'sm',
 })
 export const DangerButtonSm = createVariantComponent(ark.button, buttonStyle, {
   variant: 'solid',
   colorPalette: 'danger',
-  shadow: 'lg',
+  // shadow: 'lg',
   size: 'sm',
 })
 export const InlineTextButton = createVariantComponent(ark.button, buttonStyle, {

@@ -59,19 +59,23 @@ export default defineConfig({
     '[inert]': {
       pointerEvents: 'none',
     },
+    '::selection': {
+      bgColor: 'var(--colors-blue-dark-800)',
+      color: 'var(--colors-contrast-white-100)',
+    },
   },
   // hash: {
   //   className: true,
   //   cssVar: false,
   // },
-  // staticCss: {
-  //   css: [
-  //     {
-  //       properties: {
-  //         color: ['*'],
-  //         bg: ['*'],
-  //       },
-  //     },
-  //   ],
-  // },
+  staticCss: {
+    css: [
+      {
+        properties: {
+          color: ['*'],
+          bg: ['*'],
+        },
+      },
+    ],
+  },
 })

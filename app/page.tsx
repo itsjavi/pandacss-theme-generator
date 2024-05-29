@@ -1,3 +1,4 @@
+import FullLayout from '@/components/layout/full-layout'
 import { PrimaryButton } from '@/components/ui/button'
 import HeroTitle from '@/components/ui/hero-title'
 import { cn } from '@/lib/utils'
@@ -36,35 +37,37 @@ function HeadlineText() {
 
 export default async function () {
   return (
-    <div
-      className={css({
-        display: 'flex',
-        flex: 1,
-        alignItems: 'center',
-        color: 'fg.contrast',
-      })}
-    >
+    <FullLayout withBgPattern withFooter withHeaderLogo>
       <div
         className={css({
           display: 'flex',
           flex: 1,
-          flexDirection: 'column',
-          alignItems: 'start',
-          justifyContent: 'start',
-          textAlign: 'left',
-          gap: '4',
-          padding: '8',
-          maxWidth: '600px',
+          alignItems: 'center',
+          color: 'fg.contrast',
         })}
       >
-        <HeroTitle>Panda Theme Generator</HeroTitle>
-        <HeadlineText />
-        <PrimaryButton asChild>
-          <Link href="/components">
-            Get started <ArrowRight />
-          </Link>
-        </PrimaryButton>
+        <div
+          className={css({
+            display: 'flex',
+            flex: 1,
+            flexDirection: 'column',
+            alignItems: 'start',
+            justifyContent: 'start',
+            textAlign: 'left',
+            gap: '4',
+            padding: '8',
+            maxWidth: '600px',
+          })}
+        >
+          <HeroTitle>Panda Theme Generator</HeroTitle>
+          <HeadlineText />
+          <PrimaryButton asChild>
+            <Link href="/theme">
+              Get started <ArrowRight />
+            </Link>
+          </PrimaryButton>
+        </div>
       </div>
-    </div>
+    </FullLayout>
   )
 }

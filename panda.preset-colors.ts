@@ -1,4 +1,5 @@
 import { defineSemanticTokens, defineTokens } from '@pandacss/dev'
+import type { Recursive, SemanticToken } from '@pandacss/types'
 
 // Colors based on Vercel's Geist UI
 
@@ -471,22 +472,9 @@ export const presetColors = defineTokens.colors({
   },
 })
 
+// type ColorLevel = 'DEFAULT' | '100' | '200' | '300' | '400' | '500' | '600' | '700' | '800' | '900' | '950'
 type ColorName = keyof typeof presetColors
-type ColorLevel = 'DEFAULT' | '100' | '200' | '300' | '400' | '500' | '600' | '700' | '800' | '900' | '950'
-type SemanticColorDef = Partial<{
-  [level in ColorLevel]: {
-    value: {
-      base: string
-      _dark: string
-      _colorGamutP3?: {
-        _supportsP3: {
-          base: string
-          _dark: string
-        }
-      }
-    }
-  }
-}>
+type SemanticColorToken = Recursive<SemanticToken<string>>
 
 // type ColorTheme = 'dark' | 'light'
 // type ColorDef = {
@@ -497,8 +485,8 @@ type SemanticColorDef = Partial<{
 //   }
 // }
 
-function semanticizeColor(color: ColorName, withP3: boolean): SemanticColorDef {
-  const semanticColorData: SemanticColorDef = {}
+function semanticizeColor(color: ColorName, withP3: boolean): SemanticColorToken {
+  const semanticColorData: SemanticColorToken = {}
   for (const level of ['DEFAULT', '100', '200', '300', '400', '500', '600', '700', '800', '900', '950'] as const) {
     const levelSuffix = level === 'DEFAULT' ? '' : `-${level}`
     const withP3Props = withP3
@@ -520,6 +508,17 @@ function semanticizeColor(color: ColorName, withP3: boolean): SemanticColorDef {
       },
     }
   }
+
+  semanticColorData.bg1 = semanticColorData[100]
+  semanticColorData.bg2 = semanticColorData[200]
+  semanticColorData.bg3 = semanticColorData[300]
+  semanticColorData.border1 = semanticColorData[400]
+  semanticColorData.border2 = semanticColorData[500]
+  semanticColorData.border3 = semanticColorData[600]
+  semanticColorData.solid1 = semanticColorData[700]
+  semanticColorData.solid2 = semanticColorData[800]
+  semanticColorData.fg1 = semanticColorData[900]
+  semanticColorData.fg2 = semanticColorData[950]
 
   return semanticColorData
 }
@@ -599,11 +598,11 @@ const basePresetSemanticColors = defineSemanticTokens.colors({
   // purple: semanticizeColor('purple', true),
   // pink: semanticizeColor('pink', true),
   // aliases:
-  primary: semanticizeColor('yellow', true),
+  primary: semanticizeColor('blue', true),
   secondary: semanticizeColor('gray', true),
   accent: semanticizeColor('blue', true),
   success: semanticizeColor('green', true),
-  warning: semanticizeColor('pink', true),
+  warning: semanticizeColor('yellow', true),
   danger: semanticizeColor('red', true),
   info: semanticizeColor('teal', true),
 })
