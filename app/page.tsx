@@ -14,31 +14,17 @@ function HeadlineText() {
             fontSize: '3xl',
             maxWidth: '85ch',
             lineHeight: '1.5ch',
-            fontVariationSettings: '"opsz" 32',
+            // fontVariationSettings: '"opsz" 32',
             // textShadow: '0 2px 2px rgba(0, 0, 0, 0.5)',
             smDown: {
               fontSize: '2xl',
-              fontVariationSettings: '"opsz" 24',
+              // fontVariationSettings: '"opsz" 24',
             },
             paddingBottom: '0.6ch', // avoids ligature cropping
             letterSpacing: 'tighter',
             marginX: 'auto',
-            colorPalette: 'neutral',
-            color: 'colorPalette.600',
-            _dark: {
-              color: 'colorPalette.500',
-            },
-            // '&, & p, & b, & strong, & i, & span': {
-            //   textGradient: 'to-br',
-            //   gradientFrom: 'colorPalette.950',
-            //   gradientVia: 'colorPalette.700',
-            //   gradientTo: 'colorPalette.500',
-            //   _dark: {
-            //     gradientFrom: 'colorPalette.50',
-            //     gradientVia: 'colorPalette.200',
-            //     gradientTo: 'colorPalette.400',
-            //   },
-            // },
+            fontWeight: '300',
+            color: 'fg.muted',
           }),
         )}
       >
@@ -55,6 +41,7 @@ export default async function () {
         display: 'flex',
         flex: 1,
         alignItems: 'center',
+        color: 'fg.contrast',
       })}
     >
       <div

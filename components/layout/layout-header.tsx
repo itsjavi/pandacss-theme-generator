@@ -112,22 +112,6 @@ export default function LayoutHeader({ children, withSearch, withLogo, ...props 
     </>
   )
 
-  const playerContainer = css({
-    borderColor: 'primary.6/50',
-    bg: 'primary.2/20',
-    padding: '1',
-    borderRadius: 'full',
-    border: '1px solid',
-    transition: 'transform 0.2s ease-in-out',
-    transitionProperty: 'transform, opacity',
-    _hover: { transform: 'scale(1.2)', opacity: 1, bg: 'primary.3' },
-  })
-
-  const playerFilterGray = css({
-    filter: 'grayscale(1) contrast(1.5) brightness(1.25)',
-    _hover: { filter: 'none' },
-  })
-
   return (
     <>
       <header {...props} className={className}>

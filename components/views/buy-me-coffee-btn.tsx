@@ -5,7 +5,7 @@ import { PrimaryButton } from '../ui/button'
 const styles = {
   base: css({
     colorPalette: 'slate',
-    color: 'colorPalette.11',
+    color: 'colorPalette.fg',
     display: 'flex',
     flexDirection: 'column',
     gap: '2',

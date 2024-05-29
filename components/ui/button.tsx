@@ -57,20 +57,20 @@ const buttonStyle = cva({
       },
     },
     colorPalette: {
-      neutral: {
-        colorPalette: 'neutral',
-      },
       gray: {
-        colorPalette: 'neutral',
+        colorPalette: 'gray',
+      },
+      neutral: {
+        colorPalette: 'gray',
       },
       primary: {
-        colorPalette: 'neutral',
+        colorPalette: 'primary',
       },
       accent: {
-        colorPalette: 'neutral',
+        colorPalette: 'accent',
       },
       danger: {
-        colorPalette: 'neutral',
+        colorPalette: 'danger',
       },
     },
     variant: {
@@ -93,10 +93,8 @@ const buttonStyle = cva({
         },
       },
       solid: {
-        background: 'colorPalette.100',
-        _dark: {
-          background: 'colorPalette.900',
-        },
+        background: 'colorPalette.600',
+        color: 'contrast.black',
       },
       subtle: {
         // colorPalette: 'accent',
@@ -192,19 +190,19 @@ export interface ButtonProps extends ComponentProps<typeof Button> {}
 
 export const BlackButton = createVariantComponent(ark.button, buttonStyle, {
   variant: 'darkest',
-  colorPalette: 'neutral',
+  colorPalette: 'gray',
   shadow: 'lg',
 })
 export const BlackButtonSm = createVariantComponent(ark.button, buttonStyle, {
   variant: 'darkest',
-  colorPalette: 'neutral',
+  colorPalette: 'gray',
   shadow: 'lg',
   size: 'sm',
 })
 export const PrimaryButton = createVariantComponent(ark.button, buttonStyle, {
   variant: 'solid',
   colorPalette: 'primary',
-  shadow: 'lg',
+  // shadow: 'lg',
 })
 export const PrimaryButtonSm = createVariantComponent(ark.button, buttonStyle, {
   variant: 'solid',

@@ -1,10 +1,12 @@
 import { defineConfig } from '@pandacss/dev'
 import { presetPatterns } from './lib/theme/patterns'
+import appPreset from './panda.preset'
 
 export default defineConfig({
   preflight: true,
   jsxFramework: 'react',
-  // jsxFactory: 'panda',
+  jsxFactory: 'panda', // We'll use "panda" instead of "styled". <panda.div bg="primary.100" />
+  // jsxStyleProps: 'minimal', // 'minimal' will reduce the size of the generated code due to not having to check which props are style props at runtime.
   outdir: 'styled-system',
   validation: 'error',
   include: [
@@ -13,6 +15,7 @@ export default defineConfig({
     './components/**/*.{js,jsx,ts,tsx}',
     './lib/**/*.{js,jsx,ts,tsx}',
   ],
+  presets: ['@pandacss/preset-base', appPreset],
   exclude: [
     // File patterns to exclude
   ],
@@ -47,7 +50,7 @@ export default defineConfig({
     },
     '*, *::before, *::after': {
       position: 'relative',
-      borderColor: 'border.default',
+      borderColor: 'transparent',
       borderStyle: 'solid',
     },
     '[hidden]': {
@@ -60,5 +63,15 @@ export default defineConfig({
   // hash: {
   //   className: true,
   //   cssVar: false,
+  // },
+  // staticCss: {
+  //   css: [
+  //     {
+  //       properties: {
+  //         color: ['*'],
+  //         bg: ['*'],
+  //       },
+  //     },
+  //   ],
   // },
 })

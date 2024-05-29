@@ -14,18 +14,18 @@ const cls = {
   }),
 
   gridFade: css({
-    colorPalette: 'neutral',
+    // colorPalette: 'gray',
     // bg: '#0e1416',
     transform: 'rotateX(0deg)',
-    bg: 'radial-gradient(ellipse at 50% 50%, transparent 0%, {colors.colorPalette.100/90} 60%)',
+    bg: 'radial-gradient(ellipse at 50% 50%, transparent 0%, {colors.bg.100/90} 60%)',
     zIndex: 1,
-    _dark: {
-      bg: 'radial-gradient(ellipse at 50% 50%, transparent 0%, {colors.colorPalette.900/90} 60%)',
-    },
+    // _dark: {
+    //   // bg: 'radial-gradient(ellipse at 50% 50%, transparent 0%, {colors.colorPalette.900/90} 60%)',
+    // },
   }),
 
   gridLines: css({
-    colorPalette: 'neutral',
+    colorPalette: 'gray',
     inset: 'auto',
     top: 0,
     left: 0,
@@ -38,10 +38,10 @@ const cls = {
     backgroundRepeat: 'repeat',
     transformOrigin: '100% 0 0',
     transform: 'rotateX(45deg)',
-    _dark: {
-      backgroundImage:
-        'linear-gradient(to right, {colors.colorPalette.300/60} 1px, transparent 0), linear-gradient(to bottom, {colors.colorPalette.300/60} 1px, transparent 0)',
-    },
+    // _dark: {
+    //   backgroundImage:
+    //     'linear-gradient(to right, {colors.colorPalette.300/60} 1px, transparent 0), linear-gradient(to bottom, {colors.colorPalette.300/60} 1px, transparent 0)',
+    // },
     // animation: 'play 15s linear infinite',
   }),
 
