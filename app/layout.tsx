@@ -4,6 +4,7 @@ import './globals.css'
 import { sansFontClass } from '@/app/fonts'
 import { Providers } from '@/components/providers'
 import seoConfig from '@/lib/seo.config'
+import { panda } from '@/styled-system/jsx'
 import { Analytics } from '@vercel/analytics/react'
 import type { Viewport } from 'next'
 import type { PropsWithChildren } from 'react'
@@ -20,6 +21,7 @@ export default async function RootLayout({ children }: PropsWithChildren) {
   return (
     <html lang="en" className={sansFontClass} suppressHydrationWarning>
       <body>
+        <panda.div />
         <Providers>
           <FullLayout withHeaderLogo withBgPattern>
             {children}
