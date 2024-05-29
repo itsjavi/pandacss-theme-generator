@@ -1,20 +1,30 @@
+import FullLayout from '@/components/layout/full-layout'
 import './globals.css'
 
 import { sansFontClass } from '@/app/fonts'
-import { metadataConfig, viewportConfig } from '@/lib/config/metadata'
+import { Providers } from '@/components/providers'
+import seoConfig from '@/lib/seo.config'
 import { Analytics } from '@vercel/analytics/react'
-import { ThemeProvider } from 'next-themes'
+import type { Viewport } from 'next'
+import type { PropsWithChildren } from 'react'
 
-export const metadata = metadataConfig
-export const viewport = viewportConfig
+export const metadata = seoConfig
 
-export default async function RootLayout({ children }: Readonly<{ children: React.ReactNode }>) {
+export const viewport: Viewport = {
+  themeColor: '#F6E458',
+  width: 'device-width',
+  initialScale: 1,
+}
+
+export default async function RootLayout({ children }: PropsWithChildren) {
   return (
-    <html lang="en" suppressHydrationWarning>
-      <body className={sansFontClass}>
-        <ThemeProvider themes={['dark', 'light']} attribute="class" defaultTheme="dark" enableSystem={false}>
-          {children}
-        </ThemeProvider>
+    <html lang="en" className={sansFontClass} suppressHydrationWarning>
+      <body>
+        <Providers>
+          <FullLayout withHeaderLogo withBgPattern>
+            {children}
+          </FullLayout>
+        </Providers>
         <Analytics />
       </body>
     </html>

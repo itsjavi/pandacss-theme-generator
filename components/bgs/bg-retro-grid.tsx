@@ -14,13 +14,18 @@ const cls = {
   }),
 
   gridFade: css({
+    colorPalette: 'neutral',
     // bg: '#0e1416',
     transform: 'rotateX(0deg)',
-    bg: 'radial-gradient(ellipse at 50% 50%, transparent 0%, {colors.colorPalette.7/90} 70%)',
+    bg: 'radial-gradient(ellipse at 50% 50%, transparent 0%, {colors.colorPalette.100/90} 60%)',
     zIndex: 1,
+    _dark: {
+      bg: 'radial-gradient(ellipse at 50% 50%, transparent 0%, {colors.colorPalette.900/90} 60%)',
+    },
   }),
 
   gridLines: css({
+    colorPalette: 'neutral',
     inset: 'auto',
     top: 0,
     left: 0,
@@ -28,11 +33,15 @@ const cls = {
     height: '200%',
 
     backgroundImage:
-      'linear-gradient(to right, {colors.colorPalette.11/80} 1px, transparent 0), linear-gradient(to bottom, {colors.colorPalette.11/60} 1px, transparent 0)',
+      'linear-gradient(to right, {colors.colorPalette.800/60} 1px, transparent 0), linear-gradient(to bottom, {colors.colorPalette.800/60} 1px, transparent 0)',
     backgroundSize: '45px 30px',
     backgroundRepeat: 'repeat',
     transformOrigin: '100% 0 0',
     transform: 'rotateX(45deg)',
+    _dark: {
+      backgroundImage:
+        'linear-gradient(to right, {colors.colorPalette.300/60} 1px, transparent 0), linear-gradient(to bottom, {colors.colorPalette.300/60} 1px, transparent 0)',
+    },
     // animation: 'play 15s linear infinite',
   }),
 

@@ -1,6 +1,5 @@
 'use client' // Error components must be Client Components
 
-import FullLayout from '@/components/layout/full-layout'
 import { BlackButton } from '@/components/ui/button'
 import { useEffect } from 'react'
 
@@ -17,7 +16,7 @@ export default function ({
   }, [error])
 
   return (
-    <FullLayout withHeaderLogo withHeaderSearch>
+    <>
       <h1>Something went wrong</h1>
       <p>
         An error occurred while loading this page. Please try again later. If the problem persists, contact support with
@@ -27,6 +26,6 @@ export default function ({
         </pre>
       </p>
       <BlackButton onClick={reset}>Try again</BlackButton>
-    </FullLayout>
+    </>
   )
 }

@@ -1,34 +1,9 @@
-import FullLayout from '@/components/layout/full-layout'
-import Link from '@/components/primitives/link'
-import { AccentButton, BlackButton } from '@/components/ui/button'
-import { ActionInput } from '@/components/ui/input'
-import LogoSvg from '@/lib/icons/logo-text.svg'
-import { css } from '@/styled-system/css'
-import { Flex } from '@/styled-system/jsx'
-import { herotext } from '@/styled-system/recipes'
-
+import { PrimaryButton } from '@/components/ui/button'
+import HeroTitle from '@/components/ui/hero-title'
 import { cn } from '@/lib/utils'
-import { LayoutGridIcon, SearchIcon } from 'lucide-react'
-
-function Logo() {
-  return (
-    <div
-      className={css({
-        display: 'inline-block',
-        width: '200px',
-        maxWidth: '100%',
-        animationName: 'tada, rubberBand, zoomIn',
-        animationDuration: '1s, 1s, 500ms',
-        animationDelay: '1s, 0ms, 0s',
-        animationTimingFunction: 'ease-in-out',
-        animationFillMode: 'both',
-      })}
-    >
-      <span className="sr-only">PandaCSS Theme Generator</span>
-      <LogoSvg />
-    </div>
-  )
-}
+import { css } from '@/styled-system/css'
+import { ArrowRight } from 'lucide-react'
+import Link from 'next/link'
 
 function HeadlineText() {
   return (
@@ -36,88 +11,73 @@ function HeadlineText() {
       <p
         className={cn(
           css({
-            fontSize: '4xl',
-            maxWidth: '600px',
-            lineHeight: 'tight',
+            fontSize: '3xl',
+            maxWidth: '85ch',
+            lineHeight: '1.5ch',
             fontVariationSettings: '"opsz" 32',
             // textShadow: '0 2px 2px rgba(0, 0, 0, 0.5)',
             smDown: {
-              fontSize: '3xl',
+              fontSize: '2xl',
               fontVariationSettings: '"opsz" 24',
             },
+            paddingBottom: '0.6ch', // avoids ligature cropping
+            letterSpacing: 'tighter',
+            marginX: 'auto',
+            colorPalette: 'neutral',
+            color: 'colorPalette.600',
+            _dark: {
+              color: 'colorPalette.500',
+            },
+            // '&, & p, & b, & strong, & i, & span': {
+            //   textGradient: 'to-br',
+            //   gradientFrom: 'colorPalette.950',
+            //   gradientVia: 'colorPalette.700',
+            //   gradientTo: 'colorPalette.500',
+            //   _dark: {
+            //     gradientFrom: 'colorPalette.50',
+            //     gradientVia: 'colorPalette.200',
+            //     gradientTo: 'colorPalette.400',
+            //   },
+            // },
           }),
-          herotext(),
         )}
       >
-        Create your own design system with <b>Panda CSS</b> and <b>Ark UI</b>.
+        Create your own unique design system with <strong>Panda CSS</strong> and <strong>Ark UI</strong>.
       </p>
-    </div>
-  )
-}
-
-function Headline() {
-  return (
-    <h1
-      className={css({
-        maxWidth: 'prose',
-      })}
-    >
-      <Logo />
-      <HeadlineText />
-    </h1>
-  )
-}
-
-function HeroSection() {
-  return (
-    <div
-      className={css({
-        display: 'flex',
-        flex: 1,
-        flexDirection: 'column',
-        alignItems: 'center',
-        justifyContent: 'center',
-        textAlign: 'center',
-        gap: '4',
-        padding: '8',
-      })}
-    >
-      <Headline />
-      <form
-        className={css({
-          display: 'flex',
-          flexDirection: 'column',
-          alignItems: 'center',
-          justifyContent: 'center',
-          textAlign: 'center',
-          width: 'full',
-          mb: '8',
-        })}
-      >
-        <ActionInput size="hero" id="search_input" placeholder="Search Components (⌘+K)" type="search">
-          <SearchIcon width={18} height={18} />
-        </ActionInput>
-      </form>
-      <Flex gap="4" smDown={{ flexDirection: 'column', alignItems: 'center' }}>
-        <BlackButton asChild>
-          <Link href="/docs">
-            <LayoutGridIcon /> Components
-          </Link>
-        </BlackButton>
-        {/* <PlayerIcon direction="down" spriteSet="walk" animationSpeed={200} /> */}
-
-        <AccentButton asChild>
-          <Link href="/docs">Create your own</Link>
-        </AccentButton>
-      </Flex>
     </div>
   )
 }
 
 export default async function () {
   return (
-    <FullLayout withBgPattern withBgAnimation>
-      <HeroSection />
-    </FullLayout>
+    <div
+      className={css({
+        display: 'flex',
+        flex: 1,
+        alignItems: 'center',
+      })}
+    >
+      <div
+        className={css({
+          display: 'flex',
+          flex: 1,
+          flexDirection: 'column',
+          alignItems: 'start',
+          justifyContent: 'start',
+          textAlign: 'left',
+          gap: '4',
+          padding: '8',
+          maxWidth: '600px',
+        })}
+      >
+        <HeroTitle>Panda Theme Generator</HeroTitle>
+        <HeadlineText />
+        <PrimaryButton asChild>
+          <Link href="/components">
+            Get started <ArrowRight />
+          </Link>
+        </PrimaryButton>
+      </div>
+    </div>
   )
 }

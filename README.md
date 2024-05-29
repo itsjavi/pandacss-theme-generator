@@ -4,6 +4,7 @@ https://pandacss-theme-generator.vercel.app
 
 ## Inspired in
 
+- [Panda CSS Playground](https://github.com/chakra-ui/panda/blob/main/playground)
 - [Park UI](https://park-ui.com)
 - [Vercel Geist Design System](https://vercel.com/geist/colors)
 - [Radix Colors](https://www.radix-ui.com/colors/custom)

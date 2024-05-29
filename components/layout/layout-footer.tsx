@@ -1,8 +1,7 @@
-import appConfig from '@/lib/config/app'
+import appConfig from '@/lib/config'
 import { css } from '@/styled-system/css'
 import { Flex } from '@/styled-system/jsx'
 import type { ComponentProps } from 'react'
-import Link from '../primitives/link'
 
 const styleClass = css({
   display: 'flex',
@@ -45,17 +44,17 @@ export default function LayoutFooter(props: ComponentProps<'footer'>) {
         >
           {'-'}
         </span>
-        <Link href={appConfig.links.donations_url} target="_blank" rel="noopener noreferrer">
+        <a href={appConfig.links.donations_url} target="_blank" rel="noopener noreferrer">
           Buy me a coffee
-        </Link>
+        </a>
         {'-'}
-        <Link href={appConfig.links.github_repo} target="_blank" rel="noopener noreferrer">
+        <a href={appConfig.links.github_repo} target="_blank" rel="noopener noreferrer">
           Github
-        </Link>
+        </a>
         {'-'}
-        <Link href={appConfig.links.twitter_user} target="_blank" rel="noopener noreferrer">
+        <a href={appConfig.links.twitter_user} target="_blank" rel="noopener noreferrer">
           Twitter
-        </Link>
+        </a>
       </Flex>
     </footer>
   )

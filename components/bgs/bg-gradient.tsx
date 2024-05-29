@@ -5,17 +5,17 @@ import { cn } from '@/lib/utils'
 
 const cls = {
   bg: css({
-    colorPalette: 'primary',
+    colorPalette: 'neutral',
     bgGradient: 'to-b',
-    gradientFrom: 'colorPalette.8',
-    gradientVia: 'colorPalette.7',
-    gradientTo: 'colorPalette.1',
+    gradientFrom: 'colorPalette.100',
+    gradientVia: 'colorPalette.100',
+    gradientTo: 'colorPalette.200',
     // gradientVia: 'colorPalette.5',
     // bg: 'colorPalette.6',
     _dark: {
-      gradientFrom: 'colorPalette.1',
-      gradientVia: 'colorPalette.7',
-      gradientTo: 'colorPalette.10',
+      gradientFrom: 'colorPalette.900',
+      gradientVia: 'colorPalette.900',
+      gradientTo: 'colorPalette.800',
       // gradientFrom: 'colorPalette.1',
       // gradientTo: 'colorPalette.7',
       // bg: 'colorPalette.7',

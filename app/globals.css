@@ -1,7 +1,1 @@
 @layer reset, base, tokens, recipes, utilities;
-
-@import '../lib/theme/global-css/reset.css';
-@import '../lib/theme/global-css/utilities.css';
-
-/* https://animate.style/ */
-@import 'animate.css';

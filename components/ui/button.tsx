@@ -6,8 +6,8 @@ import { createVariantComponent } from '../create-component'
 const buttonStyle = cva({
   base: {
     // cursor: 'pointer',
-    // colorPalette: 'accent',
     appearance: 'none',
+    colorPalette: 'gray',
     borderRadius: 'sm',
     borderWidth: '1.5px',
     display: 'inline-flex',
@@ -25,9 +25,6 @@ const buttonStyle = cva({
     userSelect: 'none',
     verticalAlign: 'middle',
     whiteSpace: 'nowrap',
-    _hidden: {
-      display: 'none',
-    },
     _disabled: {
       opacity: 0.8,
       filter: 'grayscale(0.5)',
@@ -64,16 +61,16 @@ const buttonStyle = cva({
         colorPalette: 'neutral',
       },
       gray: {
-        colorPalette: 'gray',
+        colorPalette: 'neutral',
       },
       primary: {
-        colorPalette: 'primary',
+        colorPalette: 'neutral',
       },
       accent: {
-        colorPalette: 'accent',
+        colorPalette: 'neutral',
       },
       danger: {
-        colorPalette: 'danger',
+        colorPalette: 'neutral',
       },
     },
     variant: {
@@ -96,14 +93,9 @@ const buttonStyle = cva({
         },
       },
       solid: {
-        // borderColor: 'currentColor',
-        // colorPalette: 'accent',
-        background: 'colorPalette.9',
-        color: 'colorPalette.fg',
-        borderColor: 'colorPalette.dark.3',
-        _hover: {
-          borderColor: 'colorPalette.dark.3',
-          background: 'colorPalette.10',
+        background: 'colorPalette.100',
+        _dark: {
+          background: 'colorPalette.900',
         },
       },
       subtle: {

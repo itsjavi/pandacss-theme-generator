@@ -3,19 +3,21 @@ import { type RecipeVariantProps, cva } from '@/styled-system/css'
 
 const hero = cva({
   base: {
-    colorPalette: 'slate',
+    colorPalette: 'neutral',
     fontSize: 'lg',
     fontWeight: '700',
     lineHeight: '1.5ch',
-    paddingBottom: '0.6ch', // avoids ligature cropping
+    paddingBottom: '0.2ch', // avoids ligature cropping
     letterSpacing: 'tighter',
-    // textGradient: 'to-br',
-    // gradientFrom: 'colorPalette.11',
-    // gradientVia: 'colorPalette.12',
-    // gradientTo: 'colorPalette.10',
-    maxWidth: '600px',
-    marginX: 'auto',
-    textAlign: 'center',
+    textGradient: 'to-br',
+    gradientFrom: 'colorPalette.950',
+    gradientVia: 'colorPalette.700',
+    gradientTo: 'colorPalette.500',
+    _dark: {
+      gradientFrom: 'colorPalette.50',
+      gradientVia: 'colorPalette.200',
+      gradientTo: 'colorPalette.400',
+    },
   },
   variants: {
     size: {

@@ -1,11 +1,11 @@
 'use client'
 
-import LogoSvg from '@/lib/icons/logo.svg'
 import { css } from '@/styled-system/css'
 import { HStack } from '@/styled-system/jsx'
 import { SearchIcon } from 'lucide-react'
+import Image from 'next/image'
+import Link from 'next/link'
 import type { ComponentProps } from 'react'
-import Link from '../primitives/link'
 import { ActionInput } from '../ui/input'
 import DarkModeToggle from '../views/dark-mode-toggle'
 
@@ -132,24 +132,32 @@ export default function LayoutHeader({ children, withSearch, withLogo, ...props 
     <>
       <header {...props} className={className}>
         <div className={innerClassName}>
-          <HStack gap="4" width="full">
+          <HStack gap="4" width="full" alignItems="center">
             {withLogo && (
               <Link href="/" className="inline-block animate__animated animate__rotateIn">
-                <LogoSvg
+                <div
                   className={css({
-                    width: '6',
-                    height: '6',
-                    transform: 'scale(1.5)',
+                    display: 'inline-block',
+                    width: '8',
+                    height: '8',
+                    verticalAlign: 'middle',
+                    border: '2px solid',
+                    borderRadius: 'sm',
+                    borderColor: 'currentColor',
+                    // transform: 'scale(1.5)',
                     marginLeft: '2',
                   })}
-                />
+                >
+                  <Image alt="logo" src="/android-chrome-192x192.png" width={32} height={32} />
+                </div>
               </Link>
             )}
             {withSearch && <div className={topSearch}>{searchInput}</div>}
+            {/* <Link href="/docs">Docs</Link> */}
+            <Link href="/components">Components</Link>
+            <Link href="/examples">Examples</Link>
           </HStack>
           <HStack gap="6">
-            <Link href="/docs">Components</Link>
-            <Link href="/tokens">Tokens</Link>
             <DarkModeToggle className={css({ px: '0', width: 'auto', minW: '0px' })} />
           </HStack>
         </div>
