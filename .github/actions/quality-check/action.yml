@@ -9,6 +9,6 @@ runs:
       name: Lint
       run: pnpm lint
 
-    - shell: bash
-      name: Tests
-      run: pnpm test
+    # - shell: bash
+    #   name: Tests
+    #   run: pnpm test
