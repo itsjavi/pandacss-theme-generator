@@ -1,5 +1,7 @@
 // -- Utility types
 
+import type { PropsWithChildren } from 'react'
+
 export type ConditionalPick<Base, Condition> = Pick<
   Base,
   {
@@ -36,46 +38,10 @@ export type FormState<TData = undefined> =
     }
   | undefined
 
-// -- Colors
-export type TailwindColorScale = 50 | 100 | 200 | 300 | 400 | 500 | 600 | 700 | 800 | 900 | 950
-export type RadixColorScale = 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9 | 10 | 11 | 12
-export type GeistColorScale = 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9 | 10
+export type BasicComponentProps = PropsWithChildren<{
+  className?: string
+}>
 
-export type RadixAccentColor = (typeof accentColors)[number]
-const accentColors = [
-  'gray',
-  'tomato',
-  'red',
-  'ruby',
-  'crimson',
-  'pink',
-  'plum',
-  'purple',
-  'violet',
-  'iris',
-  'indigo',
-  'blue',
-  'cyan',
-  'teal',
-  'jade',
-  'green',
-  'grass',
-  'bronze',
-  'gold',
-  'brown',
-  'orange',
-  'amber',
-  'yellow',
-  'lime',
-  'mint',
-  'sky',
-] as const
-
-export type RadixGrayColor = (typeof grayColors)[number]
-const grayColors = ['gray', 'mauve', 'olive', 'sage', 'sand', 'slate'] as const
-
-const geistColors = ['gray', 'alphagray', 'blue', 'red', 'amber', 'green', 'teal', 'purple', 'pink'] as const
-export type GeistColor = (typeof geistColors)[number]
-
-export type ThemeColorAlias = 'neutral' | 'primary' | 'secondary' | 'accent' | 'danger' | 'warning' | 'success' | 'info'
-export type ThemeColor = GeistColor
+export type PolymorphicComponentProps<T extends string> = BasicComponentProps & {
+  as?: T
+}

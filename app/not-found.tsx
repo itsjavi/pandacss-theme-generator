@@ -1,12 +1,12 @@
 import ContainerCentered from '@/components/layout/container-centered'
 import FullLayout from '@/components/layout/full-layout'
-import HeroTitle from '@/components/ui/hero-title'
+import Heading from '@/components/layout/heading'
 
 export default async function () {
   return (
-    <FullLayout withHeaderLogo withBgPattern withFooter>
+    <FullLayout withBgPattern withFooter>
       <ContainerCentered>
-        <HeroTitle size="xl">Page Not Found</HeroTitle>
+        <Heading size="xl">Page Not Found</Heading>
         <p>The page you are looking for does not exist. Please check the URL in the address bar and try again.</p>
       </ContainerCentered>
     </FullLayout>

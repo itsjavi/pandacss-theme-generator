@@ -9,8 +9,6 @@ type FullLayoutProps = {
   bgClassName?: string
   withBgPattern?: boolean
   withBgAnimation?: boolean
-  withHeaderLogo?: boolean
-  withHeaderSearch?: boolean
   withFooter?: boolean
 }
 
@@ -20,8 +18,6 @@ export default async function FullLayout({
   bgClassName,
   withBgPattern,
   withBgAnimation,
-  withHeaderLogo,
-  withHeaderSearch,
   withFooter,
 }: FullLayoutProps) {
   return (
@@ -31,7 +27,7 @@ export default async function FullLayout({
       withBgPattern={withBgPattern}
       withBgAnimation={withBgAnimation}
     >
-      <LayoutHeader withLogo={withHeaderLogo} withSearch={withHeaderSearch} />
+      <LayoutHeader />
       <LayoutMain>{children}</LayoutMain>
       {withFooter && <LayoutFooter />}
     </LayoutRoot>

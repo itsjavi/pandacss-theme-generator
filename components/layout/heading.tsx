@@ -1,14 +1,14 @@
 import { cn } from '@/lib/utils'
 import { type RecipeVariantProps, cva } from '@/styled-system/css'
 
-const hero = cva({
+const heading = cva({
   base: {
     fontSize: 'lg',
     fontWeight: '700',
     lineHeight: '1.5ch',
     paddingBottom: '0.2ch', // avoids ligature cropping
     letterSpacing: 'tighter',
-    color: 'fg.contrast',
+    color: 'gray.fg2',
     // textGradient: 'to-br',
     // gradientFrom: 'fg.100',
     // gradientVia: 'fg.200',
@@ -55,22 +55,22 @@ const hero = cva({
     },
   },
   defaultVariants: {
-    size: 'xxl',
+    size: 'xl',
   },
 })
 
-type HeroVariants = RecipeVariantProps<typeof hero>
+type HeadingVariants = RecipeVariantProps<typeof heading>
 
-type HeroTitleProps = {
+type HeadingTitleProps = {
   className?: string
   children: React.ReactNode
   as?: 'h1' | 'h2' | 'h3' | 'h4' | 'h5' | 'h6' | 'p' | 'span' | 'div'
 } & React.ComponentProps<'div'> &
-  HeroVariants
+  HeadingVariants
 
-export default function HeroTitle({ className, children, size, as: Comp = 'div', ...props }: HeroTitleProps) {
+export default function Heading({ className, children, size, as: Comp = 'div', ...props }: HeadingTitleProps) {
   return (
-    <Comp className={cn(hero({ size }), className)} {...props}>
+    <Comp className={cn(heading({ size }), className)} {...props}>
       {children}
     </Comp>
   )

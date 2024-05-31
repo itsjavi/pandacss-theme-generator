@@ -18,7 +18,7 @@ export default function ({
   }, [error])
 
   return (
-    <FullLayout withHeaderLogo withBgPattern withFooter>
+    <FullLayout withBgPattern withFooter>
       <ContainerCentered>
         <h1>Something went wrong</h1>
         <p>

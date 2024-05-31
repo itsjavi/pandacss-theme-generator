@@ -1,6 +1,6 @@
 import FullLayout from '@/components/layout/full-layout'
+import Heading from '@/components/layout/heading'
 import { PrimaryButton } from '@/components/ui/button'
-import HeroTitle from '@/components/ui/hero-title'
 import { cn } from '@/lib/utils'
 import { css } from '@/styled-system/css'
 import { ArrowRight } from 'lucide-react'
@@ -37,13 +37,13 @@ function HeadlineText() {
 
 export default async function () {
   return (
-    <FullLayout withBgPattern withFooter withHeaderLogo>
+    <FullLayout withBgPattern withFooter>
       <div
         className={css({
           display: 'flex',
           flex: 1,
           alignItems: 'center',
-          color: 'fg.contrast',
+          color: 'gray.fg2',
         })}
       >
         <div
@@ -59,10 +59,10 @@ export default async function () {
             maxWidth: '600px',
           })}
         >
-          <HeroTitle>Panda Color Palette Generator</HeroTitle>
+          <Heading>Panda Color System Generator</Heading>
           <HeadlineText />
           <PrimaryButton asChild>
-            <Link href="/theme">
+            <Link href="/colors">
               Get started <ArrowRight />
             </Link>
           </PrimaryButton>

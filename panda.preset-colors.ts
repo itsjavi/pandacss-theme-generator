@@ -4,24 +4,38 @@ import type { Recursive, SemanticToken } from '@pandacss/types'
 // Colors based on Vercel's Geist UI
 
 export const presetColors = defineTokens.colors({
-  contrast: {
-    black: {
+  bg: {
+    dark: {
       DEFAULT: { value: '#000' },
       100: { value: '#000' },
       200: { value: '#0A0A0A' },
-      300: { value: '#444' },
+      300: { value: '#111111' },
       // 950: { value: '#282828' },
     },
-    white: {
+    light: {
       DEFAULT: { value: '#fff' },
       100: { value: '#fff' },
       200: { value: '#FAFAFA' },
-      300: { value: '#bbb' },
+      300: { value: '#EEEEEE' },
       // 950: { value: '#e5e5e5' },
     },
   },
-  // border: {},
-  // outline: {},
+  fg: {
+    dark: {
+      DEFAULT: { value: '#fff' },
+      100: { value: '#fff' },
+      200: { value: '#DDDDDD' },
+      300: { value: '#A1A1A1' },
+      // 950: { value: '#e5e5e5' },
+    },
+    light: {
+      DEFAULT: { value: '#000' },
+      100: { value: '#000' },
+      200: { value: '#222222' },
+      300: { value: '#666666' },
+      // 950: { value: '#282828' },
+    },
+  },
   gray: {
     dark: {
       DEFAULT: { value: 'var(--colors-gray-dark-600)' },
@@ -50,9 +64,9 @@ export const presetColors = defineTokens.colors({
       950: { value: 'hsl(0, 0%, 9%)' },
     },
   },
-  grayalpha: {
+  shade: {
     dark: {
-      DEFAULT: { value: 'var(--colors-grayalpha-dark-600)' },
+      DEFAULT: { value: 'var(--colors-shade-dark-600)' },
       100: { value: 'hsla(0, 0%, 100%, .06)' },
       200: { value: 'hsla(0, 0%, 100%, .09)' },
       300: { value: 'hsla(0, 0%, 100%, .13)' },
@@ -65,7 +79,7 @@ export const presetColors = defineTokens.colors({
       950: { value: 'hsla(0, 0%, 100%, .92)' },
     },
     light: {
-      DEFAULT: { value: 'var(--colors-grayalpha-light-600)' },
+      DEFAULT: { value: 'var(--colors-shade-light-600)' },
       100: { value: 'rgba(0, 0, 0, .05)' },
       200: { value: 'rgba(0, 0, 0, .08)' },
       300: { value: 'rgba(0, 0, 0, .1)' },
@@ -523,81 +537,39 @@ function semanticizeColor(color: ColorName, withP3: boolean): SemanticColorToken
   return semanticColorData
 }
 
+function semanticizeBgColor(color: ColorName, isFg: boolean): SemanticColorToken {
+  const semanticColorData: SemanticColorToken = {}
+  for (const level of ['DEFAULT', '100', '200', '300'] as const) {
+    const levelSuffix = level === 'DEFAULT' ? '' : `-${level}`
+
+    semanticColorData[level] = {
+      value: {
+        base: `var(--colors-${color}-light${levelSuffix})`,
+        _dark: `var(--colors-${color}-dark${levelSuffix})`,
+      },
+    }
+  }
+
+  semanticColorData.subtle = semanticColorData[200]
+  semanticColorData.muted = semanticColorData[300]
+
+  return semanticColorData
+}
+
 const basePresetSemanticColors = defineSemanticTokens.colors({
-  bg: {
-    DEFAULT: {
-      value: {
-        base: 'var(--colors-contrast-white)',
-        _dark: 'var(--colors-contrast-black)',
-      },
-    },
-    100: {
-      value: {
-        base: 'var(--colors-contrast-white-100)',
-        _dark: 'var(--colors-contrast-black-100)',
-      },
-    },
-    200: {
-      value: {
-        base: 'var(--colors-contrast-white-200)',
-        _dark: 'var(--colors-contrast-black-200)',
-      },
-    },
-    300: {
-      value: {
-        base: 'var(--colors-contrast-white-300)',
-        _dark: 'var(--colors-contrast-black-300)',
-      },
-    },
-  },
-  fg: {
-    DEFAULT: {
-      value: {
-        base: 'var(--colors-contrast-black)',
-        _dark: 'var(--colors-contrast-white)',
-      },
-    },
-    100: {
-      value: {
-        base: 'var(--colors-contrast-black-100)',
-        _dark: 'var(--colors-contrast-white-100)',
-      },
-    },
-    200: {
-      value: {
-        base: 'var(--colors-contrast-black-200)',
-        _dark: 'var(--colors-contrast-white-200)',
-      },
-    },
-    300: {
-      value: {
-        base: 'var(--colors-contrast-black-300)',
-        _dark: 'var(--colors-contrast-white-300)',
-      },
-    },
-    contrast: {
-      value: {
-        base: 'var(--colors-gray-light-950)',
-        _dark: 'var(--colors-gray-dark-950)',
-      },
-    },
-    muted: {
-      value: {
-        base: 'var(--colors-gray-light-900)',
-        _dark: 'var(--colors-gray-dark-900)',
-      },
-    },
-  },
+  bg: semanticizeBgColor('bg', false),
+  fg: semanticizeBgColor('fg', true),
   gray: semanticizeColor('gray', false),
-  grayalpha: semanticizeColor('grayalpha', false),
-  // blue: semanticizeColor('blue', true),
-  // red: semanticizeColor('red', true),
-  // yellow: semanticizeColor('yellow', true),
-  // green: semanticizeColor('green', true),
-  // teal: semanticizeColor('teal', true),
-  // purple: semanticizeColor('purple', true),
-  // pink: semanticizeColor('pink', true),
+  shade: semanticizeColor('shade', false),
+  blue: semanticizeColor('blue', true),
+  red: semanticizeColor('red', true),
+  yellow: semanticizeColor('yellow', true),
+  green: semanticizeColor('green', true),
+  teal: semanticizeColor('teal', true),
+  purple: semanticizeColor('purple', true),
+  pink: semanticizeColor('pink', true),
   // aliases:
+  neutral: semanticizeColor('gray', true),
   primary: semanticizeColor('blue', true),
   secondary: semanticizeColor('gray', true),
   accent: semanticizeColor('blue', true),
@@ -606,6 +578,22 @@ const basePresetSemanticColors = defineSemanticTokens.colors({
   danger: semanticizeColor('red', true),
   info: semanticizeColor('teal', true),
 })
+
+// export const presetSemanticColorMap: Record<keyof typeof presetSemanticColors, keyof typeof presetColors> = {
+//   bg: 'contrast',
+//   fg: 'contrast',
+//   gray: 'gray',
+//   shade: 'shade',
+//   // aliases:
+//   neutral: 'gray',
+//   primary: 'blue',
+//   secondary: 'gray',
+//   accent: 'blue',
+//   danger: 'red',
+//   warning: 'yellow',
+//   success: 'green',
+//   info: 'teal',
+// }
 
 export const presetSemanticColors = defineSemanticTokens.colors({
   ...basePresetSemanticColors,

@@ -139,14 +139,14 @@ const spacing = defineTokens.spacing({
 export default definePreset({
   conditions: {
     extend: {
-      hidden: '&:is([hidden])',
-      inert: '&:is([inert])',
-      hover: ['@media (hover: hover) and (pointer: fine)', '&:is(:hover, [data-hover])'],
-      standalone: '@media (display-mode: standalone)',
-      reducedMotion: '@media (prefers-reduced-motion)',
-      reducedTransparency: '@media (prefers-reduced-transparency)',
-      screenOnly: '@media screen',
-      printOnly: '@media print',
+      // hidden: '&:is([hidden])',
+      // inert: '&:is([inert])',
+      // hover: ['@media (hover: hover) and (pointer: fine)', '&:is(:hover, [data-hover])'],
+      // standalone: '@media (display-mode: standalone)',
+      // reducedMotion: '@media (prefers-reduced-motion)',
+      // reducedTransparency: '@media (prefers-reduced-transparency)',
+      // screenOnly: '@media screen',
+      // printOnly: '@media print',
       colorGamutP3: '@media (color-gamut:p3)',
       supportsP3: '@supports (color: oklch(0 0 0))',
     },
@@ -571,7 +571,7 @@ export default definePreset({
           inner: {
             value: 'inset 0 2px 4px 0 rgb(0 0 0 / 0.05)',
           },
-          borderInset: {
+          borderInset1: {
             value: 'inset 0 0 0 1px hsla(0, 0%, 100%, .1)',
           },
         },
@@ -642,6 +642,14 @@ export default definePreset({
       },
       semanticTokens: {
         colors: presetSemanticColors,
+        shadows: {
+          borderInset: {
+            value: {
+              base: 'inset 0 0 0 1px hsla(0, 0%, 0%, .1)',
+              _dark: 'inset 0 0 0 1px hsla(0, 0%, 100%, .1)',
+            },
+          },
+        },
       },
       // textStyles: {},
       // keyframes: {},

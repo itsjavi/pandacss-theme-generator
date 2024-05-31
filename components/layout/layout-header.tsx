@@ -2,14 +2,10 @@
 
 import { css } from '@/styled-system/css'
 import { HStack } from '@/styled-system/jsx'
-import { SearchIcon } from 'lucide-react'
 import Image from 'next/image'
 import Link from 'next/link'
-import { usePathname } from 'next/navigation'
 import type { ComponentProps } from 'react'
 import GithubIcon from '../icons/GithubIcon'
-import { PrimaryButtonSm } from '../ui/button'
-import { ActionInput } from '../ui/input'
 import DarkModeToggle from '../views/dark-mode-toggle'
 
 const className = css({
@@ -101,61 +97,38 @@ const bottomSearch = css({
   },
 })
 
-type LayoutHeaderProps = ComponentProps<'header'> & {
-  withLogo?: boolean
-  withSearch?: boolean
-}
-
-export default function LayoutHeader({ children, withSearch, withLogo, ...props }: LayoutHeaderProps) {
-  const pathname = usePathname()
-  const isHomePage = pathname === '/'
-  //const stickyRef = usePinnedSticky(-2).ref as React.RefObject<HTMLElement>
-  const searchInput = (
-    <>
-      <ActionInput size="sm" type="search" placeholder="Search (⌘+K)" buttonProps={{ size: 'sm' }}>
-        <SearchIcon width={14} height={14} />
-      </ActionInput>
-    </>
-  )
-
+export default function LayoutHeader({ children, ...props }: ComponentProps<'header'>) {
   return (
     <>
       <header {...props} className={className}>
         <div className={innerClassName}>
           <HStack gap="4" width="full" alignItems="center">
-            {withLogo && (
-              <Link href="/" className="inline-block animate__animated animate__rotateIn">
-                <div
-                  className={css({
-                    display: 'inline-block',
-                    width: '8',
-                    height: '8',
-                    verticalAlign: 'middle',
-                    border: '2px solid',
-                    borderRadius: 'sm',
-                    borderColor: 'currentColor',
-                    // transform: 'scale(1.5)',
-                    // marginLeft: '2',
-                  })}
-                >
-                  <Image alt="logo" src="/android-chrome-192x192.png" width={32} height={32} />
-                </div>
-              </Link>
-            )}
-            {withSearch && <div className={topSearch}>{searchInput}</div>}
-            {/* <Link href="/docs">Docs</Link> */}
-            <Link href="/components">Components</Link>
-            <Link href="/theme">Theme</Link>
+            <Link href="/" className="inline-block animate__animated animate__rotateIn">
+              <div
+                className={css({
+                  display: 'inline-block',
+                  width: '8',
+                  height: '8',
+                  verticalAlign: 'middle',
+                  border: '1px solid',
+                  borderRadius: 'sm',
+                  borderColor: 'currentColor',
+                  overflow: 'hidden',
+                })}
+              >
+                <Image alt="logo" src="/android-chrome-192x192.png" width={32} height={32} />
+              </div>
+            </Link>
+            {/* <Link href="/components">Components</Link>
+            <Link href="/theme">Theme</Link> */}
           </HStack>
-          <HStack gap="4" css={{'& svg': {width: '5', height: '5'}}}>
-            {!isHomePage && <PrimaryButtonSm>Get code</PrimaryButtonSm>}
+          <HStack gap="4" css={{ '& svg': { width: '5', height: '5' } }}>
             <a href="https://github.com/itsjavi/pandacss-theme-generator" target="_blank" rel="noopener noreferrer">
               <GithubIcon />
             </a>
             <DarkModeToggle className={css({ px: '0', width: 'auto', minW: '0px' })} />
           </HStack>
         </div>
-        {withSearch && <div className={bottomSearch}>{searchInput}</div>}
       </header>
     </>
   )

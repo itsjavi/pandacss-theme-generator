@@ -64,10 +64,10 @@ export default defineConfig({
       color: 'var(--colors-contrast-white-100)',
     },
   },
-  // hash: {
-  //   className: true,
-  //   cssVar: false,
-  // },
+  hash: {
+    className: true,
+    cssVar: false,
+  },
   staticCss: {
     css: [
       {
