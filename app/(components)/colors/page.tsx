@@ -1,9 +1,8 @@
-import ColorScaleViewer from '@/components/colorsystem/color-scale-viewer'
+import ColorSystemEditor from '@/components/colorsystem/color-system-editor'
 import PandaPresetRenderer from '@/components/colorsystem/panda-preset-renderer'
 import ContentSection from '@/components/layout/content-section'
 import Heading from '@/components/layout/heading'
 import Subtitle from '@/components/layout/subtitle'
-import { geistColorsConfig } from '@/lib/colorsystem/config'
 
 export default async function () {
   const solidColors = ['shade', 'gray', 'blue', 'red', 'yellow', 'green', 'teal', 'purple', 'pink'] as const
@@ -24,9 +23,7 @@ export default async function () {
           supported browsers and displays. Default color is at the 600 level.
         </Subtitle>
         <br />
-        {Object.entries(geistColorsConfig).map(([name, colorConfig], i) => {
-          return <ColorScaleViewer withLegend={i === 0} key={name} colorConfig={colorConfig} />
-        })}
+        <ColorSystemEditor />
       </ContentSection>
       <ContentSection>
         <Heading size="lg">Preset</Heading>

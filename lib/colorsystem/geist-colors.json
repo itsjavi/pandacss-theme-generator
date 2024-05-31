@@ -56,7 +56,7 @@
   "gray": {
     "name": "gray",
     "type": "gray",
-    "aliases": ["neutral"],
+    "aliases": [],
     "light": {
       "100": {
         "srgb": "hsl(0, 0%, 95%)"
@@ -639,7 +639,7 @@
   "purple": {
     "name": "purple",
     "type": "accent",
-    "aliases": [],
+    "aliases": ["secondary"],
     "light": {
       "100": {
         "srgb": "hsl(276, 100%, 97%)",
@@ -728,7 +728,7 @@
   "pink": {
     "name": "pink",
     "type": "accent",
-    "aliases": ["secondary"],
+    "aliases": ["tertiary"],
     "light": {
       "100": {
         "srgb": "hsl(330, 100%, 96%)",

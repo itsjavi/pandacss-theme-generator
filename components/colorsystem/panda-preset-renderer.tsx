@@ -1,10 +1,8 @@
 'use client'
 
 import { monoFontClass } from '@/app/fonts'
-import { geistColorsConfig } from '@/lib/colorsystem/config'
-import generatePandaPreset from '@/lib/colorsystem/generate-panda-preset'
+import { useAppState } from '@/lib/colorsystem/state'
 import { css } from '@/styled-system/css'
-import { outdent } from 'outdent'
 import { useState } from 'react'
 import { useCopyToClipboard } from 'usehooks-ts'
 import { PrimaryButtonSm } from '../ui/button'
@@ -12,6 +10,7 @@ import { PrimaryButtonSm } from '../ui/button'
 export default function PandaPresetRenderer() {
   const [_, copyToClipboard] = useCopyToClipboard()
   const [copied, setCopied] = useState(false)
+  const [appState] = useAppState()
 
   const handleCopy = (text: string) => () => {
     copyToClipboard(text)
@@ -26,27 +25,18 @@ export default function PandaPresetRenderer() {
       })
   }
 
-  // TODO: pass colors from global state
-  const configSubset = generatePandaPreset(geistColorsConfig)
-
-  const jsCode = outdent`
-    import { definePreset } from "@pandacss/dev";
-
-    export const colorSystemPreset = definePreset(
-      ${JSON.stringify(configSubset, null, 2)}
-    );
-  `
-
   return (
     <>
-      <PrimaryButtonSm onClick={handleCopy(jsCode)}>{copied ? 'Copied!' : 'Copy to clipboard'}</PrimaryButtonSm>
+      <PrimaryButtonSm onClick={handleCopy(appState.colorSystemPresetCode)}>
+        {copied ? 'Copied!' : 'Copy to clipboard'}
+      </PrimaryButtonSm>
       <div
         className={css({
           maxHeight: '500px',
           overflowY: 'auto',
         })}
       >
-        <pre className={monoFontClass}>{jsCode}</pre>
+        <pre className={monoFontClass}>{appState.colorSystemPresetCode}</pre>
       </div>
     </>
   )

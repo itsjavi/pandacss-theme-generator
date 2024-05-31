@@ -1402,101 +1402,6 @@ export const colorSystemPreset = definePreset({
               value: '{colors.gray}',
             },
           },
-          neutral: {
-            '100': {
-              value: {
-                base: '{colors.gray.light.100}',
-                _dark: '{colors.gray.dark.100}',
-              },
-            },
-            '200': {
-              value: {
-                base: '{colors.gray.light.200}',
-                _dark: '{colors.gray.dark.200}',
-              },
-            },
-            '300': {
-              value: {
-                base: '{colors.gray.light.300}',
-                _dark: '{colors.gray.dark.300}',
-              },
-            },
-            '400': {
-              value: {
-                base: '{colors.gray.light.400}',
-                _dark: '{colors.gray.dark.400}',
-              },
-            },
-            '500': {
-              value: {
-                base: '{colors.gray.light.500}',
-                _dark: '{colors.gray.dark.500}',
-              },
-            },
-            '600': {
-              value: {
-                base: '{colors.gray.light.600}',
-                _dark: '{colors.gray.dark.600}',
-              },
-            },
-            '700': {
-              value: {
-                base: '{colors.gray.light.700}',
-                _dark: '{colors.gray.dark.700}',
-              },
-            },
-            '800': {
-              value: {
-                base: '{colors.gray.light.800}',
-                _dark: '{colors.gray.dark.800}',
-              },
-            },
-            '900': {
-              value: {
-                base: '{colors.gray.light.900}',
-                _dark: '{colors.gray.dark.900}',
-              },
-            },
-            '950': {
-              value: {
-                base: '{colors.gray.light.950}',
-                _dark: '{colors.gray.dark.950}',
-              },
-            },
-            bg1: {
-              value: '{colors.gray.100}',
-            },
-            bg2: {
-              value: '{colors.gray.200}',
-            },
-            bg3: {
-              value: '{colors.gray.300}',
-            },
-            border1: {
-              value: '{colors.gray.400}',
-            },
-            border2: {
-              value: '{colors.gray.500}',
-            },
-            border3: {
-              value: '{colors.gray.600}',
-            },
-            solid1: {
-              value: '{colors.gray.700}',
-            },
-            solid2: {
-              value: '{colors.gray.800}',
-            },
-            fg1: {
-              value: '{colors.gray.900}',
-            },
-            fg2: {
-              value: '{colors.gray.950}',
-            },
-            DEFAULT: {
-              value: '{colors.gray}',
-            },
-          },
           alpha: {
             '100': {
               value: {
@@ -3297,6 +3202,161 @@ export const colorSystemPreset = definePreset({
               value: '{colors.purple}',
             },
           },
+          secondary: {
+            '100': {
+              value: {
+                base: '{colors.purple.light.100}',
+                _dark: '{colors.purple.dark.100}',
+                _mediaP3: {
+                  _supportsP3: {
+                    base: '{colors.purpleP3.light.100}',
+                    _dark: '{colors.purpleP3.dark.100}',
+                  },
+                },
+              },
+            },
+            '200': {
+              value: {
+                base: '{colors.purple.light.200}',
+                _dark: '{colors.purple.dark.200}',
+                _mediaP3: {
+                  _supportsP3: {
+                    base: '{colors.purpleP3.light.200}',
+                    _dark: '{colors.purpleP3.dark.200}',
+                  },
+                },
+              },
+            },
+            '300': {
+              value: {
+                base: '{colors.purple.light.300}',
+                _dark: '{colors.purple.dark.300}',
+                _mediaP3: {
+                  _supportsP3: {
+                    base: '{colors.purpleP3.light.300}',
+                    _dark: '{colors.purpleP3.dark.300}',
+                  },
+                },
+              },
+            },
+            '400': {
+              value: {
+                base: '{colors.purple.light.400}',
+                _dark: '{colors.purple.dark.400}',
+                _mediaP3: {
+                  _supportsP3: {
+                    base: '{colors.purpleP3.light.400}',
+                    _dark: '{colors.purpleP3.dark.400}',
+                  },
+                },
+              },
+            },
+            '500': {
+              value: {
+                base: '{colors.purple.light.500}',
+                _dark: '{colors.purple.dark.500}',
+                _mediaP3: {
+                  _supportsP3: {
+                    base: '{colors.purpleP3.light.500}',
+                    _dark: '{colors.purpleP3.dark.500}',
+                  },
+                },
+              },
+            },
+            '600': {
+              value: {
+                base: '{colors.purple.light.600}',
+                _dark: '{colors.purple.dark.600}',
+                _mediaP3: {
+                  _supportsP3: {
+                    base: '{colors.purpleP3.light.600}',
+                    _dark: '{colors.purpleP3.dark.600}',
+                  },
+                },
+              },
+            },
+            '700': {
+              value: {
+                base: '{colors.purple.light.700}',
+                _dark: '{colors.purple.dark.700}',
+                _mediaP3: {
+                  _supportsP3: {
+                    base: '{colors.purpleP3.light.700}',
+                    _dark: '{colors.purpleP3.dark.700}',
+                  },
+                },
+              },
+            },
+            '800': {
+              value: {
+                base: '{colors.purple.light.800}',
+                _dark: '{colors.purple.dark.800}',
+                _mediaP3: {
+                  _supportsP3: {
+                    base: '{colors.purpleP3.light.800}',
+                    _dark: '{colors.purpleP3.dark.800}',
+                  },
+                },
+              },
+            },
+            '900': {
+              value: {
+                base: '{colors.purple.light.900}',
+                _dark: '{colors.purple.dark.900}',
+                _mediaP3: {
+                  _supportsP3: {
+                    base: '{colors.purpleP3.light.900}',
+                    _dark: '{colors.purpleP3.dark.900}',
+                  },
+                },
+              },
+            },
+            '950': {
+              value: {
+                base: '{colors.purple.light.950}',
+                _dark: '{colors.purple.dark.950}',
+                _mediaP3: {
+                  _supportsP3: {
+                    base: '{colors.purpleP3.light.950}',
+                    _dark: '{colors.purpleP3.dark.950}',
+                  },
+                },
+              },
+            },
+            bg1: {
+              value: '{colors.purple.100}',
+            },
+            bg2: {
+              value: '{colors.purple.200}',
+            },
+            bg3: {
+              value: '{colors.purple.300}',
+            },
+            border1: {
+              value: '{colors.purple.400}',
+            },
+            border2: {
+              value: '{colors.purple.500}',
+            },
+            border3: {
+              value: '{colors.purple.600}',
+            },
+            solid1: {
+              value: '{colors.purple.700}',
+            },
+            solid2: {
+              value: '{colors.purple.800}',
+            },
+            fg1: {
+              value: '{colors.purple.900}',
+            },
+            fg2: {
+              value: '{colors.purple.950}',
+            },
+            DEFAULT: {
+              value: '{colors.purple}',
+            },
+          },
           pink: {
             '100': {
               value: {
@@ -3452,7 +3512,7 @@ export const colorSystemPreset = definePreset({
               value: '{colors.pink}',
             },
           },
-          secondary: {
+          tertiary: {
             '100': {
               value: {
                 base: '{colors.pink.light.100}',

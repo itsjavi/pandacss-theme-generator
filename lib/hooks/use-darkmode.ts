@@ -7,5 +7,5 @@ export default function useDarkMode() {
   const isDarkMode = actualTheme === 'dark'
   const toggleDarkMode = () => setTheme(isDarkMode ? 'light' : 'dark')
 
-  return {isDarkMode, toggleDarkMode}
+  return { isDarkMode, toggleDarkMode }
 }

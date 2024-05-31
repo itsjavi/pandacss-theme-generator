@@ -138,7 +138,15 @@ const spacing = defineTokens.spacing({
 export default definePreset({
   conditions: {
     extend: {
-      // hidden: '&:is([hidden])',
+      collapsed: '&:is([aria-collapsed=true], [data-collapsed], [data-state="collapsed"])',
+      current: '&:is([data-current])',
+      hidden: '&:is([hidden])',
+      hover: ['@media (hover: hover) and (pointer: fine)', '&:is(:hover, [data-hover])'],
+      indeterminate: '&:is(:indeterminate, [data-indeterminate], [aria-checked=mixed], [data-state=indeterminate])',
+      off: '&:is([data-state="off"])',
+      on: '&:is([data-state="on"])',
+      today: '&:is([data-today])',
+      underValue: '&:is([data-state="under-value"])',
       // inert: '&:is([inert])',
       // hover: ['@media (hover: hover) and (pointer: fine)', '&:is(:hover, [data-hover])'],
       // standalone: '@media (display-mode: standalone)',
