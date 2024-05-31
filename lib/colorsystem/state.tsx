@@ -2,7 +2,6 @@
 
 // import { outdent } from 'outdent'
 import { type ReactNode, createContext, useContext, useState } from 'react'
-import { generatePandaConfig } from './codegen'
 
 export interface AppState {
   cssCode: string
@@ -12,7 +11,7 @@ export interface AppState {
 export const initialCss = '@layer reset, base, tokens, recipes, utilities;' + '\n'
 
 export const defaultAppState: AppState = {
-  jsCode: generatePandaConfig('theme: { extend: {} },'),
+  jsCode: '', //('theme: { extend: {} },'),
   cssCode: initialCss,
 }
 

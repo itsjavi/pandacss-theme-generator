@@ -23,7 +23,7 @@ export default function Sidebar({ children }: PropsWithChildren) {
           gap: 4,
           p: 4,
           borderX: '1px solid',
-          borderXColor: 'shade.border1',
+          borderXColor: 'alpha.border1',
           height: 'full',
           overflowY: 'auto',
           '& section': {
@@ -46,7 +46,7 @@ Sidebar.Layout = function SidebarLayout({ children }: PropsWithChildren) {
         gridTemplateColumns: 'auto 1fr',
         // gridTemplateColumns: 'auto 1fr auto',
         borderTop: '1px solid',
-        borderTopColor: 'shade.border1',
+        borderTopColor: 'alpha.border1',
         // gap: 4,
         // px: 4,
       }}

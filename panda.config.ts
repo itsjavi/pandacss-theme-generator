@@ -1,6 +1,7 @@
 import { defineConfig } from '@pandacss/dev'
 import { presetPatterns } from './lib/theme/patterns'
 import appPreset from './panda.preset'
+import { colorSystemPreset } from './panda.preset-colors'
 
 export default defineConfig({
   preflight: true,
@@ -15,7 +16,7 @@ export default defineConfig({
     './components/**/*.{js,jsx,ts,tsx}',
     './lib/**/*.{js,jsx,ts,tsx}',
   ],
-  presets: ['@pandacss/preset-base', appPreset],
+  presets: ['@pandacss/preset-base', colorSystemPreset, appPreset],
   exclude: [
     // File patterns to exclude
   ],

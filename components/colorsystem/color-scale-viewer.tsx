@@ -1,30 +1,17 @@
 'use client'
 
 import { monoFontClass } from '@/app/fonts'
+import { bfgColorLevelToAlias, colorLevelToAlias, colorLevels } from '@/lib/colorsystem/constants'
+import type { ColorConfig, ColorLevel, ColorLevelAlias, ColorLevelBfg } from '@/lib/colorsystem/types'
 import { cn } from '@/lib/utils'
-import type { presetColors } from '@/panda.preset-colors'
 import { css } from '@/styled-system/css'
 import { useState } from 'react'
 import { useCopyToClipboard } from 'usehooks-ts'
 import Heading from '../layout/heading'
-import {
-  type ColorLevel,
-  type ColorLevelAlias,
-  colorLevelAliases,
-  colorLevelMap,
-  colorLevelReverseMap,
-  colorLevels,
-} from './types'
-
-type PresetColorName = keyof typeof presetColors
-type PresetColorNameExcludingP3 = Exclude<PresetColorName, `${PresetColorName}P3`>
 
 type ColorScaleViewerProps = {
-  title?: string
-  subtitle?: string
-  name: PresetColorNameExcludingP3
-  withContrastScale?: boolean
-  withAliases?: boolean
+  withLegend?: boolean
+  colorConfig: ColorConfig
 }
 
 const gridCss = css({
@@ -59,15 +46,24 @@ const gridCss = css({
   },
 })
 
-function ColorCell({
-  colorName,
-  level,
-  label,
-}: { colorName: string; level?: ColorLevel | ColorLevelAlias; label: string }) {
+function ColorCell({ level, colorConfig }: { colorConfig: ColorConfig; level?: ColorLevel | ColorLevelAlias }) {
   const [copiedText, copyToClipboard] = useCopyToClipboard()
   const [copied, setCopied] = useState(false)
-  const token = level ? `${colorName}.${level}` : colorName
-  const varName = level ? `--colors-${colorName}-${level}` : `--colors-${colorName}`
+
+  const isBgFg = ['bg', 'fg'].includes(colorConfig.type)
+  const colorName = colorConfig.name
+  const defaultLevel = colorConfig.type === 'bg' || colorConfig.type === 'fg' ? '100' : '600'
+  const levelValue = level ?? defaultLevel
+  const levelAlias =
+    (isBgFg ? bfgColorLevelToAlias[levelValue as ColorLevelBfg] : colorLevelToAlias[levelValue as ColorLevel]) ??
+    levelValue
+  const token = level ? `${colorName}.${levelAlias}` : colorName
+  const colorPreviewCssVars = {
+    '--bg': colorConfig.light[levelValue]?.srgb,
+    '--bg-p3': colorConfig.light[levelValue]?.oklch ?? colorConfig.light[levelValue]?.srgb,
+    '--bg-dark': colorConfig.dark[levelValue]?.srgb,
+    '--bg-dark-p3': colorConfig.dark[levelValue]?.oklch ?? colorConfig.dark[levelValue]?.srgb,
+  } as React.CSSProperties
   const showCopiedText = copied && copiedText === token
 
   const handleCopy = (text: string) => () => {
@@ -83,10 +79,6 @@ function ColorCell({
       })
   }
 
-  const styleObj = {
-    '--bgc': `var(${varName})`,
-  } as React.CSSProperties
-
   const classNames = cn(
     css({
       display: 'flex',
@@ -100,9 +92,19 @@ function ColorCell({
       textAlign: 'center',
       justifyContent: 'center',
       aspectRatio: '4/3',
-      bgColor: 'var(--bgc)',
-      bgImage:
-        'linear-gradient(var(--bgc), var(--bgc)), repeating-conic-gradient(#99999977 0% 25%, transparent 0% 50%)',
+      '--bgch': 'repeating-conic-gradient(#99999955 0% 25%, transparent 0% 50%)',
+      bgImage: 'linear-gradient(var(--bg), var(--bg)), var(--bgch)',
+      _dark: {
+        bgImage: 'linear-gradient(var(--bg-dark), var(--bg-dark)), var(--bgch)',
+      },
+      _mediaP3: {
+        _supportsP3: {
+          bgImage: 'linear-gradient(var(--bg-p3), var(--bg-p3)), var(--bgch)',
+          _dark: {
+            bgImage: 'linear-gradient(var(--bg-dark-p3), var(--bg-dark-p3)), var(--bgch)',
+          },
+        },
+      },
       bgSize: '100% 100%, 20px 20px',
       bgRepeat: 'repeat',
       '& span': {
@@ -112,9 +114,9 @@ function ColorCell({
         position: 'absolute',
         inset: '0',
         padding: '1',
-        background: 'shade.dark.600',
+        background: 'alpha.dark.600',
         _dark: {
-          background: 'shade.light.600',
+          background: 'alpha.light.600',
         },
         color: 'fg.100',
         fontSize: 'xs',
@@ -136,77 +138,47 @@ function ColorCell({
   )
 
   return (
-    <button type="button" data-level={level} className={classNames} onClick={handleCopy(token)} style={styleObj}>
-      {showCopiedText === false && <span>{label}</span>}
+    <button
+      type="button"
+      data-level={level}
+      className={classNames}
+      onClick={handleCopy(token)}
+      style={colorPreviewCssVars}
+    >
+      {showCopiedText === false && <span>{levelAlias}</span>}
       {showCopiedText && <span data-copied>Copied!</span>}
     </button>
   )
 }
 
-export default function ColorScaleViewer({
-  title,
-  subtitle,
-  name,
-  withAliases,
-  withContrastScale,
-}: ColorScaleViewerProps) {
-  const aliasesLegend = withAliases ? (
+export default function ColorScaleViewer({ colorConfig, withLegend }: ColorScaleViewerProps) {
+  const aliasesLegend = withLegend ? (
     <div className={cn(gridCss, 'legend', monoFontClass)}>
       <div />
-      {/* <div className="label" key={'default'}>
-        -
-      </div> */}
-      {colorLevelAliases.map((level) => (
-        <div className="label" key={level} data-level={colorLevelMap[level]}>
-          {colorLevelMap[level]}
+      {colorLevels.map((level) => (
+        <div className="label" key={level}>
+          {level}
         </div>
       ))}
     </div>
   ) : undefined
 
-  const contrastScale = withContrastScale ? (
-    <>
-      <div className={gridCss}>
-        <Heading className="label" size="xs" as="div">
-          background
-        </Heading>
-        {/* <ColorCell colorName="bg" label="DEFAULT" /> */}
-        {(['100', '200', '300'] as const).map((level) => (
-          <ColorCell key={level} colorName="bg" level={level} label={level} />
-        ))}
-      </div>
-
-      <div className={gridCss}>
-        <Heading className="label" size="xs" as="div">
-          text
-        </Heading>
-        {/* <ColorCell colorName="fg" label="DEFAULT" /> */}
-        {(['100', '200', '300'] as const).map((level) => (
-          <ColorCell key={level} colorName="fg" level={level} label={level} />
-        ))}
-      </div>
-    </>
-  ) : undefined
+  const title = colorConfig.name
+  const subtitle = colorConfig.aliases.length > 0 ? `${colorConfig.aliases.join(' - ')}` : undefined
+  const maxLevels = ['bg', 'fg'].includes(colorConfig.type) ? 3 : colorLevels.length
+  const levelsSlice = colorLevels.slice(0, maxLevels)
 
   return (
     <>
       {aliasesLegend}
-      {contrastScale}
       <div className={gridCss}>
-        {title && (
-          <Heading className="label" size="xs" as="div">
-            {title}
-            {subtitle && <div className="subtitle">{subtitle}</div>}
-          </Heading>
-        )}
+        <Heading className="label" size="xs" as="div">
+          {title}
+          {subtitle && <div className="subtitle">{subtitle}</div>}
+        </Heading>
         {/* <ColorCell colorName={name} label="DEFAULT" /> */}
-        {colorLevels.map((level) => (
-          <ColorCell
-            key={level}
-            colorName={name}
-            level={colorLevelReverseMap[level]}
-            label={colorLevelReverseMap[level]}
-          />
+        {levelsSlice.map((level) => (
+          <ColorCell key={level} colorConfig={colorConfig} level={level} />
         ))}
       </div>
     </>

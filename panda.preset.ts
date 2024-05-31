@@ -1,5 +1,4 @@
 import { definePreset, defineTokens } from '@pandacss/dev'
-import { presetColors, presetSemanticColors } from './panda.preset-colors'
 
 const spacing = defineTokens.spacing({
   '0': {
@@ -147,8 +146,8 @@ export default definePreset({
       // reducedTransparency: '@media (prefers-reduced-transparency)',
       // screenOnly: '@media screen',
       // printOnly: '@media print',
-      colorGamutP3: '@media (color-gamut:p3)',
-      supportsP3: '@supports (color: oklch(0 0 0))',
+      // colorGamutP3: '@media (color-gamut:p3)',
+      // supportsP3: '@supports (color: oklch(0 0 0))',
     },
   },
   theme: {
@@ -236,7 +235,6 @@ export default definePreset({
       },
       tokens: {
         // ---- COLORS ----
-        colors: presetColors,
         gradients: {
           transparent: {
             value: 'transparent',
@@ -641,7 +639,6 @@ export default definePreset({
         // containerNames: {},
       },
       semanticTokens: {
-        colors: presetSemanticColors,
         shadows: {
           borderInset: {
             value: {

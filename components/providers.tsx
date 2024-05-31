@@ -1,6 +1,6 @@
 'use client'
 
-import { AppStateProvider } from '@/lib/editor/state'
+import { AppStateProvider } from '@/lib/colorsystem/state'
 import { ThemeProvider } from 'next-themes'
 import type { PropsWithChildren } from 'react'
 

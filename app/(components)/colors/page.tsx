@@ -1,9 +1,9 @@
 import ColorScaleViewer from '@/components/colorsystem/color-scale-viewer'
 import PandaPresetRenderer from '@/components/colorsystem/panda-preset-renderer'
-import { colorNameReverseMap } from '@/components/colorsystem/types'
 import ContentSection from '@/components/layout/content-section'
 import Heading from '@/components/layout/heading'
 import Subtitle from '@/components/layout/subtitle'
+import { geistColorsConfig } from '@/lib/colorsystem/config'
 
 export default async function () {
   const solidColors = ['shade', 'gray', 'blue', 'red', 'yellow', 'green', 'teal', 'purple', 'pink'] as const
@@ -20,22 +20,12 @@ export default async function () {
       <ContentSection>
         <Heading size="lg">Scales</Heading>
         <Subtitle>
-          There are 10 color scales in the system (from 100 to 950). OKLCH / P3 colors are used on supported browsers
-          and displays. Default color is at the 600 level.
+          There are 10 color scales in the system (from 100 to 950). Colors with a P3 gamut in OKLCH format are used on
+          supported browsers and displays. Default color is at the 600 level.
         </Subtitle>
         <br />
-        {solidColors.map((name, i) => {
-          const subtitle = colorNameReverseMap[name]
-          return (
-            <ColorScaleViewer
-              withAliases={i === 0}
-              withContrastScale={i === 0}
-              key={name}
-              title={name}
-              subtitle={subtitle}
-              name={name}
-            />
-          )
+        {Object.entries(geistColorsConfig).map(([name, colorConfig], i) => {
+          return <ColorScaleViewer withLegend={i === 0} key={name} colorConfig={colorConfig} />
         })}
       </ContentSection>
       <ContentSection>

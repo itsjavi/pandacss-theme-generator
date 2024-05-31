@@ -119,8 +119,8 @@ export default function LayoutHeader({ children, ...props }: ComponentProps<'hea
                 <Image alt="logo" src="/android-chrome-192x192.png" width={32} height={32} />
               </div>
             </Link>
-            {/* <Link href="/components">Components</Link>
-            <Link href="/theme">Theme</Link> */}
+            <Link href="/colors">Color System</Link>
+            {/* <Link href="/theme">Theme</Link> */}
           </HStack>
           <HStack gap="4" css={{ '& svg': { width: '5', height: '5' } }}>
             <a href="https://github.com/itsjavi/pandacss-theme-generator" target="_blank" rel="noopener noreferrer">

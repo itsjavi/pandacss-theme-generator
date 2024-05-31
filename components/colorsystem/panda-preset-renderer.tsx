@@ -1,7 +1,8 @@
 'use client'
 
 import { monoFontClass } from '@/app/fonts'
-import { generatePandaPreset } from '@/lib/editor/codegen'
+import { geistColorsConfig } from '@/lib/colorsystem/config'
+import generatePandaPreset from '@/lib/colorsystem/generate-panda-preset'
 import { css } from '@/styled-system/css'
 import { outdent } from 'outdent'
 import { useState } from 'react'
@@ -26,7 +27,7 @@ export default function PandaPresetRenderer() {
   }
 
   // TODO: pass colors from global state
-  const configSubset = generatePandaPreset('', '', {})
+  const configSubset = generatePandaPreset(geistColorsConfig)
 
   const jsCode = outdent`
     import { definePreset } from "@pandacss/dev";
