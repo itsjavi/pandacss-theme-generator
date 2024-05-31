@@ -1,8 +1,8 @@
 'use client'
+import useDarkMode from '@/lib/hooks/use-darkmode'
 import { css } from '@/styled-system/css'
 import { MoonStarIcon, SunIcon } from 'lucide-react'
-import { useTheme } from 'next-themes'
-import { type ButtonProps, InlineTextButton } from '../ui/button'
+import { InlineTextButton, type ButtonProps } from '../ui/button'
 
 type DarkModeToggleProps = {
   defaultMode?: 'dark' | 'light'
@@ -26,15 +26,13 @@ const cls = {
 }
 
 export default function DarkModeToggle({ defaultMode = 'dark', onClick, children, ...props }: DarkModeToggleProps) {
-  const { setTheme, ...themeProps } = useTheme()
-  const actualTheme = themeProps.resolvedTheme || themeProps.theme
-  const isDarkMode = actualTheme === 'dark'
+  const { isDarkMode, toggleDarkMode } = useDarkMode()
 
   return (
     <InlineTextButton
       {...props}
       onClick={() => {
-        setTheme(isDarkMode ? 'light' : 'dark')
+        toggleDarkMode()
       }}
       aria-label={`Toggle ${isDarkMode ? 'light' : 'dark'} mode`}
       suppressHydrationWarning
