@@ -7,6 +7,7 @@ import Image from 'next/image'
 import Link from 'next/link'
 import { usePathname } from 'next/navigation'
 import type { ComponentProps } from 'react'
+import GithubIcon from '../icons/GithubIcon'
 import { PrimaryButtonSm } from '../ui/button'
 import { ActionInput } from '../ui/input'
 import DarkModeToggle from '../views/dark-mode-toggle'
@@ -146,8 +147,11 @@ export default function LayoutHeader({ children, withSearch, withLogo, ...props 
             <Link href="/components">Components</Link>
             <Link href="/theme">Theme</Link>
           </HStack>
-          <HStack gap="6">
+          <HStack gap="4" css={{'& svg': {width: '5', height: '5'}}}>
             {!isHomePage && <PrimaryButtonSm>Get code</PrimaryButtonSm>}
+            <a href="https://github.com/itsjavi/pandacss-theme-generator" target="_blank" rel="noopener noreferrer">
+              <GithubIcon />
+            </a>
             <DarkModeToggle className={css({ px: '0', width: 'auto', minW: '0px' })} />
           </HStack>
         </div>

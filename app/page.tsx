@@ -59,7 +59,7 @@ export default async function () {
             maxWidth: '600px',
           })}
         >
-          <HeroTitle>Panda Theme Generator</HeroTitle>
+          <HeroTitle>Panda Color Palette Generator</HeroTitle>
           <HeadlineText />
           <PrimaryButton asChild>
             <Link href="/theme">
