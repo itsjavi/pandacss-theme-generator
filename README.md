@@ -2,6 +2,8 @@
 
 https://pandacss-theme-generator.vercel.app
 
+![screenshot](public/og-image.png)
+
 ## Inspired by
 
 - [Panda CSS Playground](https://github.com/chakra-ui/panda/blob/main/playground)
