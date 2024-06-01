@@ -1,8 +1,8 @@
 import { definePreset } from '@pandacss/dev'
-// import { colorSystemPreset } from './preset-colors'
-// const _semanticColors = colorSystemPreset.theme?.extend?.semanticTokens?.colors
-// type SemanticColors = typeof _semanticColors
-// const semanticColors = _semanticColors as NonNullable<SemanticColors>
+import { colorSystemPreset } from './preset-colors'
+const _semanticColors = colorSystemPreset.theme?.extend?.semanticTokens?.colors
+type SemanticColors = typeof _semanticColors
+const semanticColors = _semanticColors as NonNullable<SemanticColors>
 
 export const colorAliasesPreset = definePreset({
   theme: {
@@ -19,6 +19,7 @@ export const colorAliasesPreset = definePreset({
               value: '{colors.gray.fg2}',
             },
           },
+          primary: semanticColors.pink,
         },
       },
     },

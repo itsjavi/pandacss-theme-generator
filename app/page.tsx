@@ -27,7 +27,7 @@ function HeadlineText() {
           color: 'muted.100',
         }}
       >
-        Create your own unique theme for <strong>Panda CSS</strong> and <strong>Ark UI</strong>.
+        Create your own unique theme for <strong>Panda CSS</strong> and <strong>Ark UI</strong>
       </styled.h2>
     </div>
   )
@@ -58,7 +58,7 @@ export default async function () {
           }}
         >
           <Heading as="h1">
-            Panda CSS <br /> Color System Generator
+            Panda CSS <br /> Color System Generator 💅
           </Heading>
           <HeadlineText />
           <PrimaryButton asChild>
