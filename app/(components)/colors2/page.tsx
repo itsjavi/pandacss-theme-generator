@@ -1,6 +1,8 @@
 import ContentSection from '@/components/layout/content-section'
 import ColorSystemLab from '@/modules/color-system/components/v2/color-system-lab'
 import PandaPresetRenderer from '@/modules/color-system/components/v2/panda-preset-renderer'
+import DarkModeToggle from '@/modules/design-system/views/dark-mode-toggle'
+import { css } from '@/styled-system/css'
 import Heading from '@/ui/components/typography/heading'
 import Subtitle from '@/ui/components/typography/subtitle'
 
@@ -24,12 +26,28 @@ export default async function () {
         </Subtitle>
         <br />
         <ColorSystemLab />
+
+        <DarkModeToggle
+          className={css({
+            position: 'fixed',
+            bottom: '1rem',
+            right: '1rem',
+            zIndex: 'z1',
+          })}
+        />
       </ContentSection>
       <ContentSection>
         <Heading size="lg">Preset</Heading>
         <Subtitle>Use this Panda preset to integrate this theme in your application.</Subtitle>
         <br />
-        <PandaPresetRenderer />
+        <PandaPresetRenderer
+          buttonClassName={css({
+            position: 'fixed',
+            bottom: '1.2rem',
+            right: '3rem',
+            zIndex: 'z1',
+          })}
+        />
       </ContentSection>
     </>
   )

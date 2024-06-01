@@ -16,7 +16,6 @@ const buttonStyle = cva({
     fontWeight: 'semibold',
     minWidth: '0',
     outline: 'none',
-    position: 'relative',
     transitionDuration: 'normal',
     transitionTimingFunction: 'default',
     transitionProperty: 'background, border-color, color, box-shadow, transform',

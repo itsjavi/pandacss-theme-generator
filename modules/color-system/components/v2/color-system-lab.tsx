@@ -24,7 +24,7 @@ export default function ColorSystemLab() {
   const convertedBgColor = formatColorConfig(bgColor)
 
   function handleChange(color: ColorActionPayload) {
-    console.log('color changed', { color })
+    // console.log('color changed', { color })
     setColorSystem((draft) => {
       const colorLevels = draft[color.name].scale
 

@@ -10,6 +10,7 @@ type DarkModeToggleProps = {
 
 const cls = {
   sunIcon: css({
+    pointerEvents: 'none',
     display: 'none',
     _light: {
       display: 'none',
@@ -19,6 +20,7 @@ const cls = {
     },
   }),
   moonIcon: css({
+    pointerEvents: 'none',
     _dark: {
       display: 'none',
     },

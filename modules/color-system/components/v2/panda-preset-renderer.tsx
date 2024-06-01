@@ -8,7 +8,7 @@ import { PrimaryButtonSm } from '../../../design-system/components/button'
 import { generateColorSystemPresetCode } from '../../lib/generate-panda-preset2'
 import { useColorSystem } from '../../state2'
 
-export default function PandaPresetRenderer() {
+export default function PandaPresetRenderer({ buttonClassName }: { buttonClassName?: string }) {
   const [_, copyToClipboard] = useCopyToClipboard()
   const [copied, setCopied] = useState(false)
   const [colorSystem] = useColorSystem()
@@ -29,7 +29,9 @@ export default function PandaPresetRenderer() {
 
   return (
     <>
-      <PrimaryButtonSm onClick={handleCopy(presetCode)}>{copied ? 'Copied!' : 'Copy to clipboard'}</PrimaryButtonSm>
+      <PrimaryButtonSm className={buttonClassName} onClick={handleCopy(presetCode)}>
+        {copied ? 'Copied!' : 'Copy Panda preset'}
+      </PrimaryButtonSm>
       <div
         className={css({
           maxHeight: '500px',

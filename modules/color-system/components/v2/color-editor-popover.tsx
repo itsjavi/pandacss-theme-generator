@@ -21,7 +21,7 @@ export default function ColorEditorPopover({
   onChange,
   children,
 }: ColorScaleEditorProps) {
-  if (['background', 'contrast'].includes(color.name)) {
+  if (['background', 'contrast', 'gray', 'alpha'].includes(color.name)) {
     return children
   }
 

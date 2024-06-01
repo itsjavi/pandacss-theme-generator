@@ -1,7 +1,5 @@
-import { parseColor } from '@/modules/color-system/lib/create-color'
-import { type Lch, type Oklch, converter, formatCss, formatHex } from 'culori'
+import { type Lch, type Oklch, converter, formatCss } from 'culori'
 import { useState } from 'react'
-import { useDebounceCallback } from 'usehooks-ts'
 import { PrimaryButton } from './button'
 import { PandaDiv, PandaInput } from './panda'
 
@@ -154,14 +152,14 @@ function createGradients(
 }
 
 function Slider({ value, gradientOklch, gradientLch, min, max, step, param, onChange }: SliderProps) {
-  const debouncedMs = 50
-  const debouncedOnChange = useDebounceCallback((value: number) => onChange?.(value), debouncedMs)
+  // const debouncedMs = 10
+  // const debouncedOnChange = useDebounceCallback((value: number) => onChange?.(value), debouncedMs)
   const bgImage = param === 'alpha' ? 'var(--bgi), var(--gradients-checkerboard)' : 'var(--bgi)'
   const bgImageP3 = param === 'alpha' ? 'var(--bgi-p3), var(--gradients-checkerboard)' : 'var(--bgi-p3)'
   const bgSize = param === 'alpha' ? '100% 100%, 20px 20px' : undefined
 
   return (
-    <PandaDiv css={{ display: 'flex', flexDir: 'column', justifyContent: 'end', height: '2.5rem', gap: '2' }}>
+    <PandaDiv css={{ display: 'flex', flexDir: 'column', justifyContent: 'end', height: '2.47rem', gap: '2' }}>
       <PandaDiv
         style={
           {
@@ -192,15 +190,18 @@ function Slider({ value, gradientOklch, gradientLch, min, max, step, param, onCh
           display: 'block',
           width: '100%',
           zIndex: '2',
-          height: '1rem',
+          // appearance: 'none',
+          // bg:'#dd00cc/50',
         }}
         type="range"
         min={min}
         max={max}
         step={step}
-        defaultValue={value}
-        onChange={(e) => debouncedOnChange?.(Number(e.target.value))}
+        value={value}
+        onChange={(e) => onChange?.(Number(e.target.value))}
       />
+      {/* <br />
+      {param} = {value} */}
     </PandaDiv>
   )
 }
@@ -338,7 +339,7 @@ function ColorSplitPreview({ currentColor, originalColor }: { currentColor: Oklc
 
 export default function OklchEditor({ color, onApply, onCancel, preview, sliders }: OklchEditorProps) {
   const [oklchColor, setOklchColor] = useState(color)
-  const [inputColor, setInputColor] = useState(formatHex(color))
+  const [inputHue, setInputHue] = useState(color.h)
 
   const handleChange = (value: number, slider: OklchEditorSlider) => {
     const newColor: OklchColor = {
@@ -346,7 +347,7 @@ export default function OklchEditor({ color, onApply, onCancel, preview, sliders
       [slider]: value,
     }
     setOklchColor(newColor)
-    setInputColor(formatHex(newColor))
+    setInputHue(newColor.h)
   }
 
   const lchColor: LchColor = {
@@ -375,7 +376,17 @@ export default function OklchEditor({ color, onApply, onCancel, preview, sliders
       {showAlpha && (
         <AlphaSlider oklchColor={oklchColor} lchColor={lchColor} onChange={(value) => handleChange(value, 'alpha')} />
       )}
-      <PandaDiv userSelect="none" display="flex" flexDir="row" gap="3" mt="3" justifyContent="end" textAlign="right">
+      <span />
+      <PandaDiv
+        userSelect="none"
+        display="flex"
+        flexDir="row"
+        gap="3"
+        alignItems="center"
+        justifyContent="end"
+        textAlign="right"
+      >
+        <span>Hue</span>
         <PandaDiv flex="1">
           <PandaInput
             css={{
@@ -400,22 +411,24 @@ export default function OklchEditor({ color, onApply, onCancel, preview, sliders
                 outlineOffset: '0px',
               },
             }}
-            type="text"
-            // defaultValue={inputColor}
-            value={inputColor}
+            type="number"
+            min="0"
+            max="360"
+            step="1"
+            value={inputHue}
             onChange={(e) => {
+              // TODO: create helper function to parse numeric ranges
+              let hue = Number.parseInt((e.target.value ?? '0').replace(',', '.'))
+              hue = hue ? Math.min(360, Math.max(0, hue)) : 0
               try {
-                const newColor = parseColor(e.target.value)
                 setOklchColor({
                   ...oklchColor,
-                  h: newColor.h,
+                  h: hue,
                 })
-                // console.log('newColor', newColor)
               } catch (error) {
-                // console.log('error', error)
-                // e.target.value = formatHex(oklchColor)
+                console.error(error)
               }
-              setInputColor(e.target.value)
+              setInputHue(hue)
             }}
           />
         </PandaDiv>
