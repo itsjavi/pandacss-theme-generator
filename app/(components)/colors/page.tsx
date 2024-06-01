@@ -5,7 +5,6 @@ import Heading from '@/ui/components/typography/heading'
 import Subtitle from '@/ui/components/typography/subtitle'
 
 export default async function () {
-  const solidColors = ['shade', 'gray', 'blue', 'red', 'yellow', 'green', 'teal', 'purple', 'pink'] as const
   return (
     <>
       <ContentSection>

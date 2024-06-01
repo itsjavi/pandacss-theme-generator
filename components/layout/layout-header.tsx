@@ -66,38 +66,6 @@ const innerClassName = css({
   gap: '12',
 })
 
-const topSearch = css({
-  flex: 1,
-  width: 'full',
-  mdDown: {
-    display: 'none',
-  },
-  '& input': {
-    height: '32px',
-    width: 'full',
-  },
-  '& button': {
-    height: '32px',
-    px: '4',
-  },
-})
-
-const bottomSearch = css({
-  width: 'full',
-  display: 'none',
-  mdDown: {
-    display: 'block',
-  },
-  '& input': {
-    height: '32px',
-    width: 'full',
-  },
-  '& button': {
-    height: '32px',
-    px: '4',
-  },
-})
-
 export default function LayoutHeader({ children, ...props }: ComponentProps<'header'>) {
   return (
     <>
