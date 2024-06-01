@@ -2,7 +2,7 @@
 
 import OklchEditor from '@/modules/design-system/components/oklch-editor'
 import Popover from '@/modules/design-system/components/tooltip'
-import type { ColorActionPayload } from '../../types2'
+import type { ColorActionPayload } from '../types'
 
 type ColorScaleEditorProps = {
   title?: React.ReactNode

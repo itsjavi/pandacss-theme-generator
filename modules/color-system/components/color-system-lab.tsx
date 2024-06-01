@@ -1,8 +1,8 @@
 'use client'
 
-import { formatColorConfig, parseColor } from '../../lib/create-color'
-import { useColorSystem } from '../../state2'
-import type { ColorActionPayload, ColorLevelKey } from '../../types2'
+import { useColorSystem } from '../global-state'
+import { formatColorConfig, parseColor } from '../lib/color-manipulation'
+import type { ColorActionPayload, ColorLevelKey } from '../types'
 import ColorScaleEditor from './color-scale-editor'
 
 export default function ColorSystemLab() {
@@ -23,6 +23,8 @@ export default function ColorSystemLab() {
   const convertedFgColor = formatColorConfig(fgColor)
   const convertedBgColor = formatColorConfig(bgColor)
 
+  // TODO: build scale of colors with this lib, instead of replacing hues?
+  // import {buildSpectrum} from '@effective/color'
   function handleChange(color: ColorActionPayload) {
     // console.log('color changed', { color })
     setColorSystem((draft) => {

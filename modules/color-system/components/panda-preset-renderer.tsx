@@ -5,12 +5,14 @@ import { monoFontClass } from '@/ui/lib/fonts'
 import { useState } from 'react'
 import { useCopyToClipboard } from 'usehooks-ts'
 import { PrimaryButtonSm } from '../../design-system/components/button'
-import { useAppState } from '../lib/state'
+import { useColorSystem } from '../global-state'
+import { generateColorSystemPresetCode } from '../lib/generate-panda-preset'
 
-export default function PandaPresetRenderer() {
+export default function PandaPresetRenderer({ buttonClassName }: { buttonClassName?: string }) {
   const [_, copyToClipboard] = useCopyToClipboard()
   const [copied, setCopied] = useState(false)
-  const [appState] = useAppState()
+  const [colorSystem] = useColorSystem()
+  const presetCode = generateColorSystemPresetCode(colorSystem)
 
   const handleCopy = (text: string) => () => {
     copyToClipboard(text)
@@ -27,8 +29,8 @@ export default function PandaPresetRenderer() {
 
   return (
     <>
-      <PrimaryButtonSm onClick={handleCopy(appState.colorSystemPresetCode)}>
-        {copied ? 'Copied!' : 'Copy to clipboard'}
+      <PrimaryButtonSm className={buttonClassName} onClick={handleCopy(presetCode)}>
+        {copied ? 'Copied!' : 'Copy Panda preset'}
       </PrimaryButtonSm>
       <div
         className={css({
@@ -36,7 +38,7 @@ export default function PandaPresetRenderer() {
           overflowY: 'auto',
         })}
       >
-        <pre className={monoFontClass}>{appState.colorSystemPresetCode}</pre>
+        <pre className={monoFontClass}>{presetCode}</pre>
       </div>
     </>
   )

@@ -1,42 +1,10 @@
 'use client'
 import { type Color, type Oklch, converter, formatCss, formatRgb } from 'culori'
-import type { ColorConfig2, ColorConfigValue, ColorCssStrings, ColorLevelCssStrings, ColorLevelKey } from '../types2'
-
-// type ColorValues = [number, number, number]
-// class ColorManipulator {
-//   public space: string
-//   public values: ColorValues
-//   public alpha: number
-
-//   constructor (space: string, values: ColorValues, alpha: number) {
-//     this.space = space
-//     this.values = values
-//     this.alpha = alpha
-//   }
-
-//   public toString () {
-//     switch (this.space) {
-//       case 'rgb':
-//         return `rgba(${this.values.join(', ')}, ${this.alpha})`
-//       case 'hsl':
-//         return `hsla(${this.values.join(', ')}, ${this.alpha})`
-//       case 'oklch':
-//         return `oklch(${this.values.join(', ')}, ${this.alpha})`
-//       case 'lch':
-//         return `lch(${this.values.join(', ')}, ${this.alpha})`
-//       default:
-//         throw new Error(`Cannot convert this color space: ${this.space}`)
-//     }
-//   }
-
-//   public toOkString () {
-//     return this.space === 'rgb' ? this.toRgb().toOkString() : this.toHsl().toOkString()
-//   }
-// }
+import type { ColorConfig, ColorConfigValue, ColorCssStrings, ColorLevelCssStrings, ColorLevelKey } from '../types'
 
 const oklchConverter = converter('oklch')
 
-export function formatColorConfig(config: ColorConfig2): Record<ColorLevelKey, ColorLevelCssStrings> {
+export function formatColorConfig(config: ColorConfig): Record<ColorLevelKey, ColorLevelCssStrings> {
   return Object.entries(config.scale).reduce((acc, [level, color]) => {
     acc[level as ColorLevelKey] = formatColorConfigValue(color)
     return acc

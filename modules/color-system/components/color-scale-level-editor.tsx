@@ -4,15 +4,15 @@ import { PandaButton, PandaDiv } from '@/modules/design-system/components/panda'
 import { monoFontClass } from '@/modules/design-system/lib/fonts'
 import { useState } from 'react'
 import { useCopyToClipboard } from 'usehooks-ts'
-import { formatColorConfigValue, parseColor } from '../../lib/create-color'
-import type { ColorActionPayload, ColorConfig2, ColorLevelCssStrings, ColorLevelKey, ColorScheme } from '../../types2'
+import { formatColorConfigValue, parseColor } from '../lib/color-manipulation'
+import type { ColorActionPayload, ColorConfig, ColorLevelCssStrings, ColorLevelKey, ColorScheme } from '../types'
 import ColorEditorPopover from './color-editor-popover'
 
 type ColorScaleLevelEditorProps = {
   level: ColorLevelKey
   scheme: ColorScheme
   fg: ColorLevelCssStrings
-  config: ColorConfig2
+  config: ColorConfig
   onChange?: (color: ColorActionPayload) => void
 }
 

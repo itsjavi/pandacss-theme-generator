@@ -11,6 +11,17 @@ export default function ContentSection({ className, children }: BasicComponentPr
       borderBottom="1px solid"
       borderBottomColor="gray.border1"
       className={className}
+      css={{
+        '& a': {
+          color: 'primary.fg1',
+          textDecoration: 'underline',
+          textDecorationStyle: 'dotted',
+
+          '&:hover': {
+            textDecorationStyle: 'solid',
+          },
+        },
+      }}
     >
       {children}
     </PandaDiv>

@@ -3,12 +3,12 @@
 import { PandaDiv } from '@/modules/design-system/components/panda'
 import Heading from '@/modules/design-system/components/typography/heading'
 import useDarkMode from '@/modules/design-system/hooks/use-darkmode'
-import type { ColorActionPayload, ColorConfig2, ColorCssStrings, ColorLevelKey, ColorScheme } from '../../types2'
+import type { ColorActionPayload, ColorConfig, ColorCssStrings, ColorLevelKey, ColorScheme } from '../types'
 import ColorScaleLevelEditor from './color-scale-level-editor'
 
 type ColorScaleEditorProps = {
   fg: ColorCssStrings
-  config: ColorConfig2
+  config: ColorConfig
   onChange?: (color: ColorActionPayload) => void
 }
 
