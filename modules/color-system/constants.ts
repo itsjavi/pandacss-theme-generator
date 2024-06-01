@@ -18,7 +18,6 @@ export const colorAliases = [
 ] as const
 
 export const colorLevels = ['100', '200', '300', '400', '500', '600', '700', '800', '900', '950'] as const
-export const bfgColorLevels = ['100', '200', '300'] as const
 
 export const colorLevelAliases = [
   'bg1',
@@ -32,7 +31,7 @@ export const colorLevelAliases = [
   'fg1',
   'fg2',
 ] as const
-export const bfgColorLevelAliases = ['base', 'subtle', 'muted'] as const
+export const bfgColorLevelAliases = ['base', 'subtle', 'muted', 'contrast1', 'contrast2', 'contrast3'] as const
 
 export const colorLevelToAlias: Record<(typeof colorLevels)[number], (typeof colorLevelAliases)[number]> = {
   '100': 'bg1',
@@ -47,8 +46,18 @@ export const colorLevelToAlias: Record<(typeof colorLevels)[number], (typeof col
   '950': 'fg2',
 }
 
-export const bfgColorLevelToAlias: Record<(typeof bfgColorLevels)[number], (typeof bfgColorLevelAliases)[number]> = {
+export const bfgColorLevelToAlias: Record<
+  (typeof colorLevels)[number],
+  (typeof bfgColorLevelAliases)[number] | undefined
+> = {
   '100': 'base',
   '200': 'subtle',
-  '300': 'muted',
+  '300': undefined,
+  '400': 'muted',
+  '500': undefined,
+  '600': 'contrast1',
+  '700': undefined,
+  '800': 'contrast2',
+  '900': undefined,
+  '950': 'contrast3',
 }

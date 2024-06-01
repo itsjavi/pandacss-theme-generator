@@ -2,9 +2,9 @@
 
 // import { outdent } from 'outdent'
 import { type ReactNode, createContext, useContext, useState } from 'react'
-import { geistColorsConfig } from './config'
+import { geistColorsConfig } from '../config'
+import type { ColorSystemConfig } from '../types'
 import { generateColorSystemPresetCode } from './generate-panda-preset'
-import type { ColorSystemConfig } from './types'
 
 export interface AppState {
   cssCode: string

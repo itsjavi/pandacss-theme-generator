@@ -1,6 +1,6 @@
 import _ from 'lodash'
-import { formatColor, formatColorAsRgb, parseColor } from './create-color'
-import type { ColorConfig } from './types'
+import type { ColorConfig } from '../types'
+import { formatColorAsOklch, formatColorAsRgb, parseColor } from './create-color'
 
 export default function modifyPaletteHue(newHue: number, palette: ColorConfig): ColorConfig {
   const newPalette = _.cloneDeep(palette)
@@ -23,7 +23,7 @@ export default function modifyPaletteHue(newHue: number, palette: ColorConfig): 
 
       newPalette[scheme][level] = {
         srgb: srgbAsOklch ? formatColorAsRgb(srgbAsOklch) : undefined,
-        oklch: oklch ? formatColor(oklch) : undefined,
+        oklch: oklch ? formatColorAsOklch(oklch) : undefined,
       }
 
       // if(level==='600') {

@@ -1,6 +1,6 @@
 import type { Preset } from '@pandacss/types'
-import { bfgColorLevelToAlias, colorLevelToAlias } from './constants'
-import type { ColorLevel, ColorSystemConfig } from './types'
+import { bfgColorLevelToAlias, colorLevelToAlias } from '../constants'
+import type { ColorLevel, ColorSystemConfig } from '../types'
 
 type ExtendedTheme = Required<Required<Required<Preset>['theme']>['extend']>
 export type GeneratedColorTokens = {

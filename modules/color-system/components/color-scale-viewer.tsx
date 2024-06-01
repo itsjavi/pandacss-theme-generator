@@ -10,9 +10,9 @@ import { monoFontClass } from '@/ui/lib/fonts'
 import { Popover } from '@ark-ui/react'
 import { useState } from 'react'
 import { useCopyToClipboard } from 'usehooks-ts'
-import { bfgColorLevelToAlias, colorLevelToAlias, colorLevels } from '../lib/constants'
+import { bfgColorLevelToAlias, colorLevelToAlias, colorLevels } from '../constants'
 import { parseColor } from '../lib/create-color'
-import type { ColorConfig, ColorLevel, ColorLevelAlias, ColorLevelBfg } from '../lib/types'
+import type { ColorConfig, ColorLevel, ColorLevelAlias } from '../types'
 
 type ColorScaleViewerProps = {
   withLegend?: boolean
@@ -188,7 +188,7 @@ function ColorCell({ level, colorConfig, onHueChange }: ColorCellProps) {
   const defaultLevel = colorConfig.type === 'bg' || colorConfig.type === 'fg' ? '100' : '600'
   const levelValue = level ?? defaultLevel
   const levelAlias =
-    (isBgFg ? bfgColorLevelToAlias[levelValue as ColorLevelBfg] : colorLevelToAlias[levelValue as ColorLevel]) ??
+    (isBgFg ? bfgColorLevelToAlias[levelValue as ColorLevel] : colorLevelToAlias[levelValue as ColorLevel]) ??
     levelValue
   const firstAlias = colorConfig.aliases.length > 0 ? colorConfig.aliases[0] : colorName
   const token = level ? `${firstAlias}.${levelAlias}` : colorName
@@ -338,7 +338,7 @@ export default function ColorScaleViewer({ colorConfig, onHueChange, withLegend 
 
   const title = colorConfig.name
   const subtitle = colorConfig.aliases.length > 0 ? `${colorConfig.aliases.join(' - ')}` : undefined
-  const maxLevels = ['bg', 'fg'].includes(colorConfig.type) ? 3 : colorLevels.length
+  const maxLevels = colorLevels.length
   const levelsSlice = colorLevels.slice(0, maxLevels)
 
   return (

@@ -1,5 +1,5 @@
 'use client'
-import { type Color, converter, formatCss, formatRgb } from 'culori'
+import { type Color, type Oklch, converter, formatCss, formatRgb } from 'culori'
 
 // type ColorValues = [number, number, number]
 // class ColorManipulator {
@@ -35,27 +35,36 @@ import { type Color, converter, formatCss, formatRgb } from 'culori'
 
 const oklchConverter = converter('oklch')
 
-export function parseColor(color: string) {
+export function parseColor(color: string | Color): Oklch {
   try {
     const parsed = oklchConverter(color)
+    if (!parsed) {
+      throw new Error(`Cannot parse color: ${JSON.stringify(color)}`)
+    }
     return parsed //new Color(parsed.space, parsed.values as [number, number, number], parsed.alpha)
   } catch (error) {
     throw new Error(`Color parsing failed for: ${color}, error: ${error}`)
   }
 }
 
-export function formatColor(color: Color): string {
+export function formatColorAsOklch(color: string | Color): string {
   try {
     const parsed = formatCss(color)
+    if (!parsed) {
+      throw new Error(`Cannot format color: ${JSON.stringify(color)}`)
+    }
     return parsed
   } catch (error) {
     throw new Error(`Color formatting failed for: ${JSON.stringify(color)}, error: ${error}`)
   }
 }
 
-export function formatColorAsRgb(color: Color): string {
+export function formatColorAsRgb(color: string | Color): string {
   try {
     const parsed = formatRgb(color)
+    if (!parsed) {
+      throw new Error(`Cannot format color: ${JSON.stringify(color)}`)
+    }
     return parsed
   } catch (error) {
     throw new Error(`Color formatting failed for: ${JSON.stringify(color)}, error: ${error}`)

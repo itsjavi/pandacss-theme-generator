@@ -1,9 +1,9 @@
 import type { Preset } from '@pandacss/types'
 import { outdent } from 'outdent'
+import type { ColorSystemConfig } from '../types'
 import generateColorTokens from './generate-color-tokens'
-import type { ColorSystemConfig } from './types'
 
-export default function generatePandaPreset(colorSystem: ColorSystemConfig): Preset {
+function generatePandaPreset(colorSystem: ColorSystemConfig): Preset {
   const colorTokens = generateColorTokens(colorSystem)
   const configSubset = {
     conditions: {
