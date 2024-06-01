@@ -6,9 +6,9 @@ import { cn } from '@/lib/utils'
 const cls = {
   bg: css({
     bgGradient: 'to-b',
-    gradientFrom: 'bg.100',
-    gradientVia: 'bg.100',
-    gradientTo: 'bg.200',
+    gradientFrom: 'background.100',
+    gradientVia: 'background.100',
+    gradientTo: 'background.200',
   }),
 }
 

@@ -93,7 +93,7 @@ const buttonStyle = cva({
       },
       solid: {
         background: 'colorPalette.solid1',
-        color: 'fg.dark',
+        color: 'contrast.dark',
         _hover: {
           background: 'colorPalette.solid2',
         },

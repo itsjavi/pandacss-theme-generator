@@ -17,7 +17,7 @@ export default function ColorScaleLegend({ levels }: { levels: Readonly<string[]
         },
         '& .subtitle': {
           fontWeight: 'normal',
-          color: 'fg.muted',
+          color: 'muted.100',
         },
         '& .label:not(:first-child)': {
           justifyContent: 'center',

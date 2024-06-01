@@ -305,12 +305,12 @@ function ColorSplitPreview({ currentColor, originalColor }: { currentColor: Oklc
 
           '& strong:first-child': {
             fontSize: '3xl',
-            color: 'fg.dark',
+            color: 'contrast.dark',
           },
 
           '& strong:last-child': {
             fontSize: '3xl',
-            color: 'fg.light',
+            color: 'contrast.light',
           },
         },
       }}

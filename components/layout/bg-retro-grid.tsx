@@ -17,7 +17,7 @@ const cls = {
     // colorPalette: 'gray',
     // bg: '#0e1416',
     transform: 'rotateX(0deg)',
-    bg: 'radial-gradient(ellipse at 50% 50%, transparent 0%, {colors.bg.100/90} 60%)',
+    bg: 'radial-gradient(ellipse at 50% 50%, transparent 0%, {colors.background.100/90} 60%)',
     zIndex: 1,
     // _dark: {
     //   // bg: 'radial-gradient(ellipse at 50% 50%, transparent 0%, {colors.colorPalette.900/90} 60%)',

@@ -10,9 +10,9 @@ const heading = cva({
     letterSpacing: 'tighter',
     color: 'gray.fg2',
     // textGradient: 'to-br',
-    // gradientFrom: 'fg.100',
-    // gradientVia: 'fg.200',
-    // gradientTo: 'fg.100',
+    // gradientFrom: 'contrast.100',
+    // gradientVia: 'contrast.200',
+    // gradientTo: 'contrast.100',
   },
   variants: {
     size: {

@@ -136,7 +136,7 @@ export default function ColorScaleLevelEditor({ config, level, fg, scheme, onCha
             _dark: {
               // background: 'alpha.light.600',
             },
-            // color: 'fg.100',
+            // color: 'muted.100',
             fontSize: 'xs',
             textAlign: 'center',
             lineHeight: '1',

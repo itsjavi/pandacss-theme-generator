@@ -1,5 +1,6 @@
 import { defineConfig } from '@pandacss/dev'
-import { colorSystemPandaPreset } from './modules/design-system/lib/preset-colors'
+import { colorAliasesPreset } from './modules/design-system/lib/preset-color-aliases'
+import { colorSystemPreset } from './modules/design-system/lib/preset-colors'
 import { appCorePandaPreset } from './modules/design-system/lib/preset-core'
 
 export default defineConfig({
@@ -15,7 +16,7 @@ export default defineConfig({
     './lib/**/*.{js,jsx,ts,tsx}',
     './modules/**/*.{js,jsx,ts,tsx}',
   ],
-  presets: ['@pandacss/preset-base', colorSystemPandaPreset, appCorePandaPreset],
+  presets: ['@pandacss/preset-base', colorSystemPreset, colorAliasesPreset, appCorePandaPreset],
   hash: {
     className: true,
     cssVar: false,

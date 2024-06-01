@@ -24,7 +24,7 @@ function HeadlineText() {
           letterSpacing: 'tighter',
           marginX: 'auto',
           fontWeight: '300',
-          color: 'fg.muted',
+          color: 'muted.100',
         }}
       >
         Create your own unique theme for <strong>Panda CSS</strong> and <strong>Ark UI</strong>.

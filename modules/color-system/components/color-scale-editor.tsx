@@ -36,7 +36,7 @@ export default function ColorScaleEditor({ fg, config, onChange }: ColorScaleEdi
         },
         '& .subtitle': {
           fontWeight: 'normal',
-          color: 'fg.muted',
+          color: 'muted.100',
         },
         '& .label:not(:first-child)': {
           justifyContent: 'center',
@@ -50,7 +50,7 @@ export default function ColorScaleEditor({ fg, config, onChange }: ColorScaleEdi
         //   fontSize: 'lg',
         //   borderRadius: 'sm',
         //   borderWidth: '1.5px',
-        //   borderColor: 'fg.200',
+        //   borderColor: 'muted.100',
         // },
       }}
     >

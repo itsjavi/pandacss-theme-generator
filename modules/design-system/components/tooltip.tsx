@@ -14,7 +14,7 @@ export const popoverCss = {
     borderWidth: '1px',
     borderStyle: 'solid',
     borderColor: 'gray.border1',
-    background: 'bg.base',
+    background: 'background.100',
     borderRadius: 'sm',
     boxShadow: 'lg',
     display: 'flex',
@@ -37,11 +37,11 @@ export const popoverCss = {
     textStyle: 'sm',
   }),
   description: css({
-    color: 'fg.muted',
+    color: 'muted.100',
     textStyle: 'sm',
   }),
   closeTrigger: css({
-    color: 'fg.muted',
+    color: 'muted.100',
   }),
   arrow: css({
     '--arrow-size': 'var(--sizes-3)',
