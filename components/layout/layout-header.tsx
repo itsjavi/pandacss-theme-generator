@@ -89,7 +89,8 @@ export default function LayoutHeader({ children, ...props }: ComponentProps<'hea
               </div>
             </Link>
             <Link href="/colors">Color System</Link>
-            <Link href="/tokens">Theme Tokens</Link>
+            <Link href="/tokens">Tokens</Link>
+            <Link href="/components">Components</Link>
           </HStack>
           <HStack gap="4" css={{ '& svg': { width: '5', height: '5' } }}>
             <a href={appConfig.links.github_repo} target="_blank" rel="noopener noreferrer">
