@@ -8,7 +8,7 @@ export type GeneratedColorTokens = {
   semanticColors: ExtendedTheme['semanticTokens']['colors']
 }
 
-export default function generateColorTokens2(config: ColorSystemConfig): GeneratedColorTokens {
+export default function generateColorTokens(config: ColorSystemConfig): GeneratedColorTokens {
   const tokens: GeneratedColorTokens = {
     colors: {},
     semanticColors: {},

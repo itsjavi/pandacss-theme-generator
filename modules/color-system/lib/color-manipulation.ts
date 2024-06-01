@@ -36,7 +36,7 @@ export function parseColor(color: string | Color): Required<Oklch> {
 
 export function formatColorAsOklch(color: string | Color): string {
   try {
-    const parsed = formatCss(color)
+    const parsed = formatCss(parseColor(color))
     if (!parsed) {
       throw new Error(`Cannot format color: ${JSON.stringify(color)}`)
     }
