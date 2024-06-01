@@ -252,6 +252,9 @@ export const appCorePandaPreset = definePreset({
           white: {
             value: 'linear-gradient(180deg, rgba(255, 255, 255, 0.5), rgba(255, 255, 255, 0))',
           },
+          checkerboard: {
+            value: 'repeating-conic-gradient(rgba(255, 255, 255, 0.15) 0% 25%, rgba(0, 0, 0, 0.15) 0% 50%)',
+          },
         },
         // ---- BORDERS ----
         borders: { none: { value: 'none' } },

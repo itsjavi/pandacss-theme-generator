@@ -233,7 +233,7 @@ function ColorCell({ level, colorConfig, onHueChange }: ColorCellProps) {
         bgImage: 'linear-gradient(var(--bg-dark), var(--bg-dark)), var(--bgch)',
       },
       _mediaP3: {
-        _supportsP3: {
+        _supportsOklch: {
           bgImage: 'linear-gradient(var(--bg-p3), var(--bg-p3)), var(--bgch)',
           _dark: {
             bgImage: 'linear-gradient(var(--bg-dark-p3), var(--bg-dark-p3)), var(--bgch)',

@@ -47,7 +47,7 @@ export default function generateColorTokens(config: ColorSystemConfig): Generate
         const semanticP3Props = colorValues.oklch
           ? {
               _mediaP3: {
-                _supportsP3: {
+                _supportsOklch: {
                   base: `{colors.${colorName}P3.light.${colorLevel}}`,
                   _dark: `{colors.${colorName}P3.dark.${colorLevel}}`,
                 },

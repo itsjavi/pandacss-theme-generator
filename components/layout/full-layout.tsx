@@ -12,7 +12,7 @@ type FullLayoutProps = {
   withFooter?: boolean
 }
 
-export default async function FullLayout({
+export default function FullLayout({
   children,
   className,
   bgClassName,

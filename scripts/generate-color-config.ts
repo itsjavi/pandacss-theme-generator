@@ -7,7 +7,7 @@ type OklchaColor = {
   h: number
   a: number
 }
-type ColorGroup = 'contrast' | 'alpha' | 'gray' | 'accent'
+type ColorGroup = 'background' | 'contrast' | 'alpha' | 'gray' | 'accent'
 type ColorLevel = 100 | 200 | 300 | 400 | 500 | 600 | 700 | 800 | 900 | 950
 type ColorLevelKey = `${ColorLevel}`
 type ColorConfigValue = {
@@ -27,7 +27,10 @@ function getColorGroup(colorName: string): ColorGroup {
   if (colorName === 'alpha' || colorName === 'shade' || colorName === 'grayalpha') {
     return 'alpha'
   }
-  if (colorName === 'fg' || colorName === 'bg' || colorName === 'contrast') {
+  if (colorName === 'bg' || colorName === 'background') {
+    return 'background'
+  }
+  if (colorName === 'fg' || colorName === 'contrast') {
     return 'contrast'
   }
   if (colorName === 'gray' || colorName === 'neutral') {
@@ -37,8 +40,8 @@ function getColorGroup(colorName: string): ColorGroup {
 }
 
 const colorAliasMap: Record<string, string[]> = {
-  bg: [],
-  fg: [],
+  background: [],
+  contrast: [],
   gray: [],
   alpha: [],
   blue: ['primary'],
@@ -66,16 +69,16 @@ const colorLevelAliasMap: Record<ColorLevelKey, string[]> = {
 }
 
 const contrastColorLevelAliasMap: Record<ColorLevelKey, string[]> = {
-  '100': ['base'],
-  '200': ['subtle'],
+  '100': [],
+  '200': [],
   '300': [],
-  '400': ['muted'],
+  '400': [],
   '500': [],
-  '600': ['contrast1'],
+  '600': [],
   '700': [],
-  '800': ['contrast2'],
+  '800': [],
   '900': [],
-  '950': ['contrast3'],
+  '950': [],
 }
 
 const colorSystem: Record<string, ColorConfig> = {}
@@ -92,12 +95,13 @@ for (const [colorName, colorData] of Object.entries(geistColorTokens)) {
   const isP3Color = colorName.endsWith('P3')
   const nonP3ColorName = isP3Color ? colorName.slice(0, -2) : colorName
   const colorGroup = getColorGroup(nonP3ColorName)
+  const isBgFg = ['contrast', 'background'].includes(colorGroup)
   colorSystem[nonP3ColorName] ??= {
     name: nonP3ColorName,
     group: colorGroup,
     aliases: colorAliasMap[nonP3ColorName] ?? [],
     scale: {},
-    defaultLevel: colorGroup === 'contrast' ? '100' : '600',
+    defaultLevel: isBgFg ? '100' : '600',
   }
 
   for (const [colorScheme, colorLevels] of Object.entries(
@@ -114,8 +118,7 @@ for (const [colorName, colorData] of Object.entries(geistColorTokens)) {
         throw new Error(`Color ${nonP3ColorName} does not have a ${colorScheme} value`)
       }
       const typedScheme = colorScheme as 'light' | 'dark'
-      const levelAliasMap =
-        colorSystem[nonP3ColorName].group === 'contrast' ? contrastColorLevelAliasMap : colorLevelAliasMap
+      const levelAliasMap = isBgFg ? contrastColorLevelAliasMap : colorLevelAliasMap
 
       const prevColorValue = colorSystem[nonP3ColorName].scale[typedColorLevel]
       colorSystem[nonP3ColorName].scale[typedColorLevel] = {

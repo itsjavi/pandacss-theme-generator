@@ -4,7 +4,7 @@ export const colorSystemPandaPreset = definePreset({
   conditions: {
     extend: {
       mediaP3: '@media (color-gamut:p3)',
-      supportsP3: '@supports (color: oklch(0 0 0))',
+      supportsOklch: '@supports (color: oklch(0 0 0))',
     },
   },
   theme: {
@@ -1503,7 +1503,7 @@ export const colorSystemPandaPreset = definePreset({
                 base: '{colors.blue.light.100}',
                 _dark: '{colors.blue.dark.100}',
                 _mediaP3: {
-                  _supportsP3: {
+                  _supportsOklch: {
                     base: '{colors.blueP3.light.100}',
                     _dark: '{colors.blueP3.dark.100}',
                   },
@@ -1515,7 +1515,7 @@ export const colorSystemPandaPreset = definePreset({
                 base: '{colors.blue.light.200}',
                 _dark: '{colors.blue.dark.200}',
                 _mediaP3: {
-                  _supportsP3: {
+                  _supportsOklch: {
                     base: '{colors.blueP3.light.200}',
                     _dark: '{colors.blueP3.dark.200}',
                   },
@@ -1527,7 +1527,7 @@ export const colorSystemPandaPreset = definePreset({
                 base: '{colors.blue.light.300}',
                 _dark: '{colors.blue.dark.300}',
                 _mediaP3: {
-                  _supportsP3: {
+                  _supportsOklch: {
                     base: '{colors.blueP3.light.300}',
                     _dark: '{colors.blueP3.dark.300}',
                   },
@@ -1539,7 +1539,7 @@ export const colorSystemPandaPreset = definePreset({
                 base: '{colors.blue.light.400}',
                 _dark: '{colors.blue.dark.400}',
                 _mediaP3: {
-                  _supportsP3: {
+                  _supportsOklch: {
                     base: '{colors.blueP3.light.400}',
                     _dark: '{colors.blueP3.dark.400}',
                   },
@@ -1551,7 +1551,7 @@ export const colorSystemPandaPreset = definePreset({
                 base: '{colors.blue.light.500}',
                 _dark: '{colors.blue.dark.500}',
                 _mediaP3: {
-                  _supportsP3: {
+                  _supportsOklch: {
                     base: '{colors.blueP3.light.500}',
                     _dark: '{colors.blueP3.dark.500}',
                   },
@@ -1563,7 +1563,7 @@ export const colorSystemPandaPreset = definePreset({
                 base: '{colors.blue.light.600}',
                 _dark: '{colors.blue.dark.600}',
                 _mediaP3: {
-                  _supportsP3: {
+                  _supportsOklch: {
                     base: '{colors.blueP3.light.600}',
                     _dark: '{colors.blueP3.dark.600}',
                   },
@@ -1575,7 +1575,7 @@ export const colorSystemPandaPreset = definePreset({
                 base: '{colors.blue.light.700}',
                 _dark: '{colors.blue.dark.700}',
                 _mediaP3: {
-                  _supportsP3: {
+                  _supportsOklch: {
                     base: '{colors.blueP3.light.700}',
                     _dark: '{colors.blueP3.dark.700}',
                   },
@@ -1587,7 +1587,7 @@ export const colorSystemPandaPreset = definePreset({
                 base: '{colors.blue.light.800}',
                 _dark: '{colors.blue.dark.800}',
                 _mediaP3: {
-                  _supportsP3: {
+                  _supportsOklch: {
                     base: '{colors.blueP3.light.800}',
                     _dark: '{colors.blueP3.dark.800}',
                   },
@@ -1599,7 +1599,7 @@ export const colorSystemPandaPreset = definePreset({
                 base: '{colors.blue.light.900}',
                 _dark: '{colors.blue.dark.900}',
                 _mediaP3: {
-                  _supportsP3: {
+                  _supportsOklch: {
                     base: '{colors.blueP3.light.900}',
                     _dark: '{colors.blueP3.dark.900}',
                   },
@@ -1611,7 +1611,7 @@ export const colorSystemPandaPreset = definePreset({
                 base: '{colors.blue.light.950}',
                 _dark: '{colors.blue.dark.950}',
                 _mediaP3: {
-                  _supportsP3: {
+                  _supportsOklch: {
                     base: '{colors.blueP3.light.950}',
                     _dark: '{colors.blueP3.dark.950}',
                   },
@@ -1658,7 +1658,7 @@ export const colorSystemPandaPreset = definePreset({
                 base: '{colors.blue.light.100}',
                 _dark: '{colors.blue.dark.100}',
                 _mediaP3: {
-                  _supportsP3: {
+                  _supportsOklch: {
                     base: '{colors.blueP3.light.100}',
                     _dark: '{colors.blueP3.dark.100}',
                   },
@@ -1670,7 +1670,7 @@ export const colorSystemPandaPreset = definePreset({
                 base: '{colors.blue.light.200}',
                 _dark: '{colors.blue.dark.200}',
                 _mediaP3: {
-                  _supportsP3: {
+                  _supportsOklch: {
                     base: '{colors.blueP3.light.200}',
                     _dark: '{colors.blueP3.dark.200}',
                   },
@@ -1682,7 +1682,7 @@ export const colorSystemPandaPreset = definePreset({
                 base: '{colors.blue.light.300}',
                 _dark: '{colors.blue.dark.300}',
                 _mediaP3: {
-                  _supportsP3: {
+                  _supportsOklch: {
                     base: '{colors.blueP3.light.300}',
                     _dark: '{colors.blueP3.dark.300}',
                   },
@@ -1694,7 +1694,7 @@ export const colorSystemPandaPreset = definePreset({
                 base: '{colors.blue.light.400}',
                 _dark: '{colors.blue.dark.400}',
                 _mediaP3: {
-                  _supportsP3: {
+                  _supportsOklch: {
                     base: '{colors.blueP3.light.400}',
                     _dark: '{colors.blueP3.dark.400}',
                   },
@@ -1706,7 +1706,7 @@ export const colorSystemPandaPreset = definePreset({
                 base: '{colors.blue.light.500}',
                 _dark: '{colors.blue.dark.500}',
                 _mediaP3: {
-                  _supportsP3: {
+                  _supportsOklch: {
                     base: '{colors.blueP3.light.500}',
                     _dark: '{colors.blueP3.dark.500}',
                   },
@@ -1718,7 +1718,7 @@ export const colorSystemPandaPreset = definePreset({
                 base: '{colors.blue.light.600}',
                 _dark: '{colors.blue.dark.600}',
                 _mediaP3: {
-                  _supportsP3: {
+                  _supportsOklch: {
                     base: '{colors.blueP3.light.600}',
                     _dark: '{colors.blueP3.dark.600}',
                   },
@@ -1730,7 +1730,7 @@ export const colorSystemPandaPreset = definePreset({
                 base: '{colors.blue.light.700}',
                 _dark: '{colors.blue.dark.700}',
                 _mediaP3: {
-                  _supportsP3: {
+                  _supportsOklch: {
                     base: '{colors.blueP3.light.700}',
                     _dark: '{colors.blueP3.dark.700}',
                   },
@@ -1742,7 +1742,7 @@ export const colorSystemPandaPreset = definePreset({
                 base: '{colors.blue.light.800}',
                 _dark: '{colors.blue.dark.800}',
                 _mediaP3: {
-                  _supportsP3: {
+                  _supportsOklch: {
                     base: '{colors.blueP3.light.800}',
                     _dark: '{colors.blueP3.dark.800}',
                   },
@@ -1754,7 +1754,7 @@ export const colorSystemPandaPreset = definePreset({
                 base: '{colors.blue.light.900}',
                 _dark: '{colors.blue.dark.900}',
                 _mediaP3: {
-                  _supportsP3: {
+                  _supportsOklch: {
                     base: '{colors.blueP3.light.900}',
                     _dark: '{colors.blueP3.dark.900}',
                   },
@@ -1766,7 +1766,7 @@ export const colorSystemPandaPreset = definePreset({
                 base: '{colors.blue.light.950}',
                 _dark: '{colors.blue.dark.950}',
                 _mediaP3: {
-                  _supportsP3: {
+                  _supportsOklch: {
                     base: '{colors.blueP3.light.950}',
                     _dark: '{colors.blueP3.dark.950}',
                   },
@@ -1813,7 +1813,7 @@ export const colorSystemPandaPreset = definePreset({
                 base: '{colors.red.light.100}',
                 _dark: '{colors.red.dark.100}',
                 _mediaP3: {
-                  _supportsP3: {
+                  _supportsOklch: {
                     base: '{colors.redP3.light.100}',
                     _dark: '{colors.redP3.dark.100}',
                   },
@@ -1825,7 +1825,7 @@ export const colorSystemPandaPreset = definePreset({
                 base: '{colors.red.light.200}',
                 _dark: '{colors.red.dark.200}',
                 _mediaP3: {
-                  _supportsP3: {
+                  _supportsOklch: {
                     base: '{colors.redP3.light.200}',
                     _dark: '{colors.redP3.dark.200}',
                   },
@@ -1837,7 +1837,7 @@ export const colorSystemPandaPreset = definePreset({
                 base: '{colors.red.light.300}',
                 _dark: '{colors.red.dark.300}',
                 _mediaP3: {
-                  _supportsP3: {
+                  _supportsOklch: {
                     base: '{colors.redP3.light.300}',
                     _dark: '{colors.redP3.dark.300}',
                   },
@@ -1849,7 +1849,7 @@ export const colorSystemPandaPreset = definePreset({
                 base: '{colors.red.light.400}',
                 _dark: '{colors.red.dark.400}',
                 _mediaP3: {
-                  _supportsP3: {
+                  _supportsOklch: {
                     base: '{colors.redP3.light.400}',
                     _dark: '{colors.redP3.dark.400}',
                   },
@@ -1861,7 +1861,7 @@ export const colorSystemPandaPreset = definePreset({
                 base: '{colors.red.light.500}',
                 _dark: '{colors.red.dark.500}',
                 _mediaP3: {
-                  _supportsP3: {
+                  _supportsOklch: {
                     base: '{colors.redP3.light.500}',
                     _dark: '{colors.redP3.dark.500}',
                   },
@@ -1873,7 +1873,7 @@ export const colorSystemPandaPreset = definePreset({
                 base: '{colors.red.light.600}',
                 _dark: '{colors.red.dark.600}',
                 _mediaP3: {
-                  _supportsP3: {
+                  _supportsOklch: {
                     base: '{colors.redP3.light.600}',
                     _dark: '{colors.redP3.dark.600}',
                   },
@@ -1885,7 +1885,7 @@ export const colorSystemPandaPreset = definePreset({
                 base: '{colors.red.light.700}',
                 _dark: '{colors.red.dark.700}',
                 _mediaP3: {
-                  _supportsP3: {
+                  _supportsOklch: {
                     base: '{colors.redP3.light.700}',
                     _dark: '{colors.redP3.dark.700}',
                   },
@@ -1897,7 +1897,7 @@ export const colorSystemPandaPreset = definePreset({
                 base: '{colors.red.light.800}',
                 _dark: '{colors.red.dark.800}',
                 _mediaP3: {
-                  _supportsP3: {
+                  _supportsOklch: {
                     base: '{colors.redP3.light.800}',
                     _dark: '{colors.redP3.dark.800}',
                   },
@@ -1909,7 +1909,7 @@ export const colorSystemPandaPreset = definePreset({
                 base: '{colors.red.light.900}',
                 _dark: '{colors.red.dark.900}',
                 _mediaP3: {
-                  _supportsP3: {
+                  _supportsOklch: {
                     base: '{colors.redP3.light.900}',
                     _dark: '{colors.redP3.dark.900}',
                   },
@@ -1921,7 +1921,7 @@ export const colorSystemPandaPreset = definePreset({
                 base: '{colors.red.light.950}',
                 _dark: '{colors.red.dark.950}',
                 _mediaP3: {
-                  _supportsP3: {
+                  _supportsOklch: {
                     base: '{colors.redP3.light.950}',
                     _dark: '{colors.redP3.dark.950}',
                   },
@@ -1968,7 +1968,7 @@ export const colorSystemPandaPreset = definePreset({
                 base: '{colors.red.light.100}',
                 _dark: '{colors.red.dark.100}',
                 _mediaP3: {
-                  _supportsP3: {
+                  _supportsOklch: {
                     base: '{colors.redP3.light.100}',
                     _dark: '{colors.redP3.dark.100}',
                   },
@@ -1980,7 +1980,7 @@ export const colorSystemPandaPreset = definePreset({
                 base: '{colors.red.light.200}',
                 _dark: '{colors.red.dark.200}',
                 _mediaP3: {
-                  _supportsP3: {
+                  _supportsOklch: {
                     base: '{colors.redP3.light.200}',
                     _dark: '{colors.redP3.dark.200}',
                   },
@@ -1992,7 +1992,7 @@ export const colorSystemPandaPreset = definePreset({
                 base: '{colors.red.light.300}',
                 _dark: '{colors.red.dark.300}',
                 _mediaP3: {
-                  _supportsP3: {
+                  _supportsOklch: {
                     base: '{colors.redP3.light.300}',
                     _dark: '{colors.redP3.dark.300}',
                   },
@@ -2004,7 +2004,7 @@ export const colorSystemPandaPreset = definePreset({
                 base: '{colors.red.light.400}',
                 _dark: '{colors.red.dark.400}',
                 _mediaP3: {
-                  _supportsP3: {
+                  _supportsOklch: {
                     base: '{colors.redP3.light.400}',
                     _dark: '{colors.redP3.dark.400}',
                   },
@@ -2016,7 +2016,7 @@ export const colorSystemPandaPreset = definePreset({
                 base: '{colors.red.light.500}',
                 _dark: '{colors.red.dark.500}',
                 _mediaP3: {
-                  _supportsP3: {
+                  _supportsOklch: {
                     base: '{colors.redP3.light.500}',
                     _dark: '{colors.redP3.dark.500}',
                   },
@@ -2028,7 +2028,7 @@ export const colorSystemPandaPreset = definePreset({
                 base: '{colors.red.light.600}',
                 _dark: '{colors.red.dark.600}',
                 _mediaP3: {
-                  _supportsP3: {
+                  _supportsOklch: {
                     base: '{colors.redP3.light.600}',
                     _dark: '{colors.redP3.dark.600}',
                   },
@@ -2040,7 +2040,7 @@ export const colorSystemPandaPreset = definePreset({
                 base: '{colors.red.light.700}',
                 _dark: '{colors.red.dark.700}',
                 _mediaP3: {
-                  _supportsP3: {
+                  _supportsOklch: {
                     base: '{colors.redP3.light.700}',
                     _dark: '{colors.redP3.dark.700}',
                   },
@@ -2052,7 +2052,7 @@ export const colorSystemPandaPreset = definePreset({
                 base: '{colors.red.light.800}',
                 _dark: '{colors.red.dark.800}',
                 _mediaP3: {
-                  _supportsP3: {
+                  _supportsOklch: {
                     base: '{colors.redP3.light.800}',
                     _dark: '{colors.redP3.dark.800}',
                   },
@@ -2064,7 +2064,7 @@ export const colorSystemPandaPreset = definePreset({
                 base: '{colors.red.light.900}',
                 _dark: '{colors.red.dark.900}',
                 _mediaP3: {
-                  _supportsP3: {
+                  _supportsOklch: {
                     base: '{colors.redP3.light.900}',
                     _dark: '{colors.redP3.dark.900}',
                   },
@@ -2076,7 +2076,7 @@ export const colorSystemPandaPreset = definePreset({
                 base: '{colors.red.light.950}',
                 _dark: '{colors.red.dark.950}',
                 _mediaP3: {
-                  _supportsP3: {
+                  _supportsOklch: {
                     base: '{colors.redP3.light.950}',
                     _dark: '{colors.redP3.dark.950}',
                   },
@@ -2123,7 +2123,7 @@ export const colorSystemPandaPreset = definePreset({
                 base: '{colors.yellow.light.100}',
                 _dark: '{colors.yellow.dark.100}',
                 _mediaP3: {
-                  _supportsP3: {
+                  _supportsOklch: {
                     base: '{colors.yellowP3.light.100}',
                     _dark: '{colors.yellowP3.dark.100}',
                   },
@@ -2135,7 +2135,7 @@ export const colorSystemPandaPreset = definePreset({
                 base: '{colors.yellow.light.200}',
                 _dark: '{colors.yellow.dark.200}',
                 _mediaP3: {
-                  _supportsP3: {
+                  _supportsOklch: {
                     base: '{colors.yellowP3.light.200}',
                     _dark: '{colors.yellowP3.dark.200}',
                   },
@@ -2147,7 +2147,7 @@ export const colorSystemPandaPreset = definePreset({
                 base: '{colors.yellow.light.300}',
                 _dark: '{colors.yellow.dark.300}',
                 _mediaP3: {
-                  _supportsP3: {
+                  _supportsOklch: {
                     base: '{colors.yellowP3.light.300}',
                     _dark: '{colors.yellowP3.dark.300}',
                   },
@@ -2159,7 +2159,7 @@ export const colorSystemPandaPreset = definePreset({
                 base: '{colors.yellow.light.400}',
                 _dark: '{colors.yellow.dark.400}',
                 _mediaP3: {
-                  _supportsP3: {
+                  _supportsOklch: {
                     base: '{colors.yellowP3.light.400}',
                     _dark: '{colors.yellowP3.dark.400}',
                   },
@@ -2171,7 +2171,7 @@ export const colorSystemPandaPreset = definePreset({
                 base: '{colors.yellow.light.500}',
                 _dark: '{colors.yellow.dark.500}',
                 _mediaP3: {
-                  _supportsP3: {
+                  _supportsOklch: {
                     base: '{colors.yellowP3.light.500}',
                     _dark: '{colors.yellowP3.dark.500}',
                   },
@@ -2183,7 +2183,7 @@ export const colorSystemPandaPreset = definePreset({
                 base: '{colors.yellow.light.600}',
                 _dark: '{colors.yellow.dark.600}',
                 _mediaP3: {
-                  _supportsP3: {
+                  _supportsOklch: {
                     base: '{colors.yellowP3.light.600}',
                     _dark: '{colors.yellowP3.dark.600}',
                   },
@@ -2195,7 +2195,7 @@ export const colorSystemPandaPreset = definePreset({
                 base: '{colors.yellow.light.700}',
                 _dark: '{colors.yellow.dark.700}',
                 _mediaP3: {
-                  _supportsP3: {
+                  _supportsOklch: {
                     base: '{colors.yellowP3.light.700}',
                     _dark: '{colors.yellowP3.dark.700}',
                   },
@@ -2207,7 +2207,7 @@ export const colorSystemPandaPreset = definePreset({
                 base: '{colors.yellow.light.800}',
                 _dark: '{colors.yellow.dark.800}',
                 _mediaP3: {
-                  _supportsP3: {
+                  _supportsOklch: {
                     base: '{colors.yellowP3.light.800}',
                     _dark: '{colors.yellowP3.dark.800}',
                   },
@@ -2219,7 +2219,7 @@ export const colorSystemPandaPreset = definePreset({
                 base: '{colors.yellow.light.900}',
                 _dark: '{colors.yellow.dark.900}',
                 _mediaP3: {
-                  _supportsP3: {
+                  _supportsOklch: {
                     base: '{colors.yellowP3.light.900}',
                     _dark: '{colors.yellowP3.dark.900}',
                   },
@@ -2231,7 +2231,7 @@ export const colorSystemPandaPreset = definePreset({
                 base: '{colors.yellow.light.950}',
                 _dark: '{colors.yellow.dark.950}',
                 _mediaP3: {
-                  _supportsP3: {
+                  _supportsOklch: {
                     base: '{colors.yellowP3.light.950}',
                     _dark: '{colors.yellowP3.dark.950}',
                   },
@@ -2278,7 +2278,7 @@ export const colorSystemPandaPreset = definePreset({
                 base: '{colors.yellow.light.100}',
                 _dark: '{colors.yellow.dark.100}',
                 _mediaP3: {
-                  _supportsP3: {
+                  _supportsOklch: {
                     base: '{colors.yellowP3.light.100}',
                     _dark: '{colors.yellowP3.dark.100}',
                   },
@@ -2290,7 +2290,7 @@ export const colorSystemPandaPreset = definePreset({
                 base: '{colors.yellow.light.200}',
                 _dark: '{colors.yellow.dark.200}',
                 _mediaP3: {
-                  _supportsP3: {
+                  _supportsOklch: {
                     base: '{colors.yellowP3.light.200}',
                     _dark: '{colors.yellowP3.dark.200}',
                   },
@@ -2302,7 +2302,7 @@ export const colorSystemPandaPreset = definePreset({
                 base: '{colors.yellow.light.300}',
                 _dark: '{colors.yellow.dark.300}',
                 _mediaP3: {
-                  _supportsP3: {
+                  _supportsOklch: {
                     base: '{colors.yellowP3.light.300}',
                     _dark: '{colors.yellowP3.dark.300}',
                   },
@@ -2314,7 +2314,7 @@ export const colorSystemPandaPreset = definePreset({
                 base: '{colors.yellow.light.400}',
                 _dark: '{colors.yellow.dark.400}',
                 _mediaP3: {
-                  _supportsP3: {
+                  _supportsOklch: {
                     base: '{colors.yellowP3.light.400}',
                     _dark: '{colors.yellowP3.dark.400}',
                   },
@@ -2326,7 +2326,7 @@ export const colorSystemPandaPreset = definePreset({
                 base: '{colors.yellow.light.500}',
                 _dark: '{colors.yellow.dark.500}',
                 _mediaP3: {
-                  _supportsP3: {
+                  _supportsOklch: {
                     base: '{colors.yellowP3.light.500}',
                     _dark: '{colors.yellowP3.dark.500}',
                   },
@@ -2338,7 +2338,7 @@ export const colorSystemPandaPreset = definePreset({
                 base: '{colors.yellow.light.600}',
                 _dark: '{colors.yellow.dark.600}',
                 _mediaP3: {
-                  _supportsP3: {
+                  _supportsOklch: {
                     base: '{colors.yellowP3.light.600}',
                     _dark: '{colors.yellowP3.dark.600}',
                   },
@@ -2350,7 +2350,7 @@ export const colorSystemPandaPreset = definePreset({
                 base: '{colors.yellow.light.700}',
                 _dark: '{colors.yellow.dark.700}',
                 _mediaP3: {
-                  _supportsP3: {
+                  _supportsOklch: {
                     base: '{colors.yellowP3.light.700}',
                     _dark: '{colors.yellowP3.dark.700}',
                   },
@@ -2362,7 +2362,7 @@ export const colorSystemPandaPreset = definePreset({
                 base: '{colors.yellow.light.800}',
                 _dark: '{colors.yellow.dark.800}',
                 _mediaP3: {
-                  _supportsP3: {
+                  _supportsOklch: {
                     base: '{colors.yellowP3.light.800}',
                     _dark: '{colors.yellowP3.dark.800}',
                   },
@@ -2374,7 +2374,7 @@ export const colorSystemPandaPreset = definePreset({
                 base: '{colors.yellow.light.900}',
                 _dark: '{colors.yellow.dark.900}',
                 _mediaP3: {
-                  _supportsP3: {
+                  _supportsOklch: {
                     base: '{colors.yellowP3.light.900}',
                     _dark: '{colors.yellowP3.dark.900}',
                   },
@@ -2386,7 +2386,7 @@ export const colorSystemPandaPreset = definePreset({
                 base: '{colors.yellow.light.950}',
                 _dark: '{colors.yellow.dark.950}',
                 _mediaP3: {
-                  _supportsP3: {
+                  _supportsOklch: {
                     base: '{colors.yellowP3.light.950}',
                     _dark: '{colors.yellowP3.dark.950}',
                   },
@@ -2433,7 +2433,7 @@ export const colorSystemPandaPreset = definePreset({
                 base: '{colors.green.light.100}',
                 _dark: '{colors.green.dark.100}',
                 _mediaP3: {
-                  _supportsP3: {
+                  _supportsOklch: {
                     base: '{colors.greenP3.light.100}',
                     _dark: '{colors.greenP3.dark.100}',
                   },
@@ -2445,7 +2445,7 @@ export const colorSystemPandaPreset = definePreset({
                 base: '{colors.green.light.200}',
                 _dark: '{colors.green.dark.200}',
                 _mediaP3: {
-                  _supportsP3: {
+                  _supportsOklch: {
                     base: '{colors.greenP3.light.200}',
                     _dark: '{colors.greenP3.dark.200}',
                   },
@@ -2457,7 +2457,7 @@ export const colorSystemPandaPreset = definePreset({
                 base: '{colors.green.light.300}',
                 _dark: '{colors.green.dark.300}',
                 _mediaP3: {
-                  _supportsP3: {
+                  _supportsOklch: {
                     base: '{colors.greenP3.light.300}',
                     _dark: '{colors.greenP3.dark.300}',
                   },
@@ -2469,7 +2469,7 @@ export const colorSystemPandaPreset = definePreset({
                 base: '{colors.green.light.400}',
                 _dark: '{colors.green.dark.400}',
                 _mediaP3: {
-                  _supportsP3: {
+                  _supportsOklch: {
                     base: '{colors.greenP3.light.400}',
                     _dark: '{colors.greenP3.dark.400}',
                   },
@@ -2481,7 +2481,7 @@ export const colorSystemPandaPreset = definePreset({
                 base: '{colors.green.light.500}',
                 _dark: '{colors.green.dark.500}',
                 _mediaP3: {
-                  _supportsP3: {
+                  _supportsOklch: {
                     base: '{colors.greenP3.light.500}',
                     _dark: '{colors.greenP3.dark.500}',
                   },
@@ -2493,7 +2493,7 @@ export const colorSystemPandaPreset = definePreset({
                 base: '{colors.green.light.600}',
                 _dark: '{colors.green.dark.600}',
                 _mediaP3: {
-                  _supportsP3: {
+                  _supportsOklch: {
                     base: '{colors.greenP3.light.600}',
                     _dark: '{colors.greenP3.dark.600}',
                   },
@@ -2505,7 +2505,7 @@ export const colorSystemPandaPreset = definePreset({
                 base: '{colors.green.light.700}',
                 _dark: '{colors.green.dark.700}',
                 _mediaP3: {
-                  _supportsP3: {
+                  _supportsOklch: {
                     base: '{colors.greenP3.light.700}',
                     _dark: '{colors.greenP3.dark.700}',
                   },
@@ -2517,7 +2517,7 @@ export const colorSystemPandaPreset = definePreset({
                 base: '{colors.green.light.800}',
                 _dark: '{colors.green.dark.800}',
                 _mediaP3: {
-                  _supportsP3: {
+                  _supportsOklch: {
                     base: '{colors.greenP3.light.800}',
                     _dark: '{colors.greenP3.dark.800}',
                   },
@@ -2529,7 +2529,7 @@ export const colorSystemPandaPreset = definePreset({
                 base: '{colors.green.light.900}',
                 _dark: '{colors.green.dark.900}',
                 _mediaP3: {
-                  _supportsP3: {
+                  _supportsOklch: {
                     base: '{colors.greenP3.light.900}',
                     _dark: '{colors.greenP3.dark.900}',
                   },
@@ -2541,7 +2541,7 @@ export const colorSystemPandaPreset = definePreset({
                 base: '{colors.green.light.950}',
                 _dark: '{colors.green.dark.950}',
                 _mediaP3: {
-                  _supportsP3: {
+                  _supportsOklch: {
                     base: '{colors.greenP3.light.950}',
                     _dark: '{colors.greenP3.dark.950}',
                   },
@@ -2588,7 +2588,7 @@ export const colorSystemPandaPreset = definePreset({
                 base: '{colors.green.light.100}',
                 _dark: '{colors.green.dark.100}',
                 _mediaP3: {
-                  _supportsP3: {
+                  _supportsOklch: {
                     base: '{colors.greenP3.light.100}',
                     _dark: '{colors.greenP3.dark.100}',
                   },
@@ -2600,7 +2600,7 @@ export const colorSystemPandaPreset = definePreset({
                 base: '{colors.green.light.200}',
                 _dark: '{colors.green.dark.200}',
                 _mediaP3: {
-                  _supportsP3: {
+                  _supportsOklch: {
                     base: '{colors.greenP3.light.200}',
                     _dark: '{colors.greenP3.dark.200}',
                   },
@@ -2612,7 +2612,7 @@ export const colorSystemPandaPreset = definePreset({
                 base: '{colors.green.light.300}',
                 _dark: '{colors.green.dark.300}',
                 _mediaP3: {
-                  _supportsP3: {
+                  _supportsOklch: {
                     base: '{colors.greenP3.light.300}',
                     _dark: '{colors.greenP3.dark.300}',
                   },
@@ -2624,7 +2624,7 @@ export const colorSystemPandaPreset = definePreset({
                 base: '{colors.green.light.400}',
                 _dark: '{colors.green.dark.400}',
                 _mediaP3: {
-                  _supportsP3: {
+                  _supportsOklch: {
                     base: '{colors.greenP3.light.400}',
                     _dark: '{colors.greenP3.dark.400}',
                   },
@@ -2636,7 +2636,7 @@ export const colorSystemPandaPreset = definePreset({
                 base: '{colors.green.light.500}',
                 _dark: '{colors.green.dark.500}',
                 _mediaP3: {
-                  _supportsP3: {
+                  _supportsOklch: {
                     base: '{colors.greenP3.light.500}',
                     _dark: '{colors.greenP3.dark.500}',
                   },
@@ -2648,7 +2648,7 @@ export const colorSystemPandaPreset = definePreset({
                 base: '{colors.green.light.600}',
                 _dark: '{colors.green.dark.600}',
                 _mediaP3: {
-                  _supportsP3: {
+                  _supportsOklch: {
                     base: '{colors.greenP3.light.600}',
                     _dark: '{colors.greenP3.dark.600}',
                   },
@@ -2660,7 +2660,7 @@ export const colorSystemPandaPreset = definePreset({
                 base: '{colors.green.light.700}',
                 _dark: '{colors.green.dark.700}',
                 _mediaP3: {
-                  _supportsP3: {
+                  _supportsOklch: {
                     base: '{colors.greenP3.light.700}',
                     _dark: '{colors.greenP3.dark.700}',
                   },
@@ -2672,7 +2672,7 @@ export const colorSystemPandaPreset = definePreset({
                 base: '{colors.green.light.800}',
                 _dark: '{colors.green.dark.800}',
                 _mediaP3: {
-                  _supportsP3: {
+                  _supportsOklch: {
                     base: '{colors.greenP3.light.800}',
                     _dark: '{colors.greenP3.dark.800}',
                   },
@@ -2684,7 +2684,7 @@ export const colorSystemPandaPreset = definePreset({
                 base: '{colors.green.light.900}',
                 _dark: '{colors.green.dark.900}',
                 _mediaP3: {
-                  _supportsP3: {
+                  _supportsOklch: {
                     base: '{colors.greenP3.light.900}',
                     _dark: '{colors.greenP3.dark.900}',
                   },
@@ -2696,7 +2696,7 @@ export const colorSystemPandaPreset = definePreset({
                 base: '{colors.green.light.950}',
                 _dark: '{colors.green.dark.950}',
                 _mediaP3: {
-                  _supportsP3: {
+                  _supportsOklch: {
                     base: '{colors.greenP3.light.950}',
                     _dark: '{colors.greenP3.dark.950}',
                   },
@@ -2743,7 +2743,7 @@ export const colorSystemPandaPreset = definePreset({
                 base: '{colors.teal.light.100}',
                 _dark: '{colors.teal.dark.100}',
                 _mediaP3: {
-                  _supportsP3: {
+                  _supportsOklch: {
                     base: '{colors.tealP3.light.100}',
                     _dark: '{colors.tealP3.dark.100}',
                   },
@@ -2755,7 +2755,7 @@ export const colorSystemPandaPreset = definePreset({
                 base: '{colors.teal.light.200}',
                 _dark: '{colors.teal.dark.200}',
                 _mediaP3: {
-                  _supportsP3: {
+                  _supportsOklch: {
                     base: '{colors.tealP3.light.200}',
                     _dark: '{colors.tealP3.dark.200}',
                   },
@@ -2767,7 +2767,7 @@ export const colorSystemPandaPreset = definePreset({
                 base: '{colors.teal.light.300}',
                 _dark: '{colors.teal.dark.300}',
                 _mediaP3: {
-                  _supportsP3: {
+                  _supportsOklch: {
                     base: '{colors.tealP3.light.300}',
                     _dark: '{colors.tealP3.dark.300}',
                   },
@@ -2779,7 +2779,7 @@ export const colorSystemPandaPreset = definePreset({
                 base: '{colors.teal.light.400}',
                 _dark: '{colors.teal.dark.400}',
                 _mediaP3: {
-                  _supportsP3: {
+                  _supportsOklch: {
                     base: '{colors.tealP3.light.400}',
                     _dark: '{colors.tealP3.dark.400}',
                   },
@@ -2791,7 +2791,7 @@ export const colorSystemPandaPreset = definePreset({
                 base: '{colors.teal.light.500}',
                 _dark: '{colors.teal.dark.500}',
                 _mediaP3: {
-                  _supportsP3: {
+                  _supportsOklch: {
                     base: '{colors.tealP3.light.500}',
                     _dark: '{colors.tealP3.dark.500}',
                   },
@@ -2803,7 +2803,7 @@ export const colorSystemPandaPreset = definePreset({
                 base: '{colors.teal.light.600}',
                 _dark: '{colors.teal.dark.600}',
                 _mediaP3: {
-                  _supportsP3: {
+                  _supportsOklch: {
                     base: '{colors.tealP3.light.600}',
                     _dark: '{colors.tealP3.dark.600}',
                   },
@@ -2815,7 +2815,7 @@ export const colorSystemPandaPreset = definePreset({
                 base: '{colors.teal.light.700}',
                 _dark: '{colors.teal.dark.700}',
                 _mediaP3: {
-                  _supportsP3: {
+                  _supportsOklch: {
                     base: '{colors.tealP3.light.700}',
                     _dark: '{colors.tealP3.dark.700}',
                   },
@@ -2827,7 +2827,7 @@ export const colorSystemPandaPreset = definePreset({
                 base: '{colors.teal.light.800}',
                 _dark: '{colors.teal.dark.800}',
                 _mediaP3: {
-                  _supportsP3: {
+                  _supportsOklch: {
                     base: '{colors.tealP3.light.800}',
                     _dark: '{colors.tealP3.dark.800}',
                   },
@@ -2839,7 +2839,7 @@ export const colorSystemPandaPreset = definePreset({
                 base: '{colors.teal.light.900}',
                 _dark: '{colors.teal.dark.900}',
                 _mediaP3: {
-                  _supportsP3: {
+                  _supportsOklch: {
                     base: '{colors.tealP3.light.900}',
                     _dark: '{colors.tealP3.dark.900}',
                   },
@@ -2851,7 +2851,7 @@ export const colorSystemPandaPreset = definePreset({
                 base: '{colors.teal.light.950}',
                 _dark: '{colors.teal.dark.950}',
                 _mediaP3: {
-                  _supportsP3: {
+                  _supportsOklch: {
                     base: '{colors.tealP3.light.950}',
                     _dark: '{colors.tealP3.dark.950}',
                   },
@@ -2898,7 +2898,7 @@ export const colorSystemPandaPreset = definePreset({
                 base: '{colors.teal.light.100}',
                 _dark: '{colors.teal.dark.100}',
                 _mediaP3: {
-                  _supportsP3: {
+                  _supportsOklch: {
                     base: '{colors.tealP3.light.100}',
                     _dark: '{colors.tealP3.dark.100}',
                   },
@@ -2910,7 +2910,7 @@ export const colorSystemPandaPreset = definePreset({
                 base: '{colors.teal.light.200}',
                 _dark: '{colors.teal.dark.200}',
                 _mediaP3: {
-                  _supportsP3: {
+                  _supportsOklch: {
                     base: '{colors.tealP3.light.200}',
                     _dark: '{colors.tealP3.dark.200}',
                   },
@@ -2922,7 +2922,7 @@ export const colorSystemPandaPreset = definePreset({
                 base: '{colors.teal.light.300}',
                 _dark: '{colors.teal.dark.300}',
                 _mediaP3: {
-                  _supportsP3: {
+                  _supportsOklch: {
                     base: '{colors.tealP3.light.300}',
                     _dark: '{colors.tealP3.dark.300}',
                   },
@@ -2934,7 +2934,7 @@ export const colorSystemPandaPreset = definePreset({
                 base: '{colors.teal.light.400}',
                 _dark: '{colors.teal.dark.400}',
                 _mediaP3: {
-                  _supportsP3: {
+                  _supportsOklch: {
                     base: '{colors.tealP3.light.400}',
                     _dark: '{colors.tealP3.dark.400}',
                   },
@@ -2946,7 +2946,7 @@ export const colorSystemPandaPreset = definePreset({
                 base: '{colors.teal.light.500}',
                 _dark: '{colors.teal.dark.500}',
                 _mediaP3: {
-                  _supportsP3: {
+                  _supportsOklch: {
                     base: '{colors.tealP3.light.500}',
                     _dark: '{colors.tealP3.dark.500}',
                   },
@@ -2958,7 +2958,7 @@ export const colorSystemPandaPreset = definePreset({
                 base: '{colors.teal.light.600}',
                 _dark: '{colors.teal.dark.600}',
                 _mediaP3: {
-                  _supportsP3: {
+                  _supportsOklch: {
                     base: '{colors.tealP3.light.600}',
                     _dark: '{colors.tealP3.dark.600}',
                   },
@@ -2970,7 +2970,7 @@ export const colorSystemPandaPreset = definePreset({
                 base: '{colors.teal.light.700}',
                 _dark: '{colors.teal.dark.700}',
                 _mediaP3: {
-                  _supportsP3: {
+                  _supportsOklch: {
                     base: '{colors.tealP3.light.700}',
                     _dark: '{colors.tealP3.dark.700}',
                   },
@@ -2982,7 +2982,7 @@ export const colorSystemPandaPreset = definePreset({
                 base: '{colors.teal.light.800}',
                 _dark: '{colors.teal.dark.800}',
                 _mediaP3: {
-                  _supportsP3: {
+                  _supportsOklch: {
                     base: '{colors.tealP3.light.800}',
                     _dark: '{colors.tealP3.dark.800}',
                   },
@@ -2994,7 +2994,7 @@ export const colorSystemPandaPreset = definePreset({
                 base: '{colors.teal.light.900}',
                 _dark: '{colors.teal.dark.900}',
                 _mediaP3: {
-                  _supportsP3: {
+                  _supportsOklch: {
                     base: '{colors.tealP3.light.900}',
                     _dark: '{colors.tealP3.dark.900}',
                   },
@@ -3006,7 +3006,7 @@ export const colorSystemPandaPreset = definePreset({
                 base: '{colors.teal.light.950}',
                 _dark: '{colors.teal.dark.950}',
                 _mediaP3: {
-                  _supportsP3: {
+                  _supportsOklch: {
                     base: '{colors.tealP3.light.950}',
                     _dark: '{colors.tealP3.dark.950}',
                   },
@@ -3053,7 +3053,7 @@ export const colorSystemPandaPreset = definePreset({
                 base: '{colors.purple.light.100}',
                 _dark: '{colors.purple.dark.100}',
                 _mediaP3: {
-                  _supportsP3: {
+                  _supportsOklch: {
                     base: '{colors.purpleP3.light.100}',
                     _dark: '{colors.purpleP3.dark.100}',
                   },
@@ -3065,7 +3065,7 @@ export const colorSystemPandaPreset = definePreset({
                 base: '{colors.purple.light.200}',
                 _dark: '{colors.purple.dark.200}',
                 _mediaP3: {
-                  _supportsP3: {
+                  _supportsOklch: {
                     base: '{colors.purpleP3.light.200}',
                     _dark: '{colors.purpleP3.dark.200}',
                   },
@@ -3077,7 +3077,7 @@ export const colorSystemPandaPreset = definePreset({
                 base: '{colors.purple.light.300}',
                 _dark: '{colors.purple.dark.300}',
                 _mediaP3: {
-                  _supportsP3: {
+                  _supportsOklch: {
                     base: '{colors.purpleP3.light.300}',
                     _dark: '{colors.purpleP3.dark.300}',
                   },
@@ -3089,7 +3089,7 @@ export const colorSystemPandaPreset = definePreset({
                 base: '{colors.purple.light.400}',
                 _dark: '{colors.purple.dark.400}',
                 _mediaP3: {
-                  _supportsP3: {
+                  _supportsOklch: {
                     base: '{colors.purpleP3.light.400}',
                     _dark: '{colors.purpleP3.dark.400}',
                   },
@@ -3101,7 +3101,7 @@ export const colorSystemPandaPreset = definePreset({
                 base: '{colors.purple.light.500}',
                 _dark: '{colors.purple.dark.500}',
                 _mediaP3: {
-                  _supportsP3: {
+                  _supportsOklch: {
                     base: '{colors.purpleP3.light.500}',
                     _dark: '{colors.purpleP3.dark.500}',
                   },
@@ -3113,7 +3113,7 @@ export const colorSystemPandaPreset = definePreset({
                 base: '{colors.purple.light.600}',
                 _dark: '{colors.purple.dark.600}',
                 _mediaP3: {
-                  _supportsP3: {
+                  _supportsOklch: {
                     base: '{colors.purpleP3.light.600}',
                     _dark: '{colors.purpleP3.dark.600}',
                   },
@@ -3125,7 +3125,7 @@ export const colorSystemPandaPreset = definePreset({
                 base: '{colors.purple.light.700}',
                 _dark: '{colors.purple.dark.700}',
                 _mediaP3: {
-                  _supportsP3: {
+                  _supportsOklch: {
                     base: '{colors.purpleP3.light.700}',
                     _dark: '{colors.purpleP3.dark.700}',
                   },
@@ -3137,7 +3137,7 @@ export const colorSystemPandaPreset = definePreset({
                 base: '{colors.purple.light.800}',
                 _dark: '{colors.purple.dark.800}',
                 _mediaP3: {
-                  _supportsP3: {
+                  _supportsOklch: {
                     base: '{colors.purpleP3.light.800}',
                     _dark: '{colors.purpleP3.dark.800}',
                   },
@@ -3149,7 +3149,7 @@ export const colorSystemPandaPreset = definePreset({
                 base: '{colors.purple.light.900}',
                 _dark: '{colors.purple.dark.900}',
                 _mediaP3: {
-                  _supportsP3: {
+                  _supportsOklch: {
                     base: '{colors.purpleP3.light.900}',
                     _dark: '{colors.purpleP3.dark.900}',
                   },
@@ -3161,7 +3161,7 @@ export const colorSystemPandaPreset = definePreset({
                 base: '{colors.purple.light.950}',
                 _dark: '{colors.purple.dark.950}',
                 _mediaP3: {
-                  _supportsP3: {
+                  _supportsOklch: {
                     base: '{colors.purpleP3.light.950}',
                     _dark: '{colors.purpleP3.dark.950}',
                   },
@@ -3208,7 +3208,7 @@ export const colorSystemPandaPreset = definePreset({
                 base: '{colors.purple.light.100}',
                 _dark: '{colors.purple.dark.100}',
                 _mediaP3: {
-                  _supportsP3: {
+                  _supportsOklch: {
                     base: '{colors.purpleP3.light.100}',
                     _dark: '{colors.purpleP3.dark.100}',
                   },
@@ -3220,7 +3220,7 @@ export const colorSystemPandaPreset = definePreset({
                 base: '{colors.purple.light.200}',
                 _dark: '{colors.purple.dark.200}',
                 _mediaP3: {
-                  _supportsP3: {
+                  _supportsOklch: {
                     base: '{colors.purpleP3.light.200}',
                     _dark: '{colors.purpleP3.dark.200}',
                   },
@@ -3232,7 +3232,7 @@ export const colorSystemPandaPreset = definePreset({
                 base: '{colors.purple.light.300}',
                 _dark: '{colors.purple.dark.300}',
                 _mediaP3: {
-                  _supportsP3: {
+                  _supportsOklch: {
                     base: '{colors.purpleP3.light.300}',
                     _dark: '{colors.purpleP3.dark.300}',
                   },
@@ -3244,7 +3244,7 @@ export const colorSystemPandaPreset = definePreset({
                 base: '{colors.purple.light.400}',
                 _dark: '{colors.purple.dark.400}',
                 _mediaP3: {
-                  _supportsP3: {
+                  _supportsOklch: {
                     base: '{colors.purpleP3.light.400}',
                     _dark: '{colors.purpleP3.dark.400}',
                   },
@@ -3256,7 +3256,7 @@ export const colorSystemPandaPreset = definePreset({
                 base: '{colors.purple.light.500}',
                 _dark: '{colors.purple.dark.500}',
                 _mediaP3: {
-                  _supportsP3: {
+                  _supportsOklch: {
                     base: '{colors.purpleP3.light.500}',
                     _dark: '{colors.purpleP3.dark.500}',
                   },
@@ -3268,7 +3268,7 @@ export const colorSystemPandaPreset = definePreset({
                 base: '{colors.purple.light.600}',
                 _dark: '{colors.purple.dark.600}',
                 _mediaP3: {
-                  _supportsP3: {
+                  _supportsOklch: {
                     base: '{colors.purpleP3.light.600}',
                     _dark: '{colors.purpleP3.dark.600}',
                   },
@@ -3280,7 +3280,7 @@ export const colorSystemPandaPreset = definePreset({
                 base: '{colors.purple.light.700}',
                 _dark: '{colors.purple.dark.700}',
                 _mediaP3: {
-                  _supportsP3: {
+                  _supportsOklch: {
                     base: '{colors.purpleP3.light.700}',
                     _dark: '{colors.purpleP3.dark.700}',
                   },
@@ -3292,7 +3292,7 @@ export const colorSystemPandaPreset = definePreset({
                 base: '{colors.purple.light.800}',
                 _dark: '{colors.purple.dark.800}',
                 _mediaP3: {
-                  _supportsP3: {
+                  _supportsOklch: {
                     base: '{colors.purpleP3.light.800}',
                     _dark: '{colors.purpleP3.dark.800}',
                   },
@@ -3304,7 +3304,7 @@ export const colorSystemPandaPreset = definePreset({
                 base: '{colors.purple.light.900}',
                 _dark: '{colors.purple.dark.900}',
                 _mediaP3: {
-                  _supportsP3: {
+                  _supportsOklch: {
                     base: '{colors.purpleP3.light.900}',
                     _dark: '{colors.purpleP3.dark.900}',
                   },
@@ -3316,7 +3316,7 @@ export const colorSystemPandaPreset = definePreset({
                 base: '{colors.purple.light.950}',
                 _dark: '{colors.purple.dark.950}',
                 _mediaP3: {
-                  _supportsP3: {
+                  _supportsOklch: {
                     base: '{colors.purpleP3.light.950}',
                     _dark: '{colors.purpleP3.dark.950}',
                   },
@@ -3363,7 +3363,7 @@ export const colorSystemPandaPreset = definePreset({
                 base: '{colors.pink.light.100}',
                 _dark: '{colors.pink.dark.100}',
                 _mediaP3: {
-                  _supportsP3: {
+                  _supportsOklch: {
                     base: '{colors.pinkP3.light.100}',
                     _dark: '{colors.pinkP3.dark.100}',
                   },
@@ -3375,7 +3375,7 @@ export const colorSystemPandaPreset = definePreset({
                 base: '{colors.pink.light.200}',
                 _dark: '{colors.pink.dark.200}',
                 _mediaP3: {
-                  _supportsP3: {
+                  _supportsOklch: {
                     base: '{colors.pinkP3.light.200}',
                     _dark: '{colors.pinkP3.dark.200}',
                   },
@@ -3387,7 +3387,7 @@ export const colorSystemPandaPreset = definePreset({
                 base: '{colors.pink.light.300}',
                 _dark: '{colors.pink.dark.300}',
                 _mediaP3: {
-                  _supportsP3: {
+                  _supportsOklch: {
                     base: '{colors.pinkP3.light.300}',
                     _dark: '{colors.pinkP3.dark.300}',
                   },
@@ -3399,7 +3399,7 @@ export const colorSystemPandaPreset = definePreset({
                 base: '{colors.pink.light.400}',
                 _dark: '{colors.pink.dark.400}',
                 _mediaP3: {
-                  _supportsP3: {
+                  _supportsOklch: {
                     base: '{colors.pinkP3.light.400}',
                     _dark: '{colors.pinkP3.dark.400}',
                   },
@@ -3411,7 +3411,7 @@ export const colorSystemPandaPreset = definePreset({
                 base: '{colors.pink.light.500}',
                 _dark: '{colors.pink.dark.500}',
                 _mediaP3: {
-                  _supportsP3: {
+                  _supportsOklch: {
                     base: '{colors.pinkP3.light.500}',
                     _dark: '{colors.pinkP3.dark.500}',
                   },
@@ -3423,7 +3423,7 @@ export const colorSystemPandaPreset = definePreset({
                 base: '{colors.pink.light.600}',
                 _dark: '{colors.pink.dark.600}',
                 _mediaP3: {
-                  _supportsP3: {
+                  _supportsOklch: {
                     base: '{colors.pinkP3.light.600}',
                     _dark: '{colors.pinkP3.dark.600}',
                   },
@@ -3435,7 +3435,7 @@ export const colorSystemPandaPreset = definePreset({
                 base: '{colors.pink.light.700}',
                 _dark: '{colors.pink.dark.700}',
                 _mediaP3: {
-                  _supportsP3: {
+                  _supportsOklch: {
                     base: '{colors.pinkP3.light.700}',
                     _dark: '{colors.pinkP3.dark.700}',
                   },
@@ -3447,7 +3447,7 @@ export const colorSystemPandaPreset = definePreset({
                 base: '{colors.pink.light.800}',
                 _dark: '{colors.pink.dark.800}',
                 _mediaP3: {
-                  _supportsP3: {
+                  _supportsOklch: {
                     base: '{colors.pinkP3.light.800}',
                     _dark: '{colors.pinkP3.dark.800}',
                   },
@@ -3459,7 +3459,7 @@ export const colorSystemPandaPreset = definePreset({
                 base: '{colors.pink.light.900}',
                 _dark: '{colors.pink.dark.900}',
                 _mediaP3: {
-                  _supportsP3: {
+                  _supportsOklch: {
                     base: '{colors.pinkP3.light.900}',
                     _dark: '{colors.pinkP3.dark.900}',
                   },
@@ -3471,7 +3471,7 @@ export const colorSystemPandaPreset = definePreset({
                 base: '{colors.pink.light.950}',
                 _dark: '{colors.pink.dark.950}',
                 _mediaP3: {
-                  _supportsP3: {
+                  _supportsOklch: {
                     base: '{colors.pinkP3.light.950}',
                     _dark: '{colors.pinkP3.dark.950}',
                   },
@@ -3518,7 +3518,7 @@ export const colorSystemPandaPreset = definePreset({
                 base: '{colors.pink.light.100}',
                 _dark: '{colors.pink.dark.100}',
                 _mediaP3: {
-                  _supportsP3: {
+                  _supportsOklch: {
                     base: '{colors.pinkP3.light.100}',
                     _dark: '{colors.pinkP3.dark.100}',
                   },
@@ -3530,7 +3530,7 @@ export const colorSystemPandaPreset = definePreset({
                 base: '{colors.pink.light.200}',
                 _dark: '{colors.pink.dark.200}',
                 _mediaP3: {
-                  _supportsP3: {
+                  _supportsOklch: {
                     base: '{colors.pinkP3.light.200}',
                     _dark: '{colors.pinkP3.dark.200}',
                   },
@@ -3542,7 +3542,7 @@ export const colorSystemPandaPreset = definePreset({
                 base: '{colors.pink.light.300}',
                 _dark: '{colors.pink.dark.300}',
                 _mediaP3: {
-                  _supportsP3: {
+                  _supportsOklch: {
                     base: '{colors.pinkP3.light.300}',
                     _dark: '{colors.pinkP3.dark.300}',
                   },
@@ -3554,7 +3554,7 @@ export const colorSystemPandaPreset = definePreset({
                 base: '{colors.pink.light.400}',
                 _dark: '{colors.pink.dark.400}',
                 _mediaP3: {
-                  _supportsP3: {
+                  _supportsOklch: {
                     base: '{colors.pinkP3.light.400}',
                     _dark: '{colors.pinkP3.dark.400}',
                   },
@@ -3566,7 +3566,7 @@ export const colorSystemPandaPreset = definePreset({
                 base: '{colors.pink.light.500}',
                 _dark: '{colors.pink.dark.500}',
                 _mediaP3: {
-                  _supportsP3: {
+                  _supportsOklch: {
                     base: '{colors.pinkP3.light.500}',
                     _dark: '{colors.pinkP3.dark.500}',
                   },
@@ -3578,7 +3578,7 @@ export const colorSystemPandaPreset = definePreset({
                 base: '{colors.pink.light.600}',
                 _dark: '{colors.pink.dark.600}',
                 _mediaP3: {
-                  _supportsP3: {
+                  _supportsOklch: {
                     base: '{colors.pinkP3.light.600}',
                     _dark: '{colors.pinkP3.dark.600}',
                   },
@@ -3590,7 +3590,7 @@ export const colorSystemPandaPreset = definePreset({
                 base: '{colors.pink.light.700}',
                 _dark: '{colors.pink.dark.700}',
                 _mediaP3: {
-                  _supportsP3: {
+                  _supportsOklch: {
                     base: '{colors.pinkP3.light.700}',
                     _dark: '{colors.pinkP3.dark.700}',
                   },
@@ -3602,7 +3602,7 @@ export const colorSystemPandaPreset = definePreset({
                 base: '{colors.pink.light.800}',
                 _dark: '{colors.pink.dark.800}',
                 _mediaP3: {
-                  _supportsP3: {
+                  _supportsOklch: {
                     base: '{colors.pinkP3.light.800}',
                     _dark: '{colors.pinkP3.dark.800}',
                   },
@@ -3614,7 +3614,7 @@ export const colorSystemPandaPreset = definePreset({
                 base: '{colors.pink.light.900}',
                 _dark: '{colors.pink.dark.900}',
                 _mediaP3: {
-                  _supportsP3: {
+                  _supportsOklch: {
                     base: '{colors.pinkP3.light.900}',
                     _dark: '{colors.pinkP3.dark.900}',
                   },
@@ -3626,7 +3626,7 @@ export const colorSystemPandaPreset = definePreset({
                 base: '{colors.pink.light.950}',
                 _dark: '{colors.pink.dark.950}',
                 _mediaP3: {
-                  _supportsP3: {
+                  _supportsOklch: {
                     base: '{colors.pinkP3.light.950}',
                     _dark: '{colors.pinkP3.dark.950}',
                   },

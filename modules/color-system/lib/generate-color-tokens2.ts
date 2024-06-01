@@ -1,6 +1,6 @@
 import type { Preset } from '@pandacss/types'
 import type { ColorSystemConfig2 } from '../types2'
-import { formatColorAsOklch, formatColorAsRgb } from './create-color'
+import { formatColorConfigValue } from './create-color'
 
 // import {buildSpectrum} from '@effective/color'
 
@@ -31,10 +31,7 @@ export default function generateColorTokens2(config: ColorSystemConfig2): Genera
     // for (const colorScheme of ['light', 'dark'] as const) {
     const colorLevels = colorConfig.scale
     for (const [colorLevel, colorValue] of Object.entries(colorLevels)) {
-      const _values = {
-        light: { srgb: formatColorAsRgb(colorValue.light), oklch: formatColorAsOklch(colorValue.light) },
-        dark: { srgb: formatColorAsRgb(colorValue.dark), oklch: formatColorAsOklch(colorValue.dark) },
-      }
+      const _values = formatColorConfigValue(colorValue)
 
       pandaColor.light[colorLevel] = {
         value: _values.light.srgb,
@@ -53,7 +50,7 @@ export default function generateColorTokens2(config: ColorSystemConfig2): Genera
       const semanticP3Props = hasOklch
         ? {
             _mediaP3: {
-              _supportsP3: {
+              _supportsOklch: {
                 base: `{colors.${colorName}P3.light.${colorLevel}}`,
                 _dark: `{colors.${colorName}P3.dark.${colorLevel}}`,
               },

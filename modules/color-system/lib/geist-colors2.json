@@ -1,18 +1,18 @@
 {
-  "bg": {
-    "name": "bg",
-    "group": "contrast",
+  "background": {
+    "name": "background",
+    "group": "background",
     "aliases": [],
     "scale": {
       "100": {
         "light": "#ffffff",
         "dark": "#000000",
-        "aliases": ["base"]
+        "aliases": []
       },
       "200": {
         "light": "#FAFAFA",
         "dark": "#0A0A0A",
-        "aliases": ["subtle"]
+        "aliases": []
       },
       "300": {
         "light": "#FAFAFA",
@@ -20,29 +20,29 @@
         "aliases": []
       },
       "400": {
-        "light": "#EEEEEE",
-        "dark": "#111111",
-        "aliases": ["muted"]
+        "light": "#FAFAFA",
+        "dark": "#0A0A0A",
+        "aliases": []
       },
       "500": {
-        "light": "#EEEEEE",
-        "dark": "#111111",
+        "light": "#FAFAFA",
+        "dark": "#0A0A0A",
         "aliases": []
       },
       "600": {
-        "light": "#111111",
-        "dark": "#EEEEEE",
-        "aliases": ["contrast1"]
+        "light": "#FAFAFA",
+        "dark": "#0A0A0A",
+        "aliases": []
       },
       "700": {
-        "light": "#111111",
-        "dark": "#EEEEEE",
+        "light": "#0A0A0A",
+        "dark": "#0A0A0A",
         "aliases": []
       },
       "800": {
         "light": "#0A0A0A",
-        "dark": "#FAFAFA",
-        "aliases": ["contrast2"]
+        "dark": "#0A0A0A",
+        "aliases": []
       },
       "900": {
         "light": "#0A0A0A",
@@ -52,65 +52,65 @@
       "950": {
         "light": "#000000",
         "dark": "#ffffff",
-        "aliases": ["contrast3"]
+        "aliases": []
       }
     },
     "defaultLevel": "100"
   },
-  "fg": {
-    "name": "fg",
+  "contrast": {
+    "name": "contrast",
     "group": "contrast",
     "aliases": [],
     "scale": {
       "100": {
         "light": "#000000",
         "dark": "#ffffff",
-        "aliases": ["base"]
+        "aliases": []
       },
       "200": {
-        "light": "#313131",
-        "dark": "#D1D1D1",
-        "aliases": ["subtle"]
+        "light": "#000000",
+        "dark": "#ffffff",
+        "aliases": []
       },
       "300": {
-        "light": "#313131",
-        "dark": "#D1D1D1",
+        "light": "#000000",
+        "dark": "#ffffff",
         "aliases": []
       },
       "400": {
-        "light": "#616161",
-        "dark": "#A1A1A1",
-        "aliases": ["muted"]
+        "light": "#000000",
+        "dark": "#ffffff",
+        "aliases": []
       },
       "500": {
-        "light": "#616161",
-        "dark": "#A1A1A1",
+        "light": "#000000",
+        "dark": "#ffffff",
         "aliases": []
       },
       "600": {
-        "light": "#A1A1A1",
-        "dark": "#616161",
-        "aliases": ["contrast1"]
+        "light": "#000000",
+        "dark": "#ffffff",
+        "aliases": []
       },
       "700": {
-        "light": "#A1A1A1",
-        "dark": "#616161",
+        "light": "#ffffff",
+        "dark": "#ffffff",
         "aliases": []
       },
       "800": {
-        "light": "#D1D1D1",
-        "dark": "#313131",
-        "aliases": ["contrast2"]
+        "light": "#ffffff",
+        "dark": "#ffffff",
+        "aliases": []
       },
       "900": {
-        "light": "#D1D1D1",
-        "dark": "#313131",
+        "light": "#ffffff",
+        "dark": "#000000",
         "aliases": []
       },
       "950": {
         "light": "#ffffff",
         "dark": "#000000",
-        "aliases": ["contrast3"]
+        "aliases": []
       }
     },
     "defaultLevel": "100"
