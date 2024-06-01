@@ -11,9 +11,9 @@ export const metadata = defineMetadata({
   metadataBase: new URL(getBaseUrl()),
   title: {
     template: '%s - Panda CSS Theme Generator',
-    default: 'Panda CSS Theme Generator',
+    default: 'Panda CSS Theme Generator - Create a unique theme and Color System for Panda CSS.',
   },
-  description: 'Generate your own Panda CSS design system and components, powered by Ark UI.',
+  description: 'Create your own unique theme and Color System for Panda CSS and preview it with Ark UI components.',
   // openGraph: {
   //   images: '/og-image.png',
   //   url: 'https://pandacss-theme-generator.vercel.app',
@@ -29,6 +29,7 @@ export const metadata = defineMetadata({
     site: '@itsjavidev',
     creator: '@itsjavidev',
   },
+  robots: 'index, follow',
 })
 
 export const viewport: Viewport = {

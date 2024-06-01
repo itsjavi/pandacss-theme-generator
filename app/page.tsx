@@ -1,5 +1,6 @@
 import FullLayout from '@/components/layout/full-layout'
-import { PandaDiv, PandaP } from '@/modules/design-system/components/panda'
+import { PandaDiv } from '@/modules/design-system/components/panda'
+import { styled } from '@/styled-system/jsx'
 import { PrimaryButton } from '@/ui/components/button'
 import Heading from '@/ui/components/typography/heading'
 import { ArrowRight } from 'lucide-react'
@@ -8,7 +9,7 @@ import Link from 'next/link'
 function HeadlineText() {
   return (
     <div>
-      <PandaP
+      <styled.h2
         css={{
           fontSize: '3xl',
           maxWidth: '85ch',
@@ -26,8 +27,8 @@ function HeadlineText() {
           color: 'fg.muted',
         }}
       >
-        Create your own unique design system with <strong>Panda CSS</strong> and <strong>Ark UI</strong>.
-      </PandaP>
+        Create your own unique theme for <strong>Panda CSS</strong> and <strong>Ark UI</strong>.
+      </styled.h2>
     </div>
   )
 }
@@ -56,7 +57,9 @@ export default async function () {
             maxWidth: '600px',
           }}
         >
-          <Heading>Panda Color System Generator</Heading>
+          <Heading as="h1">
+            Panda CSS <br /> Color System Generator
+          </Heading>
           <HeadlineText />
           <PrimaryButton asChild>
             <Link href="/colors">

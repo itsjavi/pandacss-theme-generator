@@ -10,7 +10,9 @@ export default async function () {
   return (
     <>
       <ContentSection>
-        <Heading size="xl">Color System</Heading>
+        <Heading size="xl" as="h1">
+          Color System
+        </Heading>
         <Subtitle>
           A wide-spectrum and comprehensive color system for designing beautiful, accessible user interfaces with
           PandaCSS. Inspired by Vercel's{' '}
