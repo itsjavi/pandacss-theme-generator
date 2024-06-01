@@ -14,10 +14,10 @@ export const metadata = defineMetadata({
     default: 'Panda CSS Theme Generator - Create a unique theme and Color System for Panda CSS.',
   },
   description: 'Create your own unique theme and Color System for Panda CSS and preview it with Ark UI components.',
-  // openGraph: {
-  //   images: '/og-image.png',
-  //   url: 'https://pandacss-theme-generator.vercel.app',
-  // },
+  openGraph: {
+    images: '/og-image.png',
+    url: 'https://pandacss-theme-generator.vercel.app',
+  },
   manifest: '/site.webmanifest',
   icons: [
     { rel: 'icon', url: '/favicon.png' },

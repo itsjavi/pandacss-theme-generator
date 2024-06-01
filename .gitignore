@@ -40,3 +40,7 @@ next-env.d.ts
 
 # panda-css
 /styled-system/
+
+# artifacts
+*~lock.*
+*~lock*
