@@ -1,4 +1,6 @@
 import { definePreset, defineTokens } from '@pandacss/dev'
+import { presetPatterns } from './patterns'
+import { presetRecipes, presetSlotRecipes } from './recipes'
 
 const spacing = defineTokens.spacing({
   '0': {
@@ -135,7 +137,7 @@ const spacing = defineTokens.spacing({
   // },
 })
 
-export default definePreset({
+export const appCorePandaPreset = definePreset({
   conditions: {
     extend: {
       collapsed: '&:is([aria-collapsed=true], [data-collapsed], [data-state="collapsed"])',
@@ -148,14 +150,11 @@ export default definePreset({
       today: '&:is([data-today])',
       underValue: '&:is([data-state="under-value"])',
       // inert: '&:is([inert])',
-      // hover: ['@media (hover: hover) and (pointer: fine)', '&:is(:hover, [data-hover])'],
       // standalone: '@media (display-mode: standalone)',
       // reducedMotion: '@media (prefers-reduced-motion)',
       // reducedTransparency: '@media (prefers-reduced-transparency)',
       // screenOnly: '@media screen',
       // printOnly: '@media print',
-      // colorGamutP3: '@media (color-gamut:p3)',
-      // supportsP3: '@supports (color: oklch(0 0 0))',
     },
   },
   theme: {
@@ -661,11 +660,11 @@ export default definePreset({
       // breakpoints: {},
       // containerSizes: {},
       // layerStyles: {},
-      // recipes: {},
-      // slotRecipes: {},
+      recipes: presetRecipes,
+      slotRecipes: presetSlotRecipes,
     },
   },
   // globalCss: { extend: {} },
-  // patterns: { extend: {} },
+  patterns: { extend: presetPatterns },
   // utilities: { extend: {} },
 })

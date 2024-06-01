@@ -1,6 +1,6 @@
 import { definePreset } from '@pandacss/dev'
 
-export const colorSystemPreset = definePreset({
+export const colorSystemPandaPreset = definePreset({
   conditions: {
     extend: {
       mediaP3: '@media (color-gamut:p3)',

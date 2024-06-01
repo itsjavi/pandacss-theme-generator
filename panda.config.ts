@@ -1,7 +1,6 @@
 import { defineConfig } from '@pandacss/dev'
-import { presetPatterns } from './lib/theme/patterns'
-import appPreset from './panda.preset'
-import { colorSystemPreset } from './panda.preset-colors'
+import { colorSystemPandaPreset } from './lib/theme/preset-colors'
+import { appCorePandaPreset } from './lib/theme/preset-core'
 
 export default defineConfig({
   preflight: true,
@@ -16,16 +15,7 @@ export default defineConfig({
     './components/**/*.{js,jsx,ts,tsx}',
     './lib/**/*.{js,jsx,ts,tsx}',
   ],
-  presets: ['@pandacss/preset-base', colorSystemPreset, appPreset],
-  exclude: [
-    // File patterns to exclude
-  ],
-  theme: {
-    extend: {},
-  },
-  patterns: {
-    extend: presetPatterns,
-  },
+  presets: ['@pandacss/preset-base', colorSystemPandaPreset, appCorePandaPreset],
   globalCss: {
     html: {
       lineHeight: 1.5,
