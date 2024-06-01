@@ -27,7 +27,8 @@ export default function ColorScaleLevelEditor({ config, level, fg, scheme, onCha
     throw new Error(`Level ${level} not found in config.scale for color ${config.name}`)
   }
 
-  const colorAlias = config.aliases.length > 0 ? config.aliases[0] : config.name
+  const colorAlias = config.name
+  // const colorAlias = config.aliases.length > 0 ? config.aliases[0] : config.name
   const levelAlias = levelValue.aliases.length > 0 ? levelValue.aliases[0] : level
   const token = `${colorAlias}.${levelAlias}`
 
@@ -67,12 +68,16 @@ export default function ColorScaleLevelEditor({ config, level, fg, scheme, onCha
     valueCss: '',
   }
 
+  const levelToken = `${colorAlias}.${level}`
+
   const popoverTitle = (
     <PandaDiv fontWeight="bold" display="flex" flexDir="column">
       <PandaDiv fontSize="xl">{token}</PandaDiv>
-      <PandaDiv fontSize="md" color="gray.fg1">
-        {colorAlias}.{level}
-      </PandaDiv>
+      {levelToken !== token && (
+        <PandaDiv fontSize="md" color="gray.fg1">
+          {levelToken}
+        </PandaDiv>
+      )}
     </PandaDiv>
   )
 

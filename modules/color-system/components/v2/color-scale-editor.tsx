@@ -15,7 +15,8 @@ type ColorScaleEditorProps = {
 export default function ColorScaleEditor({ fg, config, onChange }: ColorScaleEditorProps) {
   const { isDarkMode } = useDarkMode()
 
-  const title = config.aliases.length > 0 ? config.aliases[0] : config.name
+  const colorTitle = config.name
+  // const title = config.aliases.length > 0 ? config.aliases[0] : config.name
   const scheme: ColorScheme = isDarkMode ? 'dark' : 'light'
   const scaleLevels = Object.keys(config.scale) as ColorLevelKey[]
 
@@ -54,7 +55,7 @@ export default function ColorScaleEditor({ fg, config, onChange }: ColorScaleEdi
       }}
     >
       <Heading className="label" size="xs" as="div">
-        {title}
+        {colorTitle}
       </Heading>
       {scaleLevels.map((level) => (
         <ColorScaleLevelEditor

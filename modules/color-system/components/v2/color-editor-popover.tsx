@@ -21,6 +21,10 @@ export default function ColorEditorPopover({
   onChange,
   children,
 }: ColorScaleEditorProps) {
+  if (['background', 'contrast'].includes(color.name)) {
+    return children
+  }
+
   return (
     <Popover isOpen={isOpen} onClose={close} title={title} trigger={children}>
       <OklchEditor

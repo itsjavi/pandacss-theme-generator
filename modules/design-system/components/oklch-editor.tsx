@@ -1,4 +1,5 @@
-import { type Lch, type Oklch, converter, formatCss } from 'culori'
+import { parseColor } from '@/modules/color-system/lib/create-color'
+import { type Lch, type Oklch, converter, formatCss, formatHex } from 'culori'
 import { useState } from 'react'
 import { useDebounceCallback } from 'usehooks-ts'
 import { PrimaryButton } from './button'
@@ -254,6 +255,7 @@ function ColorSplitPreview({ currentColor, originalColor }: { currentColor: Oklc
         gap: '2',
         width: 'full',
         color: 'gray.fg1',
+        userSelect: 'none',
         pb: '4',
         mb: '3',
 
@@ -336,6 +338,7 @@ function ColorSplitPreview({ currentColor, originalColor }: { currentColor: Oklc
 
 export default function OklchEditor({ color, onApply, onCancel, preview, sliders }: OklchEditorProps) {
   const [oklchColor, setOklchColor] = useState(color)
+  const [inputColor, setInputColor] = useState(formatHex(color))
 
   const handleChange = (value: number, slider: OklchEditorSlider) => {
     const newColor: OklchColor = {
@@ -343,6 +346,7 @@ export default function OklchEditor({ color, onApply, onCancel, preview, sliders
       [slider]: value,
     }
     setOklchColor(newColor)
+    setInputColor(formatHex(newColor))
   }
 
   const lchColor: LchColor = {
@@ -371,7 +375,50 @@ export default function OklchEditor({ color, onApply, onCancel, preview, sliders
       {showAlpha && (
         <AlphaSlider oklchColor={oklchColor} lchColor={lchColor} onChange={(value) => handleChange(value, 'alpha')} />
       )}
-      <PandaDiv display="flex" flexDir="row" gap="3" mt="3" justifyContent="end" textAlign="right">
+      <PandaDiv userSelect="none" display="flex" flexDir="row" gap="3" mt="3" justifyContent="end" textAlign="right">
+        <PandaDiv flex="1">
+          <PandaInput
+            css={{
+              width: 'full',
+              height: '100%',
+              borderRadius: 'sm',
+              borderWidth: '1px',
+              borderColor: 'gray.border3',
+              outline: 'none',
+              position: 'relative',
+              transitionDuration: 'normal',
+              transitionTimingFunction: 'default',
+              transitionProperty: 'box-shadow, border-color',
+              px: '2',
+              py: '1',
+              _disabled: {
+                opacity: 0.4,
+                cursor: 'not-allowed',
+              },
+              _focusVisible: {
+                outline: '2px solid',
+                outlineOffset: '0px',
+              },
+            }}
+            type="text"
+            // defaultValue={inputColor}
+            value={inputColor}
+            onChange={(e) => {
+              try {
+                const newColor = parseColor(e.target.value)
+                setOklchColor({
+                  ...oklchColor,
+                  h: newColor.h,
+                })
+                // console.log('newColor', newColor)
+              } catch (error) {
+                // console.log('error', error)
+                // e.target.value = formatHex(oklchColor)
+              }
+              setInputColor(e.target.value)
+            }}
+          />
+        </PandaDiv>
         <PrimaryButton size="sm" onClick={() => onCancel?.(oklchColor, formatCss(oklchColor))}>
           Cancel
         </PrimaryButton>
