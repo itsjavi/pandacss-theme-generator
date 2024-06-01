@@ -1,5 +1,6 @@
 'use client'
 
+import { cn } from '@/lib/utils'
 import { css } from '@/styled-system/css'
 import { monoFontClass } from '@/ui/lib/fonts'
 import { useState } from 'react'
@@ -34,11 +35,20 @@ export default function PandaPresetRenderer({ buttonClassName }: { buttonClassNa
       </PrimaryButtonSm>
       <div
         className={css({
-          maxHeight: '500px',
-          overflowY: 'auto',
+          maxWidth: '100%',
+          overflow: 'auto',
         })}
       >
-        <pre className={monoFontClass}>{presetCode}</pre>
+        <pre
+          className={cn(
+            monoFontClass,
+            css({
+              maxHeight: '500px',
+            }),
+          )}
+        >
+          {presetCode}
+        </pre>
       </div>
     </>
   )

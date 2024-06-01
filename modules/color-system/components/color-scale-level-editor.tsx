@@ -106,7 +106,7 @@ export default function ColorScaleLevelEditor({ config, level, fg, scheme, onCha
           fontSize: 'sm',
           textAlign: 'center',
           justifyContent: 'center',
-          aspectRatio: '4/3',
+          height: '3rem',
           '--bgch': 'repeating-conic-gradient(#99999955 0% 25%, transparent 0% 50%)',
           // color: 'gray.fg2',
           bgImage: 'linear-gradient(var(--bg), var(--bg)), var(--bgch)',

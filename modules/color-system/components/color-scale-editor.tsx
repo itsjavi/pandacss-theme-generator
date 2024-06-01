@@ -24,9 +24,9 @@ export default function ColorScaleEditor({ fg, config, onChange }: ColorScaleEdi
     <PandaDiv
       css={{
         display: 'grid',
-        gridTemplateColumns: 'minmax(120px, 1fr) repeat(11, minmax(60px, 1fr))',
+        gridTemplateColumns: 'minmax(120px, 1fr) repeat(10, minmax(50px, 1fr))',
         gap: '2',
-        maxWidth: '900px',
+        // maxWidth: '900px',
         '& .label': {
           display: 'flex',
           flexDirection: 'column',

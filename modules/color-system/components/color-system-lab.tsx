@@ -1,9 +1,12 @@
 'use client'
 
+import { PandaDiv } from '@/modules/design-system/components/panda'
+import { colorLevelAliases, colorLevels } from '../constants'
 import { useColorSystem } from '../global-state'
 import { formatColorConfig, parseColor } from '../lib/color-manipulation'
 import type { ColorActionPayload, ColorLevelKey } from '../types'
 import ColorScaleEditor from './color-scale-editor'
+import ColorScaleLegend from './color-scale-legend'
 
 export default function ColorSystemLab() {
   const [colorSystem, setColorSystem] = useColorSystem()
@@ -43,12 +46,18 @@ export default function ColorSystemLab() {
     })
   }
 
-  return Object.entries(colorSystem).map(([name, colorConfig]) => (
-    <ColorScaleEditor
-      key={name}
-      fg={colorConfig.group === 'contrast' ? convertedBgColor : convertedFgColor}
-      config={colorConfig}
-      onChange={handleChange}
-    />
-  ))
+  return (
+    <PandaDiv display="flex" gap="4" flexDir="column" maxW="920px" marginX="auto">
+      <ColorScaleLegend levels={colorLevels} />
+      {Object.entries(colorSystem).map(([name, colorConfig]) => (
+        <ColorScaleEditor
+          key={name}
+          fg={colorConfig.group === 'contrast' ? convertedBgColor : convertedFgColor}
+          config={colorConfig}
+          onChange={handleChange}
+        />
+      ))}
+      <ColorScaleLegend levels={colorLevelAliases} />
+    </PandaDiv>
+  )
 }

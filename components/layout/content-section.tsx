@@ -7,6 +7,7 @@ export default function ContentSection({ className, children }: BasicComponentPr
       display="flex"
       gap="4"
       flexDir="column"
+      maxW="100vw"
       p="10"
       borderBottom="1px solid"
       borderBottomColor="gray.border1"
