@@ -706,7 +706,7 @@ export const appCorePandaPreset = definePreset({
     },
     '::selection': {
       bgColor: 'var(--colors-blue-dark-800)',
-      color: 'var(--colors-contrast-white-100)',
+      color: 'var(--colors-contrast-dark-800)',
     },
   },
 })
