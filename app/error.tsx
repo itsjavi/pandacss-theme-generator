@@ -2,7 +2,7 @@
 
 import ContainerCentered from '@/components/layout/container-centered'
 import FullLayout from '@/components/layout/full-layout'
-import { BlackButton } from '@/components/ui/button'
+import { BlackButton } from '@/ui/components/button'
 import { useEffect } from 'react'
 
 export default function ({

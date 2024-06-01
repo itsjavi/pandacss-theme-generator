@@ -1,4 +1,5 @@
 import { type ClassValue, clsx } from 'clsx'
+import type { Metadata } from 'next'
 
 export function cn(...inputs: ClassValue[]) {
   return clsx(inputs)
@@ -28,4 +29,8 @@ export function getAbsUrl(path?: string): string {
 
   const sanitizedPath = path.replace(/^\/|\/$/g, '')
   return `${getBaseUrl()}${sanitizedPath ? `/${sanitizedPath}` : '/'}`
+}
+
+export function defineMetadata<T extends Metadata>(metadata: T) {
+  return metadata
 }

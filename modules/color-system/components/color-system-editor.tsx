@@ -1,9 +1,9 @@
 'use client'
 
-import ColorScaleViewer from '@/components/colorsystem/color-scale-viewer'
-import { generateColorSystemPresetCode } from '@/lib/colorsystem/generate-panda-preset'
-import modifyPaletteHue from '@/lib/colorsystem/modify-palette-hue'
-import { useAppState } from '@/lib/colorsystem/state'
+import { generateColorSystemPresetCode } from '../lib/generate-panda-preset'
+import modifyPaletteHue from '../lib/modify-palette-hue'
+import { useAppState } from '../lib/state'
+import ColorScaleViewer from './color-scale-viewer'
 
 export default function ColorSystemEditor() {
   const [appState, setAppState] = useAppState()

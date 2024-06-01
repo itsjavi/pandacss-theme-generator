@@ -2,7 +2,7 @@ import { cn } from '@/lib/utils'
 import { css, cva } from '@/styled-system/css'
 import { ark } from '@ark-ui/react/factory'
 import type { ComponentProps } from 'react'
-import { createVariantComponent } from '../create-component'
+import { createVariantComponent } from '../lib/create-component'
 import { PrimaryButton } from './button'
 
 const inputStyle = cva({

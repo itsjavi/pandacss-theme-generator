@@ -1,9 +1,9 @@
 import type { BasicComponentProps } from '@/lib/types'
-import { panda } from '@/styled-system/jsx'
+import { PandaDiv } from '@/modules/design-system/components/panda'
 
 export default function ContentSection({ className, children }: BasicComponentProps) {
   return (
-    <panda.div
+    <PandaDiv
       display="flex"
       gap="4"
       flexDir="column"
@@ -13,6 +13,6 @@ export default function ContentSection({ className, children }: BasicComponentPr
       className={className}
     >
       {children}
-    </panda.div>
+    </PandaDiv>
   )
 }

@@ -1,7 +1,4 @@
-import pkg from '../package.json'
-
 const appConfig = {
-  version: pkg.version,
   links: {
     twitter_user: 'https://mobile.x.com/itsjavidev',
     github_user: 'https://github.com/itsjavi',

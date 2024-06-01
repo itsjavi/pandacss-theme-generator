@@ -1,18 +1,18 @@
 'use client'
 
-import { monoFontClass } from '@/app/fonts'
-import { bfgColorLevelToAlias, colorLevelToAlias, colorLevels } from '@/lib/colorsystem/constants'
-import { parseColor } from '@/lib/colorsystem/create-color'
-import type { ColorConfig, ColorLevel, ColorLevelAlias, ColorLevelBfg } from '@/lib/colorsystem/types'
-import useDarkMode from '@/lib/hooks/use-darkmode'
 import { cn } from '@/lib/utils'
 import { css } from '@/styled-system/css'
 import { Box, Stack, VStack } from '@/styled-system/jsx'
+import { InlineTextButton } from '@/ui/components/button'
+import Heading from '@/ui/components/typography/heading'
+import useDarkMode from '@/ui/hooks/use-darkmode'
+import { monoFontClass } from '@/ui/lib/fonts'
 import { Popover } from '@ark-ui/react'
 import { useState } from 'react'
 import { useCopyToClipboard } from 'usehooks-ts'
-import Heading from '../layout/heading'
-import { InlineTextButton } from '../ui/button'
+import { bfgColorLevelToAlias, colorLevelToAlias, colorLevels } from '../lib/constants'
+import { parseColor } from '../lib/create-color'
+import type { ColorConfig, ColorLevel, ColorLevelAlias, ColorLevelBfg } from '../lib/types'
 
 type ColorScaleViewerProps = {
   withLegend?: boolean

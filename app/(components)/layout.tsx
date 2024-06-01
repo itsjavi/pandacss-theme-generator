@@ -1,13 +1,13 @@
 import FullLayout from '@/components/layout/full-layout'
-import { panda } from '@/styled-system/jsx'
+import { PandaDiv } from '@/modules/design-system/components/panda'
 import type { PropsWithChildren } from 'react'
 
 export default async function ({ children }: PropsWithChildren) {
   return (
     <FullLayout withFooter>
-      <panda.div borderTop="1px solid" borderTopColor="gray.border1">
+      <PandaDiv borderTop="1px solid" borderTopColor="gray.border1">
         {children}
-      </panda.div>
+      </PandaDiv>
     </FullLayout>
   )
 }

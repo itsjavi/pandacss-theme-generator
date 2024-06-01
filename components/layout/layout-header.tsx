@@ -1,12 +1,13 @@
 'use client'
 
+import appConfig from '@/lib/config'
 import { css } from '@/styled-system/css'
 import { HStack } from '@/styled-system/jsx'
+import GithubIcon from '@/ui/components/icons/GithubIcon'
+import DarkModeToggle from '@/ui/views/dark-mode-toggle'
 import Image from 'next/image'
 import Link from 'next/link'
 import type { ComponentProps } from 'react'
-import GithubIcon from '../icons/GithubIcon'
-import DarkModeToggle from '../views/dark-mode-toggle'
 
 const className = css({
   // position: 'sticky',
@@ -123,7 +124,7 @@ export default function LayoutHeader({ children, ...props }: ComponentProps<'hea
             {/* <Link href="/theme">Theme</Link> */}
           </HStack>
           <HStack gap="4" css={{ '& svg': { width: '5', height: '5' } }}>
-            <a href="https://github.com/itsjavi/pandacss-theme-generator" target="_blank" rel="noopener noreferrer">
+            <a href={appConfig.links.github_repo} target="_blank" rel="noopener noreferrer">
               <GithubIcon />
             </a>
             <DarkModeToggle className={css({ px: '0', width: 'auto', minW: '0px' })} />

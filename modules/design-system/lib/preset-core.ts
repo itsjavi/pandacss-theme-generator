@@ -667,4 +667,43 @@ export const appCorePandaPreset = definePreset({
   // globalCss: { extend: {} },
   patterns: { extend: presetPatterns },
   // utilities: { extend: {} },
+  globalCss: {
+    html: {
+      lineHeight: 1.5,
+      textRendering: 'optimizeLegibility',
+      MozOsxFontSmoothing: 'grayscale',
+      WebkitFontSmoothing: 'antialiased',
+      WebkitTextSizeAdjust: '100%',
+      height: '100%',
+    },
+    body: {
+      fontFamily: 'var(--font-inter), sans-serif',
+      display: 'flex',
+      flexDirection: 'column',
+      minHeight: '100vh',
+      height: 'fit-content',
+      maxHeight: '100%',
+      lineHeight: 'inherit',
+      minWidth: '320px',
+      _dark: {
+        colorScheme: 'dark',
+        bg: '#282828',
+      },
+    },
+    '*, *::before, *::after': {
+      position: 'relative',
+      borderColor: 'transparent',
+      borderStyle: 'solid',
+    },
+    '[hidden]': {
+      display: 'none',
+    },
+    '[inert]': {
+      pointerEvents: 'none',
+    },
+    '::selection': {
+      bgColor: 'var(--colors-blue-dark-800)',
+      color: 'var(--colors-contrast-white-100)',
+    },
+  },
 })

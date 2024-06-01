@@ -22,6 +22,7 @@
     "baseUrl": ".",
     "paths": {
       "@/*": ["./*"],
+      "@/ui/*": ["./modules/design-system/*"],
       "@/styled-system": ["./styled-system"],
       "@/styled-system/*": ["./styled-system/*"]
     }

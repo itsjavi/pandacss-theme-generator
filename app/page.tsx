@@ -1,8 +1,8 @@
 import FullLayout from '@/components/layout/full-layout'
-import Heading from '@/components/layout/heading'
-import { PrimaryButton } from '@/components/ui/button'
 import { cn } from '@/lib/utils'
 import { css } from '@/styled-system/css'
+import { PrimaryButton } from '@/ui/components/button'
+import Heading from '@/ui/components/typography/heading'
 import { ArrowRight } from 'lucide-react'
 import Link from 'next/link'
 

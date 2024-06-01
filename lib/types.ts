@@ -1,6 +1,6 @@
-// -- Utility types
-
 import type { PropsWithChildren } from 'react'
+
+// -- Utility types
 
 export type ConditionalPick<Base, Condition> = Pick<
   Base,

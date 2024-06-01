@@ -1,7 +1,7 @@
-import LayoutFooter from '@/components/layout/layout-footer'
-import LayoutHeader from '@/components/layout/layout-header'
-import LayoutMain from '@/components/layout/layout-main'
-import LayoutRoot from '@/components/layout/layout-root'
+import LayoutFooter from './layout-footer'
+import LayoutHeader from './layout-header'
+import LayoutMain from './layout-main'
+import LayoutRoot from './layout-root'
 
 type FullLayoutProps = {
   readonly children: React.ReactNode

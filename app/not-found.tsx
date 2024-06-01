@@ -1,6 +1,6 @@
 import ContainerCentered from '@/components/layout/container-centered'
 import FullLayout from '@/components/layout/full-layout'
-import Heading from '@/components/layout/heading'
+import Heading from '@/ui/components/typography/heading'
 
 export default async function () {
   return (

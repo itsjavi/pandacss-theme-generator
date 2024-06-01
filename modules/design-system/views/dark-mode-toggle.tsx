@@ -1,8 +1,8 @@
 'use client'
-import useDarkMode from '@/lib/hooks/use-darkmode'
 import { css } from '@/styled-system/css'
 import { MoonStarIcon, SunIcon } from 'lucide-react'
-import { type ButtonProps, InlineTextButton } from '../ui/button'
+import { type ButtonProps, InlineTextButton } from '../components/button'
+import useDarkMode from '../hooks/use-darkmode'
 
 type DarkModeToggleProps = {
   defaultMode?: 'dark' | 'light'

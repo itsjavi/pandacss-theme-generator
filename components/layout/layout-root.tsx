@@ -1,8 +1,8 @@
 import { cn } from '@/lib/utils'
 import { css } from '@/styled-system/css'
 import type { ComponentProps } from 'react'
-import BgGradient from '../bgs/bg-gradient'
-import BgRetroGrid from '../bgs/bg-retro-grid'
+import BgGradient from './bg-gradient'
+import BgRetroGrid from './bg-retro-grid'
 
 const styleClass = css({
   display: 'grid',

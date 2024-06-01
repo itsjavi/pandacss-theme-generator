@@ -1,11 +1,11 @@
 'use client'
 
-import { monoFontClass } from '@/app/fonts'
-import { useAppState } from '@/lib/colorsystem/state'
 import { css } from '@/styled-system/css'
+import { monoFontClass } from '@/ui/lib/fonts'
 import { useState } from 'react'
 import { useCopyToClipboard } from 'usehooks-ts'
-import { PrimaryButtonSm } from '../ui/button'
+import { PrimaryButtonSm } from '../../design-system/components/button'
+import { useAppState } from '../lib/state'
 
 export default function PandaPresetRenderer() {
   const [_, copyToClipboard] = useCopyToClipboard()

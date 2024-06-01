@@ -1,8 +1,8 @@
-import ColorSystemEditor from '@/components/colorsystem/color-system-editor'
-import PandaPresetRenderer from '@/components/colorsystem/panda-preset-renderer'
 import ContentSection from '@/components/layout/content-section'
-import Heading from '@/components/layout/heading'
-import Subtitle from '@/components/layout/subtitle'
+import ColorSystemEditor from '@/modules/color-system/components/color-system-editor'
+import PandaPresetRenderer from '@/modules/color-system/components/panda-preset-renderer'
+import Heading from '@/ui/components/typography/heading'
+import Subtitle from '@/ui/components/typography/subtitle'
 
 export default async function () {
   const solidColors = ['shade', 'gray', 'blue', 'red', 'yellow', 'green', 'teal', 'purple', 'pink'] as const
