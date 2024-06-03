@@ -1,34 +1,9 @@
 import { PandaDiv } from '@/modules/design-system/components/panda'
+import ColorScaleGrid from './color-scale-grid'
 
 export default function ColorScaleLegend({ levels }: { levels: Readonly<string[]> }) {
   return (
-    <PandaDiv
-      css={{
-        display: 'grid',
-        gridTemplateColumns: 'minmax(120px, 1fr) repeat(10, minmax(50px, 1fr))',
-        gap: '2',
-        // maxWidth: '900px',
-        '& .label': {
-          display: 'flex',
-          flexDirection: 'column',
-          justifyContent: 'center',
-          px: '2',
-          py: '2',
-        },
-        '& .subtitle': {
-          fontWeight: 'normal',
-          color: 'muted.100',
-        },
-        '& .label:not(:first-child)': {
-          justifyContent: 'center',
-        },
-        '&.legend': {
-          fontSize: 'xxs',
-          textAlign: 'center',
-        },
-      }}
-    >
-      <span />
+    <ColorScaleGrid title={<span />}>
       {levels.map((level) => (
         <PandaDiv
           key={level}
@@ -67,6 +42,6 @@ export default function ColorScaleLegend({ levels }: { levels: Readonly<string[]
           <span>{level}</span>
         </PandaDiv>
       ))}
-    </PandaDiv>
+    </ColorScaleGrid>
   )
 }
