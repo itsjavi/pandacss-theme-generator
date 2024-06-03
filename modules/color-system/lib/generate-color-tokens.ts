@@ -14,7 +14,8 @@ export default function generateColorTokens(config: ColorSystemConfig): Generate
     semanticColors: {},
   }
 
-  for (const [colorName, colorConfig] of Object.entries(config)) {
+  for (const colorConfig of config.colors) {
+    const colorName = colorConfig.name
     const defaultLevel = colorConfig.defaultLevel
     const hasOklch = colorConfig.group !== 'gray'
 

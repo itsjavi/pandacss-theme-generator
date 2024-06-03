@@ -10,7 +10,7 @@ import ColorScaleLegend from './color-scale-legend'
 
 export default function ColorSystemLab() {
   const [colorSystem, setColorSystem] = useColorSystem()
-  const colors = Object.entries(colorSystem).map(([name, colorConfig]) => colorConfig)
+  const colors = colorSystem.colors
 
   const fgColor = colors.find((colorConfig) => colorConfig.group === 'contrast')
   const bgColor = colors.find((colorConfig) => colorConfig.group === 'background')
@@ -31,7 +31,8 @@ export default function ColorSystemLab() {
   function handleChange(color: ColorActionPayload) {
     // console.log('color changed', { color })
     setColorSystem((draft) => {
-      const colorLevels = draft[color.name].scale
+      const colorIndex = draft.colors.findIndex((colorConfig) => colorConfig.name === color.name)
+      const colorLevels = draft.colors[colorIndex].scale
 
       for (const [level, levelData] of Object.entries(colorLevels)) {
         levelData.light = typeof levelData.light === 'string' ? parseColor(levelData.light) : levelData.light
@@ -41,7 +42,7 @@ export default function ColorSystemLab() {
         levelData.light.h = color.value.h
         levelData.dark.h = color.value.h
 
-        draft[color.name].scale[level as ColorLevelKey] = levelData
+        draft.colors[colorIndex].scale[level as ColorLevelKey] = levelData
       }
     })
   }
@@ -49,9 +50,9 @@ export default function ColorSystemLab() {
   return (
     <PandaDiv display="flex" gap="4" flexDir="column" maxW="920px" marginX="auto">
       <ColorScaleLegend levels={colorLevels} />
-      {Object.entries(colorSystem).map(([name, colorConfig]) => (
+      {colorSystem.colors.map((colorConfig) => (
         <ColorScaleEditor
-          key={name}
+          key={colorConfig.name}
           fg={colorConfig.group === 'contrast' ? convertedBgColor : convertedFgColor}
           config={colorConfig}
           onChange={handleChange}
