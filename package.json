@@ -3,7 +3,7 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
-    "biome:fix": "biome check --max-diagnostics 50 --apply .",
+    "biome:fix": "biome check --max-diagnostics 50 --write .",
     "biome:lint": "biome lint . --max-diagnostics 50",
     "build": "next build",
     "dev": "next dev",
@@ -20,7 +20,7 @@
   },
   "dependencies": {
     "@ark-ui/anatomy": "^3.2.0",
-    "@ark-ui/react": "^3.0.2",
+    "@ark-ui/react": "^3.1.0",
     "@effective/color": "^1.0.1",
     "@pandacss/preset-base": "^0.40.1",
     "@pandacss/preset-panda": "^0.40.1",
@@ -41,12 +41,12 @@
     "usehooks-ts": "^3.1.0"
   },
   "devDependencies": {
-    "@biomejs/biome": "^1.7.3",
+    "@biomejs/biome": "^1.8.0",
     "@pandacss/dev": "^0.40.1",
     "@pandacss/types": "^0.40.1",
     "@types/culori": "^2.1.0",
     "@types/lodash": "^4.17.4",
-    "@types/node": "^20.14.0",
+    "@types/node": "^20.14.1",
     "@types/react": "^18.3.3",
     "@types/react-dom": "^18.3.0",
     "autoprefixer": "^10.4.19",
