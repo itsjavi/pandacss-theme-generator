@@ -20,6 +20,7 @@ type ColorScaleCreatorProps = {
   initialColor?: ColorActionPayload
   onDelete?: (color: ColorActionPayload) => void
   onSave?: (color: ColorActionPayload) => void
+  onCancel?: () => void
   colorpickerSliders?: OklchEditorSlider[]
 }
 
@@ -31,11 +32,11 @@ function _parseColor(color: string, fallback: ColorActionPayload['value']): Colo
   return parsed ?? fallback
 }
 
-function _nearestColorName(value: string | Color | undefined | null, fallback: string): string {
+function _nearestColorName(value: string | Color | undefined | null, fallback?: string): string {
   if (!value) {
-    return fallback
+    return fallback ?? ''
   }
-  return safeNearestColorNames(value, 1)[0] ?? fallback
+  return safeNearestColorNames(value, 1)[0] ?? fallback ?? ''
 }
 
 function _uniqueColorName(value: string, currentColorNames: string[]): string {
@@ -46,7 +47,11 @@ function _uniqueColorName(value: string, currentColorNames: string[]): string {
   return value
 }
 
-function _uniqueNearestColorName(value: string | Color, fallback: string, currentColorNames: string[]): string {
+function _uniqueNearestColorName(
+  value: string | Color,
+  fallback: string | undefined,
+  currentColorNames: string[],
+): string {
   return _uniqueColorName(_nearestColorName(value, fallback), currentColorNames)
 }
 
@@ -57,12 +62,14 @@ export default function ColorScaleCreator({
   colorpickerSliders = ['l', 'c', 'h', 'alpha'],
   onDelete,
   onSave,
+  onCancel,
 }: ColorScaleCreatorProps) {
-  const [editMode, setEditMode] = useState(false)
+  const [editMode, setEditMode] = useState(deletable === true)
   const [pickerOpen, setPickerOpen] = useState(false)
   const [color, setColor] = useState<ColorActionPayload>(
     initialColor ?? {
       name: 'black',
+      newName: 'black',
       alias: 'bg',
       valueCss: '#000',
       value: {
@@ -81,6 +88,7 @@ export default function ColorScaleCreator({
     if (onDelete) {
       onDelete(color)
     }
+
     setEditMode(false)
   }
 
@@ -88,7 +96,16 @@ export default function ColorScaleCreator({
     if (onSave) {
       onSave(color)
     }
-    // setEditMode(false)
+
+    setEditMode(false)
+  }
+
+  function handleCancel() {
+    if (onCancel) {
+      onCancel()
+    }
+
+    setEditMode(false)
   }
 
   if (editMode) {
@@ -105,13 +122,13 @@ export default function ColorScaleCreator({
           size="xs"
           as="div"
         >
-          {color.name || '(new)'}
+          {deletable ? '' : color.newName || '(new)'}
         </Heading>
         <PandaDiv display="flex" flexDirection="row" gap="4" alignItems="center">
           <Input
             placeholder="Color name"
-            value={color.name}
-            onChange={(e) => setColor({ ...color, name: _uniqueColorName(e.target.value, currentColorNames) })}
+            value={color.newName ?? color.name}
+            onChange={(e) => setColor({ ...color, newName: _uniqueColorName(e.target.value, currentColorNames) })}
           />
           {/* <Input
 
@@ -125,7 +142,7 @@ export default function ColorScaleCreator({
             onChange={(e) =>
               setColor({
                 ...color,
-                name: _uniqueNearestColorName(e.target.value, color.name, currentColorNames),
+                newName: color.newName ?? _uniqueNearestColorName(e.target.value, color.newName, currentColorNames),
                 value: _parseColor(e.target.value, color.value),
                 valueCss: e.target.value,
               })
@@ -142,7 +159,7 @@ export default function ColorScaleCreator({
             onChange={(newColor, cssValue) => {
               setColor({
                 ...color,
-                name: _uniqueNearestColorName(cssValue, color.name, currentColorNames),
+                newName: color.newName ?? _uniqueNearestColorName(cssValue, color.newName, currentColorNames),
                 value: newColor,
                 valueCss: cssValue,
               })
@@ -168,7 +185,7 @@ export default function ColorScaleCreator({
               <TrashIcon /> Delete
             </PrimaryButtonSm>
           )}
-          <PrimaryButtonSm colorPalette="gray" variant="outline" onClick={() => setEditMode(false)}>
+          <PrimaryButtonSm colorPalette="gray" variant="outline" onClick={handleCancel}>
             Cancel
           </PrimaryButtonSm>
           <PrimaryButtonSm onClick={handleSave}>Save</PrimaryButtonSm>

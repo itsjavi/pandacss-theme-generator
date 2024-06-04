@@ -23,6 +23,7 @@ export type ColorConfig = {
 
 export type ColorActionPayload = {
   name: string
+  newName?: string
   level: ColorLevelKey
   scheme: ColorScheme
   value: OklchColor

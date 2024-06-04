@@ -31,8 +31,8 @@ export default async function () {
           the 600 level for all the rest.
           <br />
           <br />
-          You can copy the token names by clicking on a color. For accent colors, you can also edit their hue. More
-          customization options are coming soon.
+          You can copy the token names by clicking on a color. For accent colors, you can also edit their hue and name
+          by clicking on the name. More customization options are coming soon.
         </Subtitle>
         <br />
         <ColorSystemLab />

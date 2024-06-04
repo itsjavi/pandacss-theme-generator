@@ -186,17 +186,6 @@ export const PrimaryButtonSm = createVariantComponent(ark.button, buttonStyle, {
   // shadow: 'lg',
   size: 'sm',
 })
-export const AccentButton = createVariantComponent(ark.button, buttonStyle, {
-  variant: 'solid',
-  colorPalette: 'accent',
-  // shadow: 'lg',
-})
-export const AccentButtonSm = createVariantComponent(ark.button, buttonStyle, {
-  variant: 'solid',
-  colorPalette: 'accent',
-  // shadow: 'lg',
-  size: 'sm',
-})
 export const DangerButton = createVariantComponent(ark.button, buttonStyle, {
   variant: 'solid',
   colorPalette: 'danger',
