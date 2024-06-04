@@ -1,10 +1,12 @@
 'use client'
 
 import { PandaDiv } from '@/modules/design-system/components/panda'
+import { buildSpectrum } from '@effective/color'
 import { colorLevelAliases, colorLevels } from '../constants'
 import { useColorSystem } from '../global-state'
 import { formatColorConfig, parseColor } from '../lib/color-manipulation'
-import type { ColorActionPayload, ColorLevelKey } from '../types'
+import type { ColorActionPayload, ColorConfig, ColorLevelKey } from '../types'
+import ColorScaleCreator from './color-scale-creator'
 import ColorScaleEditor from './color-scale-editor'
 import ColorScaleLegend from './color-scale-legend'
 
@@ -47,6 +49,96 @@ export default function ColorSystemLab() {
     })
   }
 
+  function handleAddColor(color: ColorActionPayload) {
+    setColorSystem((draft) => {
+      const newColor: ColorConfig = {
+        name: color.name,
+        scale: {},
+        defaultLevel: color.level,
+        group: 'accent',
+        aliases: color.alias ? [color.alias] : [],
+      }
+      // @see https://www.npmjs.com/package/@effective/color
+      const spectrum = Object.entries(
+        buildSpectrum(color.value, {
+          outputSpace: 'oklch',
+          outputGamut: 'p3',
+          colorSteps: 5,
+          colorDifference: 8,
+          darkColorCompensation: 2,
+        }),
+      )
+
+      const spectrumColorScaleDark = [5, 4, 3, 2, 1, 7, 6, 0, 8, 9]
+      const spectrumColorScaleLight = Array.from(spectrumColorScaleDark).reverse()
+
+      for (let i = 0; i < 10; i++) {
+        const levelKey = (i < 9 ? `${(i + 1) * 100}` : '950') as ColorLevelKey
+        const idx = spectrumColorScaleLight[i]
+        const idxDark = spectrumColorScaleDark[i]
+        const entry = spectrum[idx]
+        const entryDark = spectrum[idxDark]
+
+        if (!entry || !entryDark) {
+          throw new Error('A color spectrum entry is undefined')
+        }
+
+        const [, color] = entry
+        const [, colorDark] = entryDark
+        const levelAlias = colorLevelAliases[i]
+
+        newColor.scale[levelKey] = {
+          light: parseColor(color),
+          dark: parseColor(colorDark),
+          aliases: levelAlias ? [levelAlias] : [],
+        }
+      }
+
+      // const spectrumIndexDark: Record<number, ColorLevelKey> = {
+      //   6: '100',
+      //   5: '200',
+      //   4: '300',
+      //   3: '400',
+      //   2: '500',
+      //   7: '600',
+      //   0: '700',
+      //   1: '800',
+      //   9: '900',
+      //   11: '950',
+      // }
+
+      // const spectrumIndexLight: Record<number, ColorLevelKey> = {
+      //   6: '950',
+      //   5: '900',
+      //   4: '800',
+      //   3: '700',
+      //   2: '600',
+      //   7: '500',
+      //   0: '400',
+      //   1: '300',
+      //   9: '200',
+      //   11: '100',
+      // }
+
+      console.log({ spectrum })
+
+      // console.log({ lightSpectrum, darkSpectrum })
+      draft.colors.push(newColor)
+    })
+  }
+
+  function handleDeleteColor(color: ColorActionPayload) {
+    setColorSystem((draft) => {
+      const colorIndex = draft.colors.findIndex((colorConfig) => colorConfig.name === color.name)
+      if (colorIndex === -1) {
+        return
+      }
+      draft.colors.splice(colorIndex, 1)
+    })
+  }
+
+  const colorNames = colorSystem.colors.flatMap((colorConfig) => [colorConfig.name, ...colorConfig.aliases])
+
   return (
     <PandaDiv display="flex" gap="4" flexDir="column" maxW="920px" marginX="auto">
       <ColorScaleLegend levels={colorLevels} />
@@ -58,6 +150,7 @@ export default function ColorSystemLab() {
           onChange={handleChange}
         />
       ))}
+      <ColorScaleCreator currentColorNames={colorNames} onDelete={handleDeleteColor} onSave={handleAddColor} />
       <ColorScaleLegend levels={colorLevelAliases} />
     </PandaDiv>
   )

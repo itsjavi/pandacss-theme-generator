@@ -7,11 +7,11 @@ const colorToLch = converter('lch')
 
 type OklchColor = Required<Oklch>
 type LchColor = Required<Lch>
-type OklchEditorSlider = Exclude<keyof OklchColor, 'mode'>
-type OklchEditorProps = {
+export type OklchEditorSlider = Exclude<keyof OklchColor, 'mode'>
+export type OklchEditorProps = {
   color: OklchColor
   preview?: boolean
-  sliders: OklchEditorSlider[]
+  sliders?: OklchEditorSlider[]
   onApply?: (color: OklchColor, parsedColor: string) => void
   onCancel?: (color: OklchColor, parsedColor: string) => void
 }
@@ -50,22 +50,22 @@ function createGradients(
     case 'l':
       {
         cssStops = [
-          //'lch(0 0 0)',
+          // 'lch(0 0 0)',
           ...[0, 50, 100].map((stopValue) =>
             formatCss({
               ...lchColor,
-              // c: 150,
+              c: 70,
               [param]: stopValue,
             }),
           ),
-          //'lch(100 0 0)',
+          // 'lch(100 0 0)',
         ]
         cssStopsOk = [
-          //'oklch(0 0 0)',
+          // 'oklch(0 0 0)',
           ...[0, 0.5, 1].map((stopValue) =>
             formatCss({
               ...oklchColor,
-              // c: 0.4,
+              c: 0.2,
               [param]: stopValue,
             }),
           ),
@@ -113,8 +113,8 @@ function createGradients(
         cssStopsOk = paramStops.map((stopValue) => {
           return formatCss({
             ...oklchColor,
-            // c: 0.4,
-            // l: 0.5,
+            c: 0.25,
+            l: 0.75,
             [param]: stopValue,
           })
         })
@@ -337,7 +337,13 @@ function ColorSplitPreview({ currentColor, originalColor }: { currentColor: Oklc
   )
 }
 
-export default function OklchEditor({ color, onApply, onCancel, preview, sliders }: OklchEditorProps) {
+export default function OklchEditor({
+  color,
+  onApply,
+  onCancel,
+  preview,
+  sliders = ['l', 'c', 'h', 'alpha'],
+}: OklchEditorProps) {
   const [oklchColor, setOklchColor] = useState(color)
   const [inputHue, setInputHue] = useState(color.h)
 

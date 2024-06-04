@@ -24,6 +24,7 @@ const buttonStyle = cva({
     userSelect: 'none',
     verticalAlign: 'middle',
     whiteSpace: 'nowrap',
+    color: 'inherit',
     _disabled: {
       opacity: 0.8,
       filter: 'grayscale(0.5)',
@@ -59,38 +60,23 @@ const buttonStyle = cva({
       gray: {
         colorPalette: 'gray',
       },
-      neutral: {
-        colorPalette: 'gray',
-      },
       primary: {
         colorPalette: 'primary',
-      },
-      accent: {
-        colorPalette: 'accent',
       },
       danger: {
         colorPalette: 'danger',
       },
+      warning: {
+        colorPalette: 'warning',
+      },
+      success: {
+        colorPalette: 'success',
+      },
+      info: {
+        colorPalette: 'info',
+      },
     },
     variant: {
-      darkest: {
-        background: 'colorPalette.1',
-        color: 'colorPalette.fg',
-        borderColor: 'colorPalette.1',
-        _hover: {
-          borderColor: 'colorPalette.1',
-          background: 'colorPalette.1',
-        },
-        _light: {
-          background: 'colorPalette.12',
-          // color: 'white',
-          borderColor: 'colorPalette.12',
-          _hover: {
-            borderColor: 'colorPalette.12',
-            background: 'colorPalette.12',
-          },
-        },
-      },
       solid: {
         background: 'colorPalette.solid1',
         color: 'contrast.dark',
@@ -99,32 +85,31 @@ const buttonStyle = cva({
         },
       },
       subtle: {
-        // colorPalette: 'accent',
         borderColor: 'transparent',
-        color: 'colorPalette.fg',
-        background: 'colorPalette.3/50',
+        color: 'colorPalette.fg1',
+        background: 'colorPalette.bg3',
         _hover: {
-          background: 'colorPalette.4/50',
+          background: 'colorPalette.bg2',
         },
       },
       ghost: {
-        // colorPalette: 'gray',
         borderColor: 'transparent',
         color: 'inherit',
         _hover: {
-          color: 'colorPalette.fg',
-          background: 'colorPalette.4/50',
+          color: 'colorPalette.fg1',
+          background: 'colorPalette.bg1',
         },
       },
       outline: {
         borderColor: 'currentColor',
-        color: 'colorPalette.10',
+        color: 'colorPalette.fg1',
         _hover: {
-          color: 'colorPalette.fg',
-          bg: 'colorPalette.3/50',
+          color: 'colorPalette.fg1',
+          background: 'colorPalette.bg1',
         },
       },
       link: {
+        bg: 'transparent',
         borderColor: 'transparent',
         color: 'inherit',
       },
@@ -190,17 +175,6 @@ const buttonStyle = cva({
 const Button = createVariantComponent(ark.button, buttonStyle)
 export interface ButtonProps extends ComponentProps<typeof Button> {}
 
-export const BlackButton = createVariantComponent(ark.button, buttonStyle, {
-  variant: 'darkest',
-  colorPalette: 'gray',
-  // shadow: 'lg',
-})
-export const BlackButtonSm = createVariantComponent(ark.button, buttonStyle, {
-  variant: 'darkest',
-  colorPalette: 'gray',
-  // shadow: 'lg',
-  size: 'sm',
-})
 export const PrimaryButton = createVariantComponent(ark.button, buttonStyle, {
   variant: 'solid',
   colorPalette: 'primary',

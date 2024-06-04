@@ -26,3 +26,16 @@ export const colorLevelAliases = [
   /*900*/ 'fg1', // Secondary text and icons
   /*950*/ 'fg2', // Primary text and icons
 ] as const
+
+export const colorAliasesForPreviewComponents = [
+  'primary',
+  'secondary',
+  'danger',
+  'success',
+  'warning',
+  'info',
+  'bg',
+  'fg',
+  'gray',
+  'alpha',
+] as const

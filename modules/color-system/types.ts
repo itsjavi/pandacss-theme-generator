@@ -27,6 +27,7 @@ export type ColorActionPayload = {
   scheme: ColorScheme
   value: OklchColor
   valueCss: string
+  alias?: string
 }
 
 export type ColorLevelCssStrings = {

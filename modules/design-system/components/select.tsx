@@ -4,10 +4,9 @@ import type { ComponentProps } from 'react'
 import { createVariantComponent } from '../lib/create-component'
 import { PandaDiv } from './panda'
 
-const inputStyle = cva({
+const selectStyle = cva({
   base: {
     width: 'full',
-    appearance: 'none',
     display: 'inline-flex',
     alignItems: 'center',
     borderColor: 'alpha.400',
@@ -45,16 +44,13 @@ const inputStyle = cva({
   },
 })
 
-const InputCmp = createVariantComponent(ark.input, inputStyle)
-export type InputProps = Omit<ComponentProps<typeof InputCmp>, 'size'> & {
-  size?: (typeof inputStyle)['variantMap']['size'][number]
-}
+const SelectCmp = createVariantComponent(ark.select, selectStyle)
+export type SelectProps = ComponentProps<typeof SelectCmp>
 
-export function Input({ className, ...props }: InputProps) {
+export function Select({ className, ...props }: SelectProps) {
   return (
     <PandaDiv className={className} display="flex" alignItems="center" maxW="full">
-      {/* biome-ignore lint/suspicious/noExplicitAny: some issue with "size" */}
-      <InputCmp autoCorrect="off" spellCheck="false" {...(props as any)} />
+      <SelectCmp autoCorrect="off" spellCheck="false" {...props} />
     </PandaDiv>
   )
 }

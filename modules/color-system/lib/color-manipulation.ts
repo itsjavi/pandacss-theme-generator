@@ -34,6 +34,14 @@ export function parseColor(color: string | Color): Required<Oklch> {
   }
 }
 
+export function safeParseColor(color: string | Color): Required<Oklch> | undefined {
+  try {
+    return parseColor(color)
+  } catch (error) {
+    return undefined
+  }
+}
+
 export function formatColorAsOklch(color: string | Color): string {
   try {
     const parsed = formatCss(parseColor(color))
