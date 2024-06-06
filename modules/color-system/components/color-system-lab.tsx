@@ -3,11 +3,11 @@
 import { PandaDiv } from '@/modules/design-system/components/panda'
 import useDarkMode from '@/modules/design-system/hooks/use-darkmode'
 import { formatHex } from 'culori'
-import { averageGeistChromaticity, averageGeistLuminance } from '../config'
+import { useColorSystem } from '../client-state'
 import { colorLevelAliases, colorLevels } from '../constants'
-import { useColorSystem } from '../global-state'
 import { formatColorConfig, parseColor } from '../lib/color-manipulation'
-import type { ColorActionPayload, ColorConfig, ColorLevelKey, OklchColor } from '../types'
+import { averageGeistChromaticity, averageGeistLuminance } from '../lib/geist-colors'
+import type { ColorActionPayload, ColorLevelKey, ColorScaleConfig, OklchColor } from '../types'
 import ColorScaleCreator from './color-scale-creator'
 import ColorScaleEditor from './color-scale-editor'
 import ColorScaleLegend from './color-scale-legend'
@@ -32,7 +32,6 @@ export default function ColorSystemLab() {
   const convertedBgColor = formatColorConfig(bgColor)
 
   // TODO: build scale of colors with this lib, instead of replacing hues?
-  // import {buildSpectrum} from '@effective/color'
   function handleChange(color: ColorActionPayload) {
     // console.log('color changed', { color })
     setColorSystem((draft) => {
@@ -61,7 +60,7 @@ export default function ColorSystemLab() {
 
   function handleAddColor(color: ColorActionPayload) {
     setColorSystem((draft) => {
-      const newColor: ColorConfig = {
+      const newColor: ColorScaleConfig = {
         name: color.newName ?? color.name,
         scale: {},
         defaultLevel: color.level,

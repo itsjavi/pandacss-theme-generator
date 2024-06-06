@@ -1,10 +1,10 @@
 'use client'
 import { type Color, type Oklch, converter, formatCss, formatRgb } from 'culori'
-import type { ColorConfig, ColorConfigValue, ColorCssStrings, ColorLevelCssStrings, ColorLevelKey } from '../types'
+import type { ColorConfigValue, ColorCssStrings, ColorLevelCssStrings, ColorLevelKey, ColorScaleConfig } from '../types'
 
 const oklchConverter = converter('oklch')
 
-export function formatColorConfig(config: ColorConfig): Record<ColorLevelKey, ColorLevelCssStrings> {
+export function formatColorConfig(config: ColorScaleConfig): Record<ColorLevelKey, ColorLevelCssStrings> {
   return Object.entries(config.scale).reduce((acc, [level, color]) => {
     acc[level as ColorLevelKey] = formatColorConfigValue(color)
     return acc
