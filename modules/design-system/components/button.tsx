@@ -202,3 +202,5 @@ export const InlineTextButton = createVariantComponent(ark.button, buttonStyle, 
   variant: 'text',
   size: 'sm',
 })
+
+// black btns like geist

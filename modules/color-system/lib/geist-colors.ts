@@ -1,7 +1,13 @@
-import _geistColors2 from './lib/geist-colors.json'
-import type { ColorLevelKey, ColorSystemConfig } from './types'
-const colors = Object.values(_geistColors2)
+import type { ColorLevelKey, ColorSystemConfig } from '../types'
+import _geistColors from './geist-colors.json'
+
+const colors = Object.values(_geistColors)
 export const geistColorsConfig = { colors } as ColorSystemConfig
+
+export const geistBaseScaleLevel: ColorLevelKey = '700'
+export const geistBaseScaleLevelIndex = 6
+
+// Averages for accent colors (not gray, gray alpha or background colors)
 
 export const averageGeistLuminance: Record<'light' | 'dark', Record<ColorLevelKey, number>> = {
   light: {
@@ -57,15 +63,59 @@ export const averageGeistChromaticity: Record<'light' | 'dark', Record<ColorLeve
   },
 }
 
-// const geistAccentColors = geistColorsConfig.colors.filter((colorConfig) => colorConfig.group === 'accent')
-// function getAvgLuminance(level: ColorLevelKey, scheme: 'light' | 'dark', prop: 'l' | 'c') {
-//   const values: number[] = []
-//   for (const [, color] of Object.entries(geistAccentColors)) {
-//     for (const [currLevel, colorData] of Object.entries(color.scale)) {
-//       if (currLevel === level) {
-//         values.push(parseColor(colorData[scheme])[prop])
-//       }
-//     }
-//   }
-//   return values.reduce((acc, val) => acc + val, 0) / values.length
-// }
+export const averageGeistLuminanceDiffs: Record<'light' | 'dark', Record<ColorLevelKey, number>> = {
+  light: {
+    '100': 0.33,
+    '200': 0.32,
+    '300': 0.3,
+    '400': 0.27,
+    '500': 0.2,
+    '600': 0.12,
+    '700': 0,
+    '800': -0.06,
+    '900': -0.12,
+    '950': -0.36,
+  },
+  dark: {
+    '100': -0.41,
+    '200': -0.38,
+    '300': -0.32,
+    '400': -0.29,
+    '500': -0.23,
+    '600': -0.03,
+    '700': 0,
+    '800': -0.06, // 0.04
+    '900': 0.08, // 0.14
+    '950': 0.32, // 0.24
+  },
+}
+
+export const averageGeistChromaticityDiffs: Record<'light' | 'dark', Record<ColorLevelKey, number>> = {
+  light: {
+    '100': -0.2,
+    '200': -0.19,
+    '300': -0.18,
+    '400': -0.15,
+    '500': -0.1,
+    '600': -0.04,
+    '700': 0,
+    '800': -0.01,
+    '900': -0.03,
+    '950': -0.11,
+  },
+  dark: {
+    '100': -0.14,
+    '200': -0.13,
+    '300': -0.11,
+    '400': -0.09,
+    '500': -0.07,
+    '600': -0.01,
+    '700': 0,
+    '800': -0.003,
+    '900': -0.007,
+    '950': -0.16,
+  },
+}
+
+export const averageGeistLuminanceBaseLevelLightDarkDiff = 0
+export const averageGeistChromaticityBaseLevelLightDarkDiff = 0.02

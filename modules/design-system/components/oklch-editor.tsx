@@ -1,4 +1,4 @@
-import { type Lch, type Oklch, converter, formatCss } from 'culori'
+import { converter, formatCss, type Lch, type Oklch } from 'culori'
 import { useState } from 'react'
 import { PrimaryButton } from './button'
 import { PandaDiv, PandaInput } from './panda'
@@ -12,6 +12,7 @@ export type OklchEditorProps = {
   color: OklchColor
   preview?: boolean
   sliders?: OklchEditorSlider[]
+  onColorUpdate?: (color: OklchColor) => void
   onApply?: (color: OklchColor, parsedColor: string) => void
   onCancel?: (color: OklchColor, parsedColor: string) => void
 }
@@ -340,6 +341,7 @@ function ColorSplitPreview({ currentColor, originalColor }: { currentColor: Oklc
 export default function OklchEditor({
   color,
   onApply,
+  onColorUpdate,
   onCancel,
   preview,
   sliders = ['l', 'c', 'h', 'alpha'],
@@ -347,13 +349,32 @@ export default function OklchEditor({
   const [oklchColor, setOklchColor] = useState(color)
   const [inputHue, setInputHue] = useState(color.h)
 
-  const handleChange = (value: number, slider: OklchEditorSlider) => {
+  const updateColor = (newColor: OklchColor) => {
+    setOklchColor(newColor)
+    setInputHue(newColor.h)
+    onColorUpdate?.(newColor)
+  }
+
+  const handleSliderChange = (value: number, slider: OklchEditorSlider) => {
     const newColor: OklchColor = {
       ...oklchColor,
       [slider]: value,
     }
-    setOklchColor(newColor)
-    setInputHue(newColor.h)
+    updateColor(newColor)
+  }
+
+  const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    // TODO: create helper function to parse numeric ranges
+    let hue = Number.parseInt((e.target.value ?? '0').replace(',', '.'))
+    hue = hue ? Math.min(360, Math.max(0, hue)) : 0
+    try {
+      updateColor({
+        ...oklchColor,
+        h: hue,
+      })
+    } catch (error) {
+      console.error(error)
+    }
   }
 
   const lchColor: LchColor = {
@@ -371,16 +392,28 @@ export default function OklchEditor({
     <PandaDiv w="full" display="flex" flexDir="column" gap="3" mt="2">
       {preview && <ColorSplitPreview currentColor={oklchColor} originalColor={color} />}
       {showLuminance && (
-        <LuminanceSlider oklchColor={oklchColor} lchColor={lchColor} onChange={(value) => handleChange(value, 'l')} />
+        <LuminanceSlider
+          oklchColor={oklchColor}
+          lchColor={lchColor}
+          onChange={(value) => handleSliderChange(value, 'l')}
+        />
       )}
       {showChroma && (
-        <ChromaSlider oklchColor={oklchColor} lchColor={lchColor} onChange={(value) => handleChange(value, 'c')} />
+        <ChromaSlider
+          oklchColor={oklchColor}
+          lchColor={lchColor}
+          onChange={(value) => handleSliderChange(value, 'c')}
+        />
       )}
       {showHue && (
-        <HueSlider oklchColor={oklchColor} lchColor={lchColor} onChange={(value) => handleChange(value, 'h')} />
+        <HueSlider oklchColor={oklchColor} lchColor={lchColor} onChange={(value) => handleSliderChange(value, 'h')} />
       )}
       {showAlpha && (
-        <AlphaSlider oklchColor={oklchColor} lchColor={lchColor} onChange={(value) => handleChange(value, 'alpha')} />
+        <AlphaSlider
+          oklchColor={oklchColor}
+          lchColor={lchColor}
+          onChange={(value) => handleSliderChange(value, 'alpha')}
+        />
       )}
       <span />
       <PandaDiv
@@ -422,20 +455,7 @@ export default function OklchEditor({
             max="360"
             step="1"
             value={inputHue}
-            onChange={(e) => {
-              // TODO: create helper function to parse numeric ranges
-              let hue = Number.parseInt((e.target.value ?? '0').replace(',', '.'))
-              hue = hue ? Math.min(360, Math.max(0, hue)) : 0
-              try {
-                setOklchColor({
-                  ...oklchColor,
-                  h: hue,
-                })
-              } catch (error) {
-                console.error(error)
-              }
-              setInputHue(hue)
-            }}
+            onChange={handleInputChange}
           />
         </PandaDiv>
         <PrimaryButton size="sm" onClick={() => onCancel?.(oklchColor, formatCss(oklchColor))}>

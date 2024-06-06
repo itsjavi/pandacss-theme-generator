@@ -4,14 +4,14 @@ import { PrimaryButton } from '@/modules/design-system/components/button'
 import useDarkMode from '@/modules/design-system/hooks/use-darkmode'
 import { css } from '@/styled-system/css'
 import { useState } from 'react'
-import type { ColorActionPayload, ColorConfig, ColorCssStrings, ColorLevelKey, ColorScheme } from '../types'
+import type { ColorActionPayload, ColorCssStrings, ColorLevelKey, ColorScaleConfig, ColorScheme } from '../types'
 import ColorScaleCreator from './color-scale-creator'
 import ColorScaleGrid from './color-scale-grid'
 import ColorScaleLevelEditor from './color-scale-level-editor'
 
 type ColorScaleEditorProps = {
   fg: ColorCssStrings
-  config: ColorConfig
+  config: ColorScaleConfig
   onChange?: (color: ColorActionPayload) => void
   onDelete?: (color: ColorActionPayload) => void
   currentColorNames: string[]
@@ -26,7 +26,6 @@ export default function ColorScaleEditor({
   currentColorNames,
   initialColor,
   config,
-  editor,
   onChange,
 }: ColorScaleEditorProps) {
   const { isDarkMode } = useDarkMode()

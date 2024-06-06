@@ -6,7 +6,7 @@ import { monoFontClass } from '@/ui/lib/fonts'
 import { useState } from 'react'
 import { useCopyToClipboard } from 'usehooks-ts'
 import { PrimaryButtonSm } from '../../design-system/components/button'
-import { useColorSystem } from '../global-state'
+import { useColorSystem } from '../client-state'
 import { generateColorSystemPresetCode } from '../lib/generate-panda-preset'
 
 export default function PandaPresetRenderer({ buttonClassName }: { buttonClassName?: string }) {

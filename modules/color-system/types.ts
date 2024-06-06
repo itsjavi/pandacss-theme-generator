@@ -13,7 +13,8 @@ export type ColorConfigValue = {
   aliases: string[] // aliases for the level
 }
 
-export type ColorConfig = {
+export type ColorScaleConfig = {
+  id?: string
   name: string
   group: ColorGroup
   aliases: string[] // aliases for the color
@@ -45,5 +46,5 @@ export type ColorLevelCssStrings = {
 export type ColorCssStrings = Record<ColorLevelKey, ColorLevelCssStrings>
 
 export type ColorSystemConfig = {
-  colors: ColorConfig[]
+  colors: ColorScaleConfig[]
 }

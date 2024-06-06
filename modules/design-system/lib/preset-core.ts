@@ -701,8 +701,12 @@ export const appCorePandaPreset = definePreset({
     '[hidden]': {
       display: 'none',
     },
-    '[inert]': {
+    '[inert], [inert] *': {
+      // https://web.dev/articles/inert
+      // opacity: 0.9,
       pointerEvents: 'none',
+      userSelect: 'none',
+      cursor: 'default',
     },
     '::selection': {
       bgColor: 'var(--colors-primary-800)',

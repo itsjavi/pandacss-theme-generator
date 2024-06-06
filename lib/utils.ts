@@ -34,3 +34,7 @@ export function getAbsUrl(path?: string): string {
 export function defineMetadata<T extends Metadata>(metadata: T) {
   return metadata
 }
+
+export function clamp(value: number, min: number, max: number): number {
+  return Math.min(Math.max(value, min), max)
+}

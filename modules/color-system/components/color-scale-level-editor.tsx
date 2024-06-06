@@ -5,14 +5,14 @@ import { monoFontClass } from '@/modules/design-system/lib/fonts'
 import { useState } from 'react'
 import { useCopyToClipboard } from 'usehooks-ts'
 import { formatColorConfigValue, parseColor } from '../lib/color-manipulation'
-import type { ColorActionPayload, ColorConfig, ColorLevelCssStrings, ColorLevelKey, ColorScheme } from '../types'
+import type { ColorActionPayload, ColorLevelCssStrings, ColorLevelKey, ColorScaleConfig, ColorScheme } from '../types'
 import ColorEditorPopover from './color-editor-popover'
 
 type ColorScaleLevelEditorProps = {
   level: ColorLevelKey
   scheme: ColorScheme
   fg: ColorLevelCssStrings
-  config: ColorConfig
+  config: ColorScaleConfig
   onChange?: (color: ColorActionPayload) => void
 }
 
