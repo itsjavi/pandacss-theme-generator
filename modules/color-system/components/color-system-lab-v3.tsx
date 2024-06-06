@@ -3,7 +3,7 @@
 import { PrimaryButtonSm } from '@/modules/design-system/components/button'
 import { PandaDiv } from '@/modules/design-system/components/panda'
 import useDarkMode from '@/modules/design-system/hooks/use-darkmode'
-import { useColorSystem, type ColorScalePayload } from '../client-state-v3'
+import { type ColorScalePayload, useColorSystem } from '../client-state-v3'
 import { colorLevelAliases, colorLevels } from '../constants'
 import ColorScaleColorEditor from './color-scale-color-editor-v3'
 import ColorScaleEditor from './color-scale-editor-v3'

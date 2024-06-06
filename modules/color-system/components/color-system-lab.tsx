@@ -32,7 +32,6 @@ export default function ColorSystemLab() {
   const convertedBgColor = formatColorConfig(bgColor)
 
   // TODO: build scale of colors with this lib, instead of replacing hues?
-  // import {buildSpectrum} from '@effective/color'
   function handleChange(color: ColorActionPayload) {
     // console.log('color changed', { color })
     setColorSystem((draft) => {

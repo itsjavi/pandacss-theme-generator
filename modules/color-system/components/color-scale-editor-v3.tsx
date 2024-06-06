@@ -48,11 +48,6 @@ export default function ColorScaleEditor({ scale, restrictedNames, onChange, onD
 
   return (
     <>
-      <ColorScaleGrid title={colorTitle}>
-        {scale.colors.map((color) => (
-          <ColorScaleLevel key={`${scale.id}_${color.level}`} color={color} colorName={scale.name} />
-        ))}
-      </ColorScaleGrid>
       {editMode && (
         <ColorScaleColorEditor
           // initialColor={scale.colors[scale.baseColorIndex]}
@@ -75,6 +70,11 @@ export default function ColorScaleEditor({ scale, restrictedNames, onChange, onD
           }}
         />
       )}
+      <ColorScaleGrid title={colorTitle}>
+        {scale.colors.map((color) => (
+          <ColorScaleLevel key={`${scale.id}_${color.level}`} color={color} colorName={scale.name} />
+        ))}
+      </ColorScaleGrid>
     </>
   )
 }

@@ -4,7 +4,7 @@ import type { Draft } from 'immer'
 import { useAtom } from 'jotai'
 import { withImmer } from 'jotai-immer'
 import { atomWithStorage } from 'jotai/utils'
-import { generateAccentColorScaleV4 as generateAccentColorScale } from './lib/generate-scales'
+import { generateAccentColorScale } from './lib/generate-scales'
 import type { ColorGroup, ColorLevelKey, ColorScheme, OklchColor } from './types'
 
 export type SemanticColorValue = {

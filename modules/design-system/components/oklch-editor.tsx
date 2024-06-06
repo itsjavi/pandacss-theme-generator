@@ -1,4 +1,4 @@
-import { converter, formatCss, type Lch, type Oklch } from 'culori'
+import { type Lch, type Oklch, converter, formatCss } from 'culori'
 import { useState } from 'react'
 import { PrimaryButton } from './button'
 import { PandaDiv, PandaInput } from './panda'
@@ -55,7 +55,7 @@ function createGradients(
           ...[0, 50, 100].map((stopValue) =>
             formatCss({
               ...lchColor,
-              c: 70,
+              // c: 70,
               [param]: stopValue,
             }),
           ),
@@ -66,7 +66,7 @@ function createGradients(
           ...[0, 0.5, 1].map((stopValue) =>
             formatCss({
               ...oklchColor,
-              c: 0.2,
+              // c: 0.2,
               [param]: stopValue,
             }),
           ),
@@ -107,6 +107,8 @@ function createGradients(
             ...lchColor,
             // c: 145, // or 132?
             // l: 85,
+            c: 70,
+            l: 77,
             [param]: stopValue,
           })
         })
@@ -114,8 +116,8 @@ function createGradients(
         cssStopsOk = paramStops.map((stopValue) => {
           return formatCss({
             ...oklchColor,
-            c: 0.25,
-            l: 0.75,
+            c: 0.4,
+            l: 0.7,
             [param]: stopValue,
           })
         })

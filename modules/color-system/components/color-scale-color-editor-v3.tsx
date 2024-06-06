@@ -7,7 +7,7 @@ import OklchEditorPopover from '@/modules/design-system/components/oklch-editor-
 import { PandaButton, PandaDiv } from '@/modules/design-system/components/panda'
 import Heading from '@/modules/design-system/components/typography/heading'
 import { css } from '@/styled-system/css'
-import { formatCss, type Color } from 'culori'
+import { type Color, formatCss } from 'culori'
 import { PlusIcon, TrashIcon } from 'lucide-react'
 import { useState } from 'react'
 import type { ColorScalePayload, SemanticColorScale } from '../client-state-v3'

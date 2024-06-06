@@ -78,7 +78,7 @@ export default function Popover({ title, trigger, children, isOpen, onClose }: P
       }}
       closeOnEscape={true}
       closeOnInteractOutside={true}
-      positioning={{placement: 'bottom', gutter: 16, offset: { mainAxis: 12, crossAxis: 12 }}}
+      positioning={{ placement: 'bottom', gutter: 16, offset: { mainAxis: 12, crossAxis: 12 } }}
     >
       <ArkPopover.Trigger asChild>{trigger}</ArkPopover.Trigger>
       <ArkPopover.Positioner className={popoverCss.positioner}>
