@@ -10,7 +10,6 @@ import {
   geistBaseScaleLevelIndex,
 } from './geist-colors'
 
-
 export function generateAccentColorScale(color: AddColorScalePayload): SemanticColorScale {
   const newScale: SemanticColorScale = {
     id: nanoid(),

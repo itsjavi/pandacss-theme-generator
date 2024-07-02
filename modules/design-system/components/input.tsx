@@ -1,8 +1,10 @@
+'use client'
+
 import { cva } from '@/styled-system/css'
 import { ark } from '@ark-ui/react/factory'
-import type { ComponentProps } from 'react'
+import { type ComponentProps, type ReactNode, useId } from 'react'
 import { createVariantComponent } from '../lib/create-component'
-import { PandaDiv } from './panda'
+import { PandaDiv, PandaLabel } from './panda'
 
 const inputStyle = cva({
   base: {
@@ -48,13 +50,24 @@ const inputStyle = cva({
 const InputCmp = createVariantComponent(ark.input, inputStyle)
 export type InputProps = Omit<ComponentProps<typeof InputCmp>, 'size'> & {
   size?: (typeof inputStyle)['variantMap']['size'][number]
+  label?: ReactNode
 }
 
-export function Input({ className, ...props }: InputProps) {
+function InputLabel({ label, htmlFor }: { label: ReactNode; htmlFor: string }) {
   return (
-    <PandaDiv className={className} display="flex" alignItems="center" maxW="full">
+    <PandaLabel display="block" fontSize="sm" fontWeight="semibold" mb="1" color="muted.100" htmlFor={htmlFor}>
+      {label}
+    </PandaLabel>
+  )
+}
+
+export function Input({ className, label, ...props }: InputProps) {
+  const inputId = props.id || useId()
+  return (
+    <PandaDiv className={className} display="flex" maxW="full" w="full" flexDir="column">
+      {label && <InputLabel label={label} htmlFor={inputId} />}
       {/* biome-ignore lint/suspicious/noExplicitAny: some issue with "size" */}
-      <InputCmp autoCorrect="off" spellCheck="false" {...(props as any)} />
+      <InputCmp id={inputId} autoCorrect="off" spellCheck="false" {...(props as any)} />
     </PandaDiv>
   )
 }

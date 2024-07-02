@@ -8,6 +8,7 @@ import { atomWithStorage } from 'jotai/utils'
 import { nanoid } from 'nanoid'
 
 const STORAGE_KEY = 'pandaColorSystem_v4'
+const DEFAULT_MAX_STOPS = 10
 
 export type ColorData = Required<Oklch>
 export type ColorGroup = 'background' | 'contrast' | 'gray' | 'accent'
@@ -24,11 +25,11 @@ export type ColorSystemStateColorConfig = {
   luminanceMax: number
   luminanceMin: number
   stops: ColorData[]
+  maxStops: number
 }
 
 export type ColorSystemState = {
   colors: ColorSystemStateColorConfig[]
-  maxStops: number
 }
 
 export enum ColorSystemActionType {
@@ -39,6 +40,7 @@ export enum ColorSystemActionType {
 }
 
 export type AddColorPayload = {
+  id?: string
   group: ColorGroup
   name: string
   hue: number
@@ -48,6 +50,7 @@ export type AddColorPayload = {
   chromaShift?: number
   luminanceMax?: number
   luminanceMin?: number
+  maxStops?: number
 }
 
 export type EditColorScalePayload = {
@@ -62,6 +65,7 @@ export type EditColorScalePayload = {
   luminanceMax?: number
   luminanceMin?: number
   stops?: ColorData[]
+  maxStops?: number
 }
 
 export type ColorScalePayload = AddColorPayload & EditColorScalePayload
@@ -108,9 +112,9 @@ const colorSystemReducer = (state: Draft<ColorSystemState>, action: ColorSystemA
   }
 }
 
-function generateColorWithStops(maxStops: number, data: AddColorPayload): ColorSystemStateColorConfig {
+function generateColorWithStops(data: AddColorPayload): ColorSystemStateColorConfig {
   const newColor: ColorSystemStateColorConfig = {
-    id: nanoid(),
+    id: data.id ?? nanoid(),
     name: data.name.replace(/^[^a-zA-Z]+|[^a-zA-Z0-9_]+/g, '').toLowerCase(),
     group: data.group,
     hue: data.hue,
@@ -118,10 +122,13 @@ function generateColorWithStops(maxStops: number, data: AddColorPayload): ColorS
     alpha: data.alpha ?? 100,
     hueShift: data.hueShift ?? 0,
     chromaShift: data.chromaShift ?? 0,
-    luminanceMax: data.luminanceMax ?? 98,
-    luminanceMin: data.luminanceMin ?? 2,
+    luminanceMax: data.luminanceMax ?? 95,
+    luminanceMin: data.luminanceMin ?? 5,
     stops: [],
+    maxStops: data.maxStops ?? DEFAULT_MAX_STOPS,
   }
+
+  const maxStops = newColor.maxStops
 
   // explain:
   const luminanceUnit = Math.round(((newColor.luminanceMax - newColor.luminanceMin) / (maxStops - 1)) * 100) / 100
@@ -161,7 +168,7 @@ function _addColor(draft: Draft<ColorSystemState>, baseColor: AddColorPayload) {
     throw new Error(`Color scale with name '${baseColor.name}' already exists`)
   }
 
-  draft.colors.push(generateColorWithStops(draft.maxStops, baseColor))
+  draft.colors.push(generateColorWithStops(baseColor))
 }
 
 function _updateColor(draft: Draft<ColorSystemState>, baseColor: EditColorScalePayload) {
@@ -172,7 +179,7 @@ function _updateColor(draft: Draft<ColorSystemState>, baseColor: EditColorScaleP
   }
 
   const prevColorScale = draft.colors[colorScaleIndex]
-  const newColorScale = generateColorWithStops(draft.maxStops, { ...prevColorScale, ...baseColor })
+  const newColorScale = generateColorWithStops({ ...prevColorScale, ...baseColor })
 
   newColorScale.id = baseColor.id
   draft.colors[colorScaleIndex] = newColorScale
@@ -194,94 +201,100 @@ function _findColorScaleIndex(draft: Draft<ColorSystemState>, colorId: string): 
 
 // STATE & HOOKS:
 
-const initialStops = 10
+export const exampleColors = [
+  generateColorWithStops({
+    name: 'blue',
+    group: 'accent',
+    hue: 215,
+    chroma: 70,
+    alpha: 100,
+    hueShift: 0,
+    chromaShift: 1,
+    luminanceMin: 10,
+    luminanceMax: 90,
+    maxStops: DEFAULT_MAX_STOPS,
+  }),
+  generateColorWithStops({
+    name: 'green',
+    group: 'accent',
+    hue: 165,
+    chroma: 70,
+    alpha: 100,
+    hueShift: 0,
+    chromaShift: 1,
+    luminanceMin: 10,
+    luminanceMax: 90,
+    maxStops: DEFAULT_MAX_STOPS,
+  }),
+  generateColorWithStops({
+    name: 'yellow',
+    group: 'accent',
+    hue: 48,
+    chroma: 70,
+    alpha: 100,
+    hueShift: 0,
+    chromaShift: 1,
+    luminanceMin: 10,
+    luminanceMax: 90,
+    maxStops: DEFAULT_MAX_STOPS,
+  }),
+  generateColorWithStops({
+    name: 'cyan',
+    group: 'accent',
+    hue: 185,
+    chroma: 70,
+    alpha: 100,
+    hueShift: 0,
+    chromaShift: 1,
+    luminanceMin: 10,
+    luminanceMax: 90,
+    maxStops: DEFAULT_MAX_STOPS,
+  }),
+  generateColorWithStops({
+    name: 'red',
+    group: 'accent',
+    hue: 356,
+    chroma: 70,
+    alpha: 100,
+    hueShift: 0,
+    chromaShift: 1,
+    luminanceMin: 10,
+    luminanceMax: 90,
+    maxStops: DEFAULT_MAX_STOPS,
+  }),
+  generateColorWithStops({
+    name: 'purple',
+    group: 'accent',
+    hue: 264,
+    chroma: 70,
+    alpha: 100,
+    hueShift: 0,
+    chromaShift: 1,
+    luminanceMin: 10,
+    luminanceMax: 90,
+    maxStops: DEFAULT_MAX_STOPS,
+  }),
+  generateColorWithStops({
+    name: 'slate',
+    group: 'accent',
+    hue: 210,
+    chroma: 20,
+    alpha: 100,
+    hueShift: 0,
+    chromaShift: 5,
+    luminanceMin: 10,
+    luminanceMax: 90,
+    maxStops: DEFAULT_MAX_STOPS,
+  }),
+]
+
 const initialState: ColorSystemState = {
-  colors: [
-    generateColorWithStops(initialStops, {
-      name: 'blue',
-      group: 'accent',
-      hue: 215,
-      chroma: 70,
-      alpha: 100,
-      hueShift: 0,
-      chromaShift: 1,
-      luminanceMin: 10,
-      luminanceMax: 90,
-    }),
-    generateColorWithStops(initialStops, {
-      name: 'green',
-      group: 'accent',
-      hue: 165,
-      chroma: 70,
-      alpha: 100,
-      hueShift: 0,
-      chromaShift: 1,
-      luminanceMin: 10,
-      luminanceMax: 90,
-    }),
-    generateColorWithStops(initialStops, {
-      name: 'yellow',
-      group: 'accent',
-      hue: 48,
-      chroma: 70,
-      alpha: 100,
-      hueShift: 0,
-      chromaShift: 1,
-      luminanceMin: 10,
-      luminanceMax: 90,
-    }),
-    generateColorWithStops(initialStops, {
-      name: 'cyan',
-      group: 'accent',
-      hue: 185,
-      chroma: 70,
-      alpha: 100,
-      hueShift: 0,
-      chromaShift: 1,
-      luminanceMin: 10,
-      luminanceMax: 90,
-    }),
-    generateColorWithStops(initialStops, {
-      name: 'red',
-      group: 'accent',
-      hue: 356,
-      chroma: 70,
-      alpha: 100,
-      hueShift: 0,
-      chromaShift: 1,
-      luminanceMin: 10,
-      luminanceMax: 90,
-    }),
-    generateColorWithStops(initialStops, {
-      name: 'purple',
-      group: 'accent',
-      hue: 264,
-      chroma: 70,
-      alpha: 100,
-      hueShift: 0,
-      chromaShift: 1,
-      luminanceMin: 10,
-      luminanceMax: 90,
-    }),
-    generateColorWithStops(initialStops, {
-      name: 'slate',
-      group: 'accent',
-      hue: 210,
-      chroma: 20,
-      alpha: 100,
-      hueShift: 0,
-      chromaShift: 5,
-      luminanceMin: 10,
-      luminanceMax: 90,
-    }),
-  ],
-  maxStops: initialStops,
+  colors: exampleColors,
 }
 const colorSystemAtom = withImmer(atomWithStorage(STORAGE_KEY, initialState))
 
 function _clearColors(draft: Draft<ColorSystemState>) {
   draft.colors = [...initialState.colors]
-  draft.maxStops = initialState.maxStops
 }
 
 function useColorSystemAtom() {

@@ -36,6 +36,10 @@ const buttonStyle = cva({
       outlineColor: 'colorPalette.8/50',
       outlineOffset: '0px',
     },
+    _hover: {
+      textDecoration: 'none',
+      cursor: 'pointer',
+    },
   },
   defaultVariants: {
     size: 'md',
@@ -174,6 +178,12 @@ const buttonStyle = cva({
 
 const Button = createVariantComponent(ark.button, buttonStyle)
 export interface ButtonProps extends ComponentProps<typeof Button> {}
+
+export const GrayButton = createVariantComponent(ark.button, buttonStyle, {
+  variant: 'solid',
+  colorPalette: 'gray',
+  // shadow: 'lg',
+})
 
 export const PrimaryButton = createVariantComponent(ark.button, buttonStyle, {
   variant: 'solid',
