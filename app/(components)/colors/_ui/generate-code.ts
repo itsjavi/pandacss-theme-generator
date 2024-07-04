@@ -67,9 +67,9 @@ export function generatePandaColorsPreset(state: ColorSystemState): Preset {
       extend: {
         tokens: {
           colors: colorTokens,
-          semanticTokens: {
-            colors: semanticColorTokens,
-          },
+        },
+        semanticTokens: {
+          colors: semanticColorTokens,
         },
       },
     },
