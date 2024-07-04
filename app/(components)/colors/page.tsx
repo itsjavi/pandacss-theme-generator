@@ -14,7 +14,8 @@ export default async function () {
           Color System
         </Heading>
         <Subtitle>
-          A comprehensive color system editor for designing beautiful, accessible user interfaces with PandaCSS.
+          A comprehensive color system editor for designing beautiful, dark-mode ready, and accessible user interfaces
+          with PandaCSS.
         </Subtitle>
 
         <PandaDiv display="flex" flexDir="column" gap="8" py="6">
