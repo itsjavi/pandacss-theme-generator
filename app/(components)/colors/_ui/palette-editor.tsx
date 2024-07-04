@@ -148,17 +148,6 @@ function ColorPalette({ color, deletable }: { color: ColorSystemStateColorConfig
             dispatch({ type: 'update_color', payload: { id: color.id, maxStops: Number.parseInt(e.target.value) } })
           }}
         />
-        <Input
-          label="Alpha"
-          defaultValue={color.alpha || 100}
-          type="number"
-          step="1"
-          min="0"
-          max="100"
-          onChange={(e) => {
-            dispatch({ type: 'update_color', payload: { id: color.id, alpha: Number.parseInt(e.target.value) } })
-          }}
-        />
       </div>
 
       <div
@@ -193,6 +182,17 @@ function ColorPalette({ color, deletable }: { color: ColorSystemStateColorConfig
           min="0"
           onChange={(e) => {
             dispatch({ type: 'update_color', payload: { id: color.id, chroma: Number.parseInt(e.target.value) } })
+          }}
+        />
+        <Input
+          label="Alpha"
+          defaultValue={color.alpha || 100}
+          type="number"
+          step="1"
+          min="0"
+          max="100"
+          onChange={(e) => {
+            dispatch({ type: 'update_color', payload: { id: color.id, alpha: Number.parseInt(e.target.value) } })
           }}
         />
         <Input
@@ -240,6 +240,20 @@ function ColorPalette({ color, deletable }: { color: ColorSystemStateColorConfig
           max="100"
           onChange={(e) => {
             dispatch({ type: 'update_color', payload: { id: color.id, chromaShift: Number.parseInt(e.target.value) } })
+          }}
+        />
+        <Input
+          label="Lightness Shift"
+          defaultValue={color.luminanceShift || 0}
+          type="number"
+          step="1"
+          min="-100"
+          max="100"
+          onChange={(e) => {
+            dispatch({
+              type: 'update_color',
+              payload: { id: color.id, luminanceShift: Number.parseInt(e.target.value) },
+            })
           }}
         />
         <Input

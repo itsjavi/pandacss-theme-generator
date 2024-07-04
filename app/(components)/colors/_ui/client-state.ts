@@ -22,6 +22,7 @@ export type ColorSystemStateColorConfig = {
   alpha: number
   hueShift: number
   chromaShift: number
+  luminanceShift: number
   luminanceMax: number
   luminanceMin: number
   stops: ColorData[]
@@ -47,6 +48,7 @@ export type AddColorPayload = {
   chroma: number
   alpha?: number
   hueShift?: number
+  luminanceShift?: number
   chromaShift?: number
   luminanceMax?: number
   luminanceMin?: number
@@ -62,6 +64,7 @@ export type EditColorScalePayload = {
   alpha?: number
   hueShift?: number
   chromaShift?: number
+  luminanceShift?: number
   luminanceMax?: number
   luminanceMin?: number
   stops?: ColorData[]
@@ -121,6 +124,7 @@ function generateColorWithStops(data: AddColorPayload): ColorSystemStateColorCon
     chroma: data.chroma,
     alpha: data.alpha ?? 100,
     hueShift: data.hueShift ?? 0,
+    luminanceShift: data.luminanceShift ?? 0,
     chromaShift: data.chromaShift ?? 0,
     luminanceMax: data.luminanceMax ?? 95,
     luminanceMin: data.luminanceMin ?? 5,
@@ -135,26 +139,27 @@ function generateColorWithStops(data: AddColorPayload): ColorSystemStateColorCon
   const midStop = Math.floor(maxStops / 2)
 
   for (let i = 0; i < maxStops; i++) {
+    const midStopDistance = Math.abs(midStop - i)
+    const calcHueShift = newColor.hueShift * midStopDistance
+    const calcChromaShift = newColor.chromaShift * midStopDistance
+    const calcLuminanceShift = newColor.luminanceShift // * midStopDistance
+
     if (midStop === i) {
       newColor.stops.push({
         mode: 'oklch',
         h: newColor.hue,
         c: newColor.chroma,
-        l: newColor.luminanceMin + luminanceUnit * i,
+        l: newColor.luminanceMin + calcLuminanceShift + luminanceUnit * i,
         alpha: newColor.alpha,
       })
       continue
     }
 
-    const midStopDistance = Math.abs(midStop - i)
-    const calcHueShift = newColor.hueShift * midStopDistance
-    const calcChromaShift = newColor.chromaShift * midStopDistance
-
     newColor.stops.push({
       mode: 'oklch',
       h: newColor.hue + calcHueShift,
       c: newColor.chroma + calcChromaShift,
-      l: newColor.luminanceMin + luminanceUnit * i,
+      l: newColor.luminanceMin + calcLuminanceShift + luminanceUnit * i,
       alpha: newColor.alpha,
     })
   }
