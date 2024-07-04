@@ -7,19 +7,11 @@ export default async function () {
     <>
       <ContentSection>
         <Heading size="xl" as="h1">
-          Styled Ark UI Components
+          Styled UI Components
         </Heading>
         <Subtitle>
-          Preview our curated list of{' '}
-          <a href="https://ark-ui.com" target="_blank" rel="noopener noreferrer">
-            Ark UI
-          </a>{' '}
-          React components with the theme you created in the Color System and Tokens sections. For a complete list of
-          styled Ark UI components, check out the{' '}
-          <a href="https://park-ui.com" target="_blank" rel="noopener noreferrer">
-            Park UI project
-          </a>
-          .
+          Preview our curated list of React components with the theme you created in the Color System and Tokens
+          sections.
           <br />
           <br />
           <strong>🚧 This section is a work in progress. More customization options are coming soon 🚧.</strong>

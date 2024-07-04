@@ -36,6 +36,10 @@ const buttonStyle = cva({
       outlineColor: 'colorPalette.8/50',
       outlineOffset: '0px',
     },
+    _hover: {
+      textDecoration: 'none',
+      cursor: 'pointer',
+    },
   },
   defaultVariants: {
     size: 'md',
@@ -159,21 +163,36 @@ const buttonStyle = cva({
       },
     },
   },
-  // compoundVariants: [
-  //   {
-  //     variant: 'solid',
-  //     colorPalette: 'accent',
-  //     css: {
-  //       _dark: {
-  //         color: 'colorPalette.1',
-  //       },
-  //     },
-  //   },
-  // ],
+  compoundVariants: [
+    {
+      variant: 'solid',
+      colorPalette: 'gray',
+      css: {
+        color: 'gray.100',
+        bg: 'gray.950',
+        _hover: {
+          bg: 'gray.900',
+        },
+      },
+    },
+    {
+      variant: 'outline',
+      colorPalette: 'gray',
+      css: {
+        borderColor: 'gray.900',
+      },
+    },
+  ],
 })
 
 const Button = createVariantComponent(ark.button, buttonStyle)
 export interface ButtonProps extends ComponentProps<typeof Button> {}
+
+export const GrayButton = createVariantComponent(ark.button, buttonStyle, {
+  variant: 'solid',
+  colorPalette: 'gray',
+  // shadow: 'lg',
+})
 
 export const PrimaryButton = createVariantComponent(ark.button, buttonStyle, {
   variant: 'solid',
@@ -202,3 +221,5 @@ export const InlineTextButton = createVariantComponent(ark.button, buttonStyle, 
   variant: 'text',
   size: 'sm',
 })
+
+// black btns like geist
