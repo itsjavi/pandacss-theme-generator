@@ -1,8 +1,8 @@
 name: Check code quality for PRs
 
 env:
-  NODE_VERSION: 20.13.1
-  PNPM_VERSION: 9.1.1
+  NODE_VERSION: 20.15.0
+  PNPM_VERSION: 9.4.0
   NEXT_TELEMETRY_DISABLED: 1
 
 on:
