@@ -163,17 +163,26 @@ const buttonStyle = cva({
       },
     },
   },
-  // compoundVariants: [
-  //   {
-  //     variant: 'solid',
-  //     colorPalette: 'accent',
-  //     css: {
-  //       _dark: {
-  //         color: 'colorPalette.1',
-  //       },
-  //     },
-  //   },
-  // ],
+  compoundVariants: [
+    {
+      variant: 'solid',
+      colorPalette: 'gray',
+      css: {
+        color: 'gray.100',
+        bg: 'gray.950',
+        _hover: {
+          bg: 'gray.900',
+        },
+      },
+    },
+    {
+      variant: 'outline',
+      colorPalette: 'gray',
+      css: {
+        borderColor: 'gray.900',
+      },
+    },
+  ],
 })
 
 const Button = createVariantComponent(ark.button, buttonStyle)

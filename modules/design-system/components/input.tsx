@@ -53,7 +53,7 @@ export type InputProps = Omit<ComponentProps<typeof InputCmp>, 'size'> & {
   label?: ReactNode
 }
 
-function InputLabel({ label, htmlFor }: { label: ReactNode; htmlFor: string }) {
+export function InputLabel({ label, htmlFor }: { label: ReactNode; htmlFor: string }) {
   return (
     <PandaLabel display="block" fontSize="sm" fontWeight="semibold" mb="1" color="muted.100" htmlFor={htmlFor}>
       {label}

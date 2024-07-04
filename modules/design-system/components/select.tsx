@@ -1,7 +1,10 @@
+'use client'
+
 import { cva } from '@/styled-system/css'
 import { ark } from '@ark-ui/react/factory'
-import type { ComponentProps } from 'react'
+import { type ComponentProps, type ReactNode, useId } from 'react'
 import { createVariantComponent } from '../lib/create-component'
+import { InputLabel } from './input'
 import { PandaDiv } from './panda'
 
 const selectStyle = cva({
@@ -19,6 +22,7 @@ const selectStyle = cva({
     transitionDuration: 'normal',
     transitionTimingFunction: 'default',
     transitionProperty: 'box-shadow, border-color',
+    px: '4',
     _disabled: {
       opacity: 0.4,
       cursor: 'not-allowed',
@@ -45,11 +49,15 @@ const selectStyle = cva({
 })
 
 const SelectCmp = createVariantComponent(ark.select, selectStyle)
-export type SelectProps = ComponentProps<typeof SelectCmp>
+export type SelectProps = ComponentProps<typeof SelectCmp> & {
+  label?: ReactNode
+}
 
-export function Select({ className, ...props }: SelectProps) {
+export function Select({ className, label, ...props }: SelectProps) {
+  const inputId = props.id || useId()
   return (
-    <PandaDiv className={className} display="flex" alignItems="center" maxW="full">
+    <PandaDiv className={className} display="flex" maxW="full" w="full" flexDir="column">
+      {label && <InputLabel label={label} htmlFor={inputId} />}
       <SelectCmp autoCorrect="off" spellCheck="false" {...props} />
     </PandaDiv>
   )

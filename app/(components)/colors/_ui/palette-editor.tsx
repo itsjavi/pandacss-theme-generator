@@ -2,11 +2,14 @@
 
 import { GrayButton } from '@/modules/design-system/components/button'
 import { Input } from '@/modules/design-system/components/input'
+import { Select } from '@/modules/design-system/components/select'
 import { css } from '@/styled-system/css'
-import { formatHex, formatHsl, type Hsl } from 'culori'
-import { TrashIcon } from 'lucide-react'
+import { type Hsl, formatHex, formatHsl } from 'culori'
+import { CodeIcon, TrashIcon } from 'lucide-react'
 import { nanoid } from 'nanoid'
-import { useColorSystem, type ColorSystemStateColorConfig } from './client-state'
+import { useState } from 'react'
+import { type ColorSystemStateColorConfig, useColorSystem } from './client-state'
+import { generatePandaColorsPreset, generatePandaPresetSnippet } from './generate-code'
 
 function ColorStop({ color, index }: { color: ColorSystemStateColorConfig; index: number }) {
   const stop = color.stops[index]
@@ -33,10 +36,14 @@ function ColorStop({ color, index }: { color: ColorSystemStateColorConfig; index
           border: '1px solid',
           borderColor: 'muted.200/30',
           printColorAdjust: 'exact!',
+          backgroundSize: '100% 100%, 20px 20px',
+          backgroundImage:
+            'linear-gradient(var(--bgcolor), var(--bgcolor)), repeating-conic-gradient(rgba(127,127,127,0.3) 0% 25%,transparent 0% 50%)',
         })}
         style={{
           // backgroundColor: `lch(${stop.l}% ${stop.c}% ${stop.h} / ${stop.alpha}%)`,
-          backgroundColor: `hsla(${stop.h} ${stop.c}% ${stop.l}% / ${stop.alpha}%)`,
+          // @ts-ignore
+          '--bgcolor': `hsla(${stop.h} ${stop.c}% ${stop.l}% / ${stop.alpha}%)`,
         }}
       />
       <div
@@ -115,6 +122,57 @@ function ColorPalette({ color, deletable }: { color: ColorSystemStateColorConfig
             dispatch({ type: 'update_color', payload: { id: color.id, name: e.target.value } })
           }}
         />
+        <Select
+          label="Color Group"
+          defaultValue={color.group}
+          onChange={(e) => {
+            // biome-ignore lint/suspicious/noExplicitAny: <explanation>
+            dispatch({ type: 'update_color', payload: { id: color.id, group: e.target.value as any } })
+          }}
+        >
+          <option value="primary">Primary</option>
+          <option value="accent">Accent</option>
+          <option value="gray">Gray</option>
+          <option value="background">Background</option>
+          <option value="foreground">Foreground</option>
+          <option value="supporting">Supporting</option>
+        </Select>
+        <Input
+          label="Color Stops"
+          defaultValue={color.maxStops || 10}
+          type="number"
+          step="1"
+          min="4"
+          max="20"
+          onChange={(e) => {
+            dispatch({ type: 'update_color', payload: { id: color.id, maxStops: Number.parseInt(e.target.value) } })
+          }}
+        />
+        <Input
+          label="Alpha"
+          defaultValue={color.alpha || 100}
+          type="number"
+          step="1"
+          min="0"
+          max="100"
+          onChange={(e) => {
+            dispatch({ type: 'update_color', payload: { id: color.id, alpha: Number.parseInt(e.target.value) } })
+          }}
+        />
+      </div>
+
+      <div
+        className={css({
+          display: 'flex',
+          width: 'full',
+          flex: '1',
+          gap: '4',
+          flexDirection: 'row',
+          smDown: {
+            flexDirection: 'column',
+          },
+        })}
+      >
         <Input
           label="Hue"
           defaultValue={color.hue}
@@ -162,17 +220,6 @@ function ColorPalette({ color, deletable }: { color: ColorSystemStateColorConfig
           },
         })}
       >
-      <Input
-        label="Color Stops"
-        defaultValue={color.maxStops || 10}
-        type="number"
-        step="1"
-        min="4"
-        max="20"
-        onChange={(e) => {
-          dispatch({ type: 'update_color', payload: { id: color.id, maxStops: Number.parseInt(e.target.value) } })
-        }}
-      />
         <Input
           label="Hue Shift"
           defaultValue={color.hueShift || 0}
@@ -223,14 +270,14 @@ function ColorPalette({ color, deletable }: { color: ColorSystemStateColorConfig
   )
 }
 
-function PaletteSwatches() {
-  const [colorState, dispatch] = useColorSystem()
+export function PaletteSwatches() {
+  const [colorState] = useColorSystem()
   return (
     <div
       className={css({
         display: 'grid',
         width: 'full',
-        gridTemplateColumns: 'repeat(auto-fit, minmax(120px, 1fr))',
+        gridTemplateColumns: 'repeat(auto-fit, minmax(80px, 1fr))',
         gap: '6',
         flexDirection: 'column',
       })}
@@ -258,7 +305,7 @@ function PaletteSwatches() {
                 borderRadius: 'md',
                 lineHeight: '1',
                 width: 'full',
-                minHeight: '60px',
+                minHeight: '40px',
                 cursor: 'pointer',
                 printColorAdjust: 'exact!',
               })}
@@ -283,17 +330,54 @@ function PaletteSwatches() {
   )
 }
 
-export default function PaletteEditor() {
-  const [colorState, dispatch] = useColorSystem()
+function PalettePandaCode() {
+  const [state] = useColorSystem()
+  const preset = generatePandaColorsPreset(state)
+  const presetCode = generatePandaPresetSnippet(preset)
+
   return (
-    <div
+    // biome-ignore lint/a11y/useKeyWithClickEvents: <explanation>
+    <pre
       className={css({
-        display: 'flex',
-        gap: '12',
-        flexDirection: 'column',
+        display: 'block',
+        width: 'full',
+        overflowX: 'auto',
+        bg: 'background.400',
+        border: '1px solid',
+        borderColor: 'gray.border1',
+        color: 'muted.700',
+        borderRadius: 'md',
+        p: '4',
+        fontSize: 'sm',
+        fontFamily: 'mono',
+        whiteSpace: 'pre-wrap',
+        wordWrap: 'break-word',
+        maxHeight: '500px',
+        overflowY: 'auto',
+        _selection: {
+          bg: 'gray.200',
+          color: 'gray.950',
+        },
       })}
+      // tabIndex={0}
+      onClick={(e) => {
+        const range = document.createRange()
+        range.selectNodeContents(e.currentTarget)
+        const selection = window.getSelection()
+        selection?.removeAllRanges()
+        selection?.addRange(range)
+      }}
     >
-      <PaletteSwatches />
+      {presetCode}
+    </pre>
+  )
+}
+
+export function PaletteEditorActions() {
+  const [, dispatch] = useColorSystem()
+  const [codeVisible, setCodeVisible] = useState(false)
+  return (
+    <>
       <div
         className={css({
           display: 'flex',
@@ -332,9 +416,34 @@ export default function PaletteEditor() {
             // }, 500)
           }}
         >
-          Add Color
+          Add Random Color
+        </GrayButton>
+        <GrayButton
+          variant={codeVisible ? 'solid' : 'outline'}
+          size="sm"
+          title="View code"
+          onClick={() => {
+            setCodeVisible(!codeVisible)
+          }}
+        >
+          <CodeIcon /> {codeVisible ? 'Hide' : 'Show'} Preset Code
         </GrayButton>
       </div>
+      {codeVisible && <PalettePandaCode />}
+    </>
+  )
+}
+
+export default function PaletteEditor() {
+  const [colorState] = useColorSystem()
+  return (
+    <div
+      className={css({
+        display: 'flex',
+        gap: '12',
+        flexDirection: 'column',
+      })}
+    >
       {colorState.colors.map((color) => (
         <ColorPalette key={color.id} color={color} deletable={colorState.colors.length > 1} />
       ))}
