@@ -1,6 +1,7 @@
 import type { Preset, Recursive, SemanticToken, Token } from '@pandacss/types'
+import { formatHsl } from 'culori'
 import { outdent } from 'outdent'
-import type { ColorSystemState } from './client-state'
+import { type ColorSystemState, getColorStopShortId } from './client-state'
 
 export function generatePandaPresetSnippet(preset: Preset, presetName = 'colorSystemPreset'): string {
   const jsCode = outdent`
@@ -26,14 +27,14 @@ export function generatePandaColorsPreset(state: ColorSystemState): Preset {
     const lightStops = [...colorConfig.stops].reverse()
 
     for (let i = 0; i < lightStops.length; i++) {
-      const stopId = i + 1
+      const stopId = getColorStopShortId(i, colorConfig.maxStops)
       const lightStop = lightStops[i]
       const darkStop = darkStops[i]
       lightTokens[stopId] = {
-        value: `hsla(${lightStop.h} ${lightStop.s}% ${lightStop.l}% / ${lightStop.alpha}%)`,
+        value: formatHsl(lightStop),
       }
       darkTokens[stopId] = {
-        value: `hsla(${darkStop.h} ${darkStop.s}% ${darkStop.l}% / ${darkStop.alpha}%)`,
+        value: formatHsl(darkStop),
       }
       currentSemanticTokens[stopId] = {
         value: {

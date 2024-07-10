@@ -3,12 +3,13 @@
 import type { Color, Hsl } from 'culori'
 import type { Draft } from 'immer'
 import { useAtom } from 'jotai'
-import { atomWithImmer } from 'jotai-immer'
+import { withImmer } from 'jotai-immer'
+import { atomWithStorage } from 'jotai/utils'
 import { nanoid } from 'nanoid'
-import { generateColorScale } from './color-scaler'
+import { generateColorScale } from './scale-generator'
 
 const STORAGE_KEY = 'pandaColorSystem_v4'
-const DEFAULT_MAX_STOPS = 10
+const DEFAULT_MAX_STOPS = 11
 
 export type ColorData = Required<Color>
 export type ColorGroup = 'background' | 'foreground' | 'gray' | 'accent' | 'primary' | 'supporting'
@@ -281,8 +282,8 @@ export const exampleColors = [
 const initialState: ColorSystemState = {
   colors: exampleColors,
 }
-const colorSystemAtom = atomWithImmer(initialState)
-// const colorSystemAtom = withImmer(atomWithStorage(STORAGE_KEY, initialState))
+// const colorSystemAtom = atomWithImmer(initialState)
+const colorSystemAtom = withImmer(atomWithStorage(STORAGE_KEY, initialState))
 
 function _clearColors(draft: Draft<ColorSystemState>) {
   draft.colors = [...initialState.colors]
@@ -300,4 +301,24 @@ export function useColorSystem() {
   }
 
   return [state, dispatch] as const
+}
+
+export function getColorStopFullId(colorName: string, index: number, maxStops: number): string {
+  return `${colorName}.${getColorStopShortId(index, maxStops)}`
+}
+
+export function getColorStopShortId(index: number, maxStops: number): string {
+  if (index === 0) {
+    return '50'
+  }
+
+  if (index === 10) {
+    return '950'
+  }
+
+  if (index > 10) {
+    return `${index * 50 + 450}`
+  }
+
+  return `${index * 100}`
 }

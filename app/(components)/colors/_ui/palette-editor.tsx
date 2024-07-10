@@ -1,19 +1,51 @@
 'use client'
 
+import { cn } from '@/lib/utils'
 import { GrayButton } from '@/modules/design-system/components/button'
 import { Input } from '@/modules/design-system/components/input'
 import { css } from '@/styled-system/css'
-import { formatHex, formatHsl } from 'culori'
-import { CodeIcon, TrashIcon } from 'lucide-react'
+import { type Hsl, formatHex, formatHsl, wcagContrast } from 'culori'
+import { CodeIcon, Edit3Icon, TrashIcon, XIcon } from 'lucide-react'
 import { nanoid } from 'nanoid'
 import { useState } from 'react'
-import { type ColorSystemStateColorConfig, useColorSystem } from './client-state'
-import { generatePandaColorsPreset, generatePandaPresetSnippet } from './generate-code'
+import { type ColorSystemStateColorConfig, getColorStopFullId, useColorSystem } from './client-state'
+import { generatePandaColorsPreset, generatePandaPresetSnippet } from './preset-generator'
+
+const checkerBoardBgClass = css({
+  printColorAdjust: 'exact!',
+  backgroundSize: '100% 100%, 20px 20px',
+  backgroundImage:
+    'linear-gradient(var(--bgcolor), var(--bgcolor)), repeating-conic-gradient(rgba(127,127,127,0.3) 0% 25%,transparent 0% 50%)',
+})
+
+function hasGoodContrast(color: Required<Hsl>): {
+  white: boolean
+  black: boolean
+} {
+  const whiteContrast = wcagContrast({ mode: 'hsl', h: 0, s: 0, l: 1 }, color)
+  const blackContrast = wcagContrast({ mode: 'hsl', h: 0, s: 0, l: 0 }, color)
+
+  return {
+    white: whiteContrast >= 4,
+    black: blackContrast >= 4,
+  }
+}
+
+function getFgColor(color: Required<Hsl>): string {
+  const { white, black } = hasGoodContrast(color)
+  if (white) {
+    return '#fff'
+  }
+  if (black) {
+    return '#000'
+  }
+  return '#777'
+}
 
 function ColorStop({ color, index }: { color: ColorSystemStateColorConfig; index: number }) {
   const stop = color.stops[index]
   if (!stop) return null
-  const stopName = `${color.name}.${index + 1}`
+  const stopName = getColorStopFullId(color.name, index, color.maxStops)
   const hsla = formatHsl(stop)
   return (
     <div
@@ -58,44 +90,10 @@ function ColorStop({ color, index }: { color: ColorSystemStateColorConfig; index
 
 function ColorPalette({ color, deletable }: { color: ColorSystemStateColorConfig; deletable?: boolean }) {
   const [, dispatch] = useColorSystem()
-  return (
-    <div
-      suppressHydrationWarning={true}
-      id={`C_${color.id}`}
-      className={css({
-        display: 'flex',
-        gap: '4',
-        flexDirection: 'column',
-        pt: '8',
-        borderTop: '1px solid',
-        borderColor: 'gray.border2',
-      })}
-    >
-      <div
-        className={css({
-          fontSize: '2xl',
-          fontWeight: 'medium',
-          textTransform: 'capitalize',
-          display: 'flex',
-          justifyContent: 'space-between',
-        })}
-      >
-        <span>{color.name}</span>
-        {deletable && (
-          <GrayButton
-            variant="ghost"
-            size="sm"
-            title={`Delete '${color.name}' color`}
-            onClick={() => {
-              if (window.confirm(`Are you sure you want to delete the '${color.name}' color?`))
-                dispatch({ type: 'remove_color', payload: color.id })
-            }}
-          >
-            <TrashIcon />
-          </GrayButton>
-        )}
-      </div>
+  const [isEditing, setIsEditing] = useState(false)
 
+  const editForm = (
+    <>
       <div
         className={css({
           display: 'flex',
@@ -247,18 +245,72 @@ function ColorPalette({ color, deletable }: { color: ColorSystemStateColorConfig
           }}
         />
       </div>
+    </>
+  )
 
+  const expandedPreviewer = (
+    <div
+      className={css({
+        display: 'grid',
+        gridTemplateColumns: 'repeat(auto-fit, minmax(180px, 1fr))',
+        gap: '6',
+      })}
+    >
+      {color.stops.map((_, index) => (
+        <ColorStop key={`color${color.name}-${index}`} color={color} index={index} />
+      ))}
+    </div>
+  )
+  return (
+    <div
+      className={css({
+        display: 'flex',
+        gap: '4',
+        flexDirection: 'column',
+      })}
+    >
       <div
         className={css({
-          display: 'grid',
-          gridTemplateColumns: 'repeat(auto-fit, minmax(180px, 1fr))',
-          gap: '6',
+          fontSize: '2xl',
+          fontWeight: 'medium',
+          textTransform: 'capitalize',
+          display: 'flex',
+          justifyContent: 'space-between',
         })}
       >
-        {color.stops.map((_, index) => (
-          <ColorStop key={`color${color.name}-${index}`} color={color} index={index} />
-        ))}
+        <span>{color.name}</span>
+        <div>
+          {isEditing && deletable && (
+            <GrayButton
+              variant="ghost"
+              size="sm"
+              title={`Delete '${color.name}' color`}
+              onClick={() => {
+                if (window.confirm(`Are you sure you want to delete the '${color.name}' color?`))
+                  dispatch({ type: 'remove_color', payload: color.id })
+              }}
+            >
+              <TrashIcon />
+            </GrayButton>
+          )}
+
+          <GrayButton
+            variant="ghost"
+            size="sm"
+            title="Edit color"
+            onClick={() => {
+              setIsEditing(!isEditing)
+            }}
+          >
+            {isEditing ? <XIcon /> : <Edit3Icon />}
+            {isEditing ? 'Close' : 'Edit'}
+          </GrayButton>
+        </div>
       </div>
+
+      <ColorScalePreviewer colorConfig={color} />
+      {isEditing && editForm}
+      {isEditing && expandedPreviewer}
     </div>
   )
 }
@@ -276,7 +328,7 @@ export function PaletteSwatches() {
       })}
     >
       {colorState.colors.map((color) => {
-        const midPoint = Math.floor(color.stops.length / 2) - 1
+        const midPoint = Math.ceil(color.stops.length / 2)
         const stop = color.stops[midPoint]
         if (!stop) return null
         return (
@@ -290,6 +342,8 @@ export function PaletteSwatches() {
             <button
               type="button"
               title={color.name}
+              data-colorid={color.id}
+              suppressHydrationWarning={true}
               className={css({
                 display: 'flex',
                 alignContent: 'center',
@@ -302,8 +356,9 @@ export function PaletteSwatches() {
                 cursor: 'pointer',
                 printColorAdjust: 'exact!',
               })}
-              onClick={() => {
-                const colorHash = `C_${color.id}`
+              onClick={(e) => {
+                const dataColorId = e.currentTarget.getAttribute('data-colorid')
+                const colorHash = `C_${dataColorId}`
                 // smooth scroll to the color palette
                 const element = document.getElementById(colorHash)
                 if (element) {
@@ -318,6 +373,99 @@ export function PaletteSwatches() {
           </div>
         )
       })}
+    </div>
+  )
+}
+
+function ColorScalePreviewer({ colorConfig }: { colorConfig: ColorSystemStateColorConfig }) {
+  return (
+    <div>
+      <div
+        suppressHydrationWarning={true}
+        id={`C_${colorConfig.id}`}
+        className={css({
+          display: 'flex',
+          width: 'full',
+          flexDirection: 'row',
+          gap: '0',
+          mb: '2',
+          borderRadius: 'md',
+          overflow: 'hidden',
+          border: '1px solid',
+          borderColor: 'gray.border2',
+        })}
+      >
+        {colorConfig.stops.map((color, idx) => {
+          const key = `${colorConfig.name}-${idx}`
+          const stopName = getColorStopFullId(colorConfig.name, idx, colorConfig.maxStops)
+
+          return (
+            <div
+              key={key}
+              title={stopName}
+              className={cn(
+                css({
+                  display: 'flex',
+                  alignContent: 'center',
+                  justifyContent: 'center',
+                  alignItems: 'center',
+                  lineHeight: '1',
+                  width: 'full',
+                  minHeight: '40px',
+                  printColorAdjust: 'exact!',
+                }),
+                checkerBoardBgClass,
+              )}
+              style={{
+                // @ts-ignore
+                '--bgcolor': formatHsl(color),
+                color: getFgColor(color),
+              }}
+            />
+          )
+        })}
+      </div>
+      <div
+        suppressHydrationWarning={true}
+        id={`C_${colorConfig.id}`}
+        className={css({
+          display: 'flex',
+          width: 'full',
+          flexDirection: 'row',
+          gap: '0',
+          mb: '4',
+          borderRadius: 'md',
+          overflow: 'hidden',
+          // border: '1px solid',
+          // borderColor: 'gray.border2',
+        })}
+      >
+        {colorConfig.stops.map((color, idx) => {
+          const key = `${colorConfig.name}-${idx}`
+          const stopName = getColorStopFullId(colorConfig.name, idx, colorConfig.maxStops)
+
+          return (
+            <div
+              key={key}
+              title={stopName}
+              className={cn(
+                css({
+                  display: 'flex',
+                  alignContent: 'center',
+                  justifyContent: 'center',
+                  alignItems: 'center',
+                  lineHeight: '1',
+                  width: 'full',
+                  fontSize: 'sm',
+                  color: 'gray.fg1',
+                }),
+              )}
+            >
+              {stopName}
+            </div>
+          )
+        })}
+      </div>
     </div>
   )
 }
@@ -432,7 +580,7 @@ export default function PaletteEditor() {
     <div
       className={css({
         display: 'flex',
-        gap: '12',
+        gap: '6',
         flexDirection: 'column',
       })}
     >

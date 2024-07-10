@@ -11,41 +11,21 @@ export default async function () {
     <>
       <ContentSection>
         <Heading size="xl" as="h1">
-          Color System
+          Panda Color System Generator
         </Heading>
         <Subtitle>
-          A comprehensive color system editor for designing beautiful, dark-mode ready, and accessible user interfaces
-          with PandaCSS.
+          A comprehensive color palette generator and editor for designing beautiful, dark-mode ready, and accessible
+          user interfaces with PandaCSS. Inspired by{' '}
+          <a href="https://tints.dev" target="_blank" rel="noopener noreferrer" className={css({ color: 'inherit!' })}>
+            tints.dev
+          </a>
+          .
         </Subtitle>
 
         <PandaDiv display="flex" flexDir="column" gap="8" py="6">
           <PaletteSwatches />
           <PaletteEditorActions />
         </PandaDiv>
-      </ContentSection>
-
-      <ContentSection>
-        <Heading size="lg">Palette Editor</Heading>
-        <Subtitle>
-          Create and manage your color palette and scales with the color editor below.
-          <br />
-          <br />
-          You can generate very interesting color scales by changing the hue and saturation shift values. The shift
-          values will sequentially alter the colors from the edges of the scale to the center (base color), creating
-          harmonious and diverse color ranges.
-          <br />
-          <br />
-          Changing the Minimum/Maximum Lightness will spread out the rest of the colors to the extremes of white and
-          black.
-          <br />
-          <br />
-          These principles are inspired by <i>tints.dev</i> and the excellent <i>Refactoring UI</i> book by Adam Wathan
-          & Steve Schoger. The same book recommends the use of automated tools, just like this one!, to fast-track the
-          creation of color palettes.
-          <br />
-          <br />
-        </Subtitle>
-
         <PaletteEditor />
       </ContentSection>
 
