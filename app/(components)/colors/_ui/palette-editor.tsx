@@ -2,9 +2,8 @@
 
 import { GrayButton } from '@/modules/design-system/components/button'
 import { Input } from '@/modules/design-system/components/input'
-import { Select } from '@/modules/design-system/components/select'
 import { css } from '@/styled-system/css'
-import { type Hsl, formatHex, formatHsl } from 'culori'
+import { formatHex, formatHsl } from 'culori'
 import { CodeIcon, TrashIcon } from 'lucide-react'
 import { nanoid } from 'nanoid'
 import { useState } from 'react'
@@ -15,13 +14,7 @@ function ColorStop({ color, index }: { color: ColorSystemStateColorConfig; index
   const stop = color.stops[index]
   if (!stop) return null
   const stopName = `${color.name}.${index + 1}`
-  const hsla: Hsl = {
-    mode: 'hsl',
-    l: stop.l / 100,
-    s: stop.c / 100,
-    h: stop.h,
-    alpha: stop.alpha / 100,
-  }
+  const hsla = formatHsl(stop)
   return (
     <div
       className={css({
@@ -41,9 +34,8 @@ function ColorStop({ color, index }: { color: ColorSystemStateColorConfig; index
             'linear-gradient(var(--bgcolor), var(--bgcolor)), repeating-conic-gradient(rgba(127,127,127,0.3) 0% 25%,transparent 0% 50%)',
         })}
         style={{
-          // backgroundColor: `lch(${stop.l}% ${stop.c}% ${stop.h} / ${stop.alpha}%)`,
           // @ts-ignore
-          '--bgcolor': `hsla(${stop.h} ${stop.c}% ${stop.l}% / ${stop.alpha}%)`,
+          '--bgcolor': hsla,
         }}
       />
       <div
@@ -57,8 +49,8 @@ function ColorStop({ color, index }: { color: ColorSystemStateColorConfig; index
         })}
       >
         <div>{stopName}</div>
-        <div>{formatHex(hsla).toUpperCase()}</div>
-        <div>{formatHsl(hsla)}</div>
+        <div>{formatHex(stop).toUpperCase()}</div>
+        <div>{hsla}</div>
       </div>
     </div>
   )
@@ -68,6 +60,7 @@ function ColorPalette({ color, deletable }: { color: ColorSystemStateColorConfig
   const [, dispatch] = useColorSystem()
   return (
     <div
+      suppressHydrationWarning={true}
       id={`C_${color.id}`}
       className={css({
         display: 'flex',
@@ -122,7 +115,7 @@ function ColorPalette({ color, deletable }: { color: ColorSystemStateColorConfig
             dispatch({ type: 'update_color', payload: { id: color.id, name: e.target.value } })
           }}
         />
-        <Select
+        {/* <Select
           label="Color Group"
           defaultValue={color.group}
           onChange={(e) => {
@@ -136,7 +129,7 @@ function ColorPalette({ color, deletable }: { color: ColorSystemStateColorConfig
           <option value="background">Background</option>
           <option value="foreground">Foreground</option>
           <option value="supporting">Supporting</option>
-        </Select>
+        </Select> */}
         <Input
           label="Color Stops"
           defaultValue={color.maxStops || 10}
@@ -146,6 +139,17 @@ function ColorPalette({ color, deletable }: { color: ColorSystemStateColorConfig
           max="20"
           onChange={(e) => {
             dispatch({ type: 'update_color', payload: { id: color.id, maxStops: Number.parseInt(e.target.value) } })
+          }}
+        />
+        <Input
+          label="Alpha"
+          defaultValue={color.alpha || 100}
+          type="number"
+          step="1"
+          min="0"
+          max="100"
+          onChange={(e) => {
+            dispatch({ type: 'update_color', payload: { id: color.id, alpha: Number.parseInt(e.target.value) } })
           }}
         />
       </div>
@@ -182,17 +186,6 @@ function ColorPalette({ color, deletable }: { color: ColorSystemStateColorConfig
           min="0"
           onChange={(e) => {
             dispatch({ type: 'update_color', payload: { id: color.id, chroma: Number.parseInt(e.target.value) } })
-          }}
-        />
-        <Input
-          label="Alpha"
-          defaultValue={color.alpha || 100}
-          type="number"
-          step="1"
-          min="0"
-          max="100"
-          onChange={(e) => {
-            dispatch({ type: 'update_color', payload: { id: color.id, alpha: Number.parseInt(e.target.value) } })
           }}
         />
         <Input
@@ -240,20 +233,6 @@ function ColorPalette({ color, deletable }: { color: ColorSystemStateColorConfig
           max="100"
           onChange={(e) => {
             dispatch({ type: 'update_color', payload: { id: color.id, chromaShift: Number.parseInt(e.target.value) } })
-          }}
-        />
-        <Input
-          label="Lightness Shift"
-          defaultValue={color.luminanceShift || 0}
-          type="number"
-          step="1"
-          min="-100"
-          max="100"
-          onChange={(e) => {
-            dispatch({
-              type: 'update_color',
-              payload: { id: color.id, luminanceShift: Number.parseInt(e.target.value) },
-            })
           }}
         />
         <Input
@@ -332,8 +311,7 @@ export function PaletteSwatches() {
                 }
               }}
               style={{
-                // backgroundColor: `lch(${stop.l}% ${stop.c}% ${stop.h} / ${stop.alpha}%)`,
-                backgroundColor: `hsla(${stop.h} ${stop.c}% ${stop.l}% / ${stop.alpha}%)`,
+                backgroundColor: formatHsl(stop),
               }}
             />
             <span>{color.name}</span>

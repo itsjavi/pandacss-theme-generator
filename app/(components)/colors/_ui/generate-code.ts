@@ -30,10 +30,10 @@ export function generatePandaColorsPreset(state: ColorSystemState): Preset {
       const lightStop = lightStops[i]
       const darkStop = darkStops[i]
       lightTokens[stopId] = {
-        value: `hsla(${lightStop.h} ${lightStop.c}% ${lightStop.l}% / ${lightStop.alpha}%)`,
+        value: `hsla(${lightStop.h} ${lightStop.s}% ${lightStop.l}% / ${lightStop.alpha}%)`,
       }
       darkTokens[stopId] = {
-        value: `hsla(${darkStop.h} ${darkStop.c}% ${darkStop.l}% / ${darkStop.alpha}%)`,
+        value: `hsla(${darkStop.h} ${darkStop.s}% ${darkStop.l}% / ${darkStop.alpha}%)`,
       }
       currentSemanticTokens[stopId] = {
         value: {

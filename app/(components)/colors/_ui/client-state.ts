@@ -1,16 +1,16 @@
 'use client'
 
-import type { Oklch } from 'culori'
+import type { Color, Hsl } from 'culori'
 import type { Draft } from 'immer'
 import { useAtom } from 'jotai'
-import { withImmer } from 'jotai-immer'
-import { atomWithStorage } from 'jotai/utils'
+import { atomWithImmer } from 'jotai-immer'
 import { nanoid } from 'nanoid'
+import { generateColorScale } from './color-scaler'
 
 const STORAGE_KEY = 'pandaColorSystem_v4'
 const DEFAULT_MAX_STOPS = 10
 
-export type ColorData = Required<Oklch>
+export type ColorData = Required<Color>
 export type ColorGroup = 'background' | 'foreground' | 'gray' | 'accent' | 'primary' | 'supporting'
 
 export type ColorSystemStateColorConfig = {
@@ -25,7 +25,7 @@ export type ColorSystemStateColorConfig = {
   luminanceShift: number
   luminanceMax: number
   luminanceMin: number
-  stops: ColorData[]
+  stops: Required<Hsl>[]
   maxStops: number
 }
 
@@ -48,6 +48,9 @@ export type AddColorPayload = {
   chroma: number
   alpha?: number
   hueShift?: number
+  /**
+   * @deprecated
+   */
   luminanceShift?: number
   chromaShift?: number
   luminanceMax?: number
@@ -132,37 +135,7 @@ function generateColorWithStops(data: AddColorPayload): ColorSystemStateColorCon
     maxStops: data.maxStops ?? DEFAULT_MAX_STOPS,
   }
 
-  const maxStops = newColor.maxStops
-
-  // explain:
-  const luminanceUnit = Math.round(((newColor.luminanceMax - newColor.luminanceMin) / (maxStops - 1)) * 100) / 100
-  const midStop = Math.floor(maxStops / 2)
-
-  for (let i = 0; i < maxStops; i++) {
-    const midStopDistance = Math.abs(midStop - i)
-    const calcHueShift = newColor.hueShift * midStopDistance
-    const calcChromaShift = newColor.chromaShift * midStopDistance
-    const calcLuminanceShift = newColor.luminanceShift // * midStopDistance
-
-    if (midStop === i) {
-      newColor.stops.push({
-        mode: 'oklch',
-        h: newColor.hue,
-        c: newColor.chroma,
-        l: newColor.luminanceMin + calcLuminanceShift + luminanceUnit * i,
-        alpha: newColor.alpha,
-      })
-      continue
-    }
-
-    newColor.stops.push({
-      mode: 'oklch',
-      h: newColor.hue + calcHueShift,
-      c: newColor.chroma + calcChromaShift,
-      l: newColor.luminanceMin + calcLuminanceShift + luminanceUnit * i,
-      alpha: newColor.alpha,
-    })
-  }
+  newColor.stops = generateColorScale(newColor)
 
   return newColor
 }
@@ -211,12 +184,12 @@ export const exampleColors = [
     name: 'blue',
     group: 'accent',
     hue: 215,
-    chroma: 85,
-    alpha: 100,
     hueShift: 0,
-    chromaShift: 1,
-    luminanceMin: 10,
+    chroma: 85, // 45
+    chromaShift: 1, // 5
+    luminanceMin: 5,
     luminanceMax: 90,
+    alpha: 100,
     maxStops: DEFAULT_MAX_STOPS,
   }),
   generateColorWithStops({
@@ -308,7 +281,8 @@ export const exampleColors = [
 const initialState: ColorSystemState = {
   colors: exampleColors,
 }
-const colorSystemAtom = withImmer(atomWithStorage(STORAGE_KEY, initialState))
+const colorSystemAtom = atomWithImmer(initialState)
+// const colorSystemAtom = withImmer(atomWithStorage(STORAGE_KEY, initialState))
 
 function _clearColors(draft: Draft<ColorSystemState>) {
   draft.colors = [...initialState.colors]
