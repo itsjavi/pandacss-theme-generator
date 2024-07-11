@@ -4,7 +4,7 @@ import DarkModeToggle from '@/modules/design-system/views/dark-mode-toggle'
 import { css } from '@/styled-system/css'
 import Heading from '@/ui/components/typography/heading'
 import Subtitle from '@/ui/components/typography/subtitle'
-import PaletteEditor, { PaletteEditorActions, PaletteSwatches } from './_ui/palette-editor'
+import PaletteEditor, { LightnessCurveEditor, PaletteEditorActions, PaletteSwatches } from './_ui/palette-editor'
 
 export default async function () {
   return (
@@ -25,6 +25,8 @@ export default async function () {
         <PandaDiv display="flex" flexDir="column" gap="8" py="6">
           <PaletteSwatches />
           <PaletteEditorActions />
+          <Subtitle>Lightness Curve Editor</Subtitle>
+          <LightnessCurveEditor />
         </PandaDiv>
         <PaletteEditor />
       </ContentSection>

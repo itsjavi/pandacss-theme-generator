@@ -54,17 +54,16 @@ function ColorStop({ color, index }: { color: ColorSystemStateColorConfig; index
       })}
     >
       <div
-        className={css({
-          borderRadius: 'md',
-          width: '100%',
-          height: '100px',
-          border: '1px solid',
-          borderColor: 'muted.200/30',
-          printColorAdjust: 'exact!',
-          backgroundSize: '100% 100%, 20px 20px',
-          backgroundImage:
-            'linear-gradient(var(--bgcolor), var(--bgcolor)), repeating-conic-gradient(rgba(127,127,127,0.3) 0% 25%,transparent 0% 50%)',
-        })}
+        className={cn(
+          css({
+            borderRadius: 'md',
+            width: '100%',
+            height: '100px',
+            border: '1px solid',
+            borderColor: 'muted.200/30',
+          }),
+          checkerBoardBgClass,
+        )}
         style={{
           // @ts-ignore
           '--bgcolor': hsla,
@@ -308,9 +307,204 @@ function ColorPalette({ color, deletable }: { color: ColorSystemStateColorConfig
         </div>
       </div>
 
-      <ColorScalePreviewer colorConfig={color} />
+      <ColorStopsPreviewer colorConfig={color} />
       {isEditing && editForm}
       {isEditing && expandedPreviewer}
+    </div>
+  )
+}
+
+export function LigthnessCurveCanvas() {
+  const [state] = useColorSystem()
+  const [p1x, p1y, p2x, p2y] = state.interpolatorCurve
+  const size = 150
+  const padding = 10
+
+  const startX = padding
+  const startY = size - padding
+  const endX = size - padding
+  const endY = padding
+
+  const cp1x = startX + (endX - startX) * p1x
+  const cp1y = startY - (startY - endY) * p1y
+  const cp2x = startX + (endX - startX) * p2x
+  const cp2y = startY - (startY - endY) * p2y
+
+  const pathData = `M ${startX} ${startY} C ${cp1x} ${cp1y}, ${cp2x} ${cp2y}, ${endX} ${endY}`
+
+  return (
+    <div
+      className={css({
+        display: 'flex',
+        alignItems: 'center',
+        justifyContent: 'center',
+      })}
+    >
+      <svg
+        width={size}
+        height={size}
+        className={css({
+          maxWidth: '100%',
+          height: 'auto',
+          border: '1px solid',
+          borderColor: 'gray.border2',
+        })}
+      >
+        <title>Lightness Curve</title>
+        <path
+          d={pathData}
+          className={css({
+            strokeWidth: '2',
+            stroke: 'blue.800',
+            fill: 'none',
+          })}
+        />
+      </svg>
+    </div>
+  )
+}
+
+export function LightnessCurveEditor() {
+  const [state, dispatch] = useColorSystem()
+  const [p1, p2, p3, p4] = state.interpolatorCurve
+
+  return (
+    <div
+      className={css({
+        position: 'sticky',
+        top: '0',
+        zIndex: 'popover',
+        display: 'flex',
+        gap: '4',
+        flexDirection: 'row',
+        justifyContent: 'flex-start',
+        // alignItems: 'start',
+      })}
+    >
+      <div
+        className={css({
+          display: 'flex',
+          width: 'full',
+          flex: '1',
+          gap: '4',
+          flexDirection: 'column',
+        })}
+      >
+        <div
+          className={css({
+            display: 'flex',
+            width: 'full',
+            flex: '1',
+            gap: '4',
+            flexDirection: 'row',
+            smDown: {
+              flexDirection: 'column',
+            },
+          })}
+        >
+          <Input
+            label="x1"
+            type="range"
+            step="0.01"
+            min="0"
+            max="1"
+            defaultValue={p1}
+            onChange={(e) => {
+              dispatch({
+                type: 'update_interpolator_curve',
+                payload: { curve: [Number.parseFloat(e.target.value), p2, p3, p4] },
+              })
+            }}
+          />
+          <Input
+            label="y1"
+            type="range"
+            step="0.01"
+            min="0"
+            max="1"
+            defaultValue={p2}
+            onChange={(e) => {
+              dispatch({
+                type: 'update_interpolator_curve',
+                payload: { curve: [p1, Number.parseFloat(e.target.value), p3, p4] },
+              })
+            }}
+          />
+          <Input
+            label="Min Lightness"
+            defaultValue={state.luminanceMin || 0}
+            type="number"
+            step="1"
+            min="0"
+            max="100"
+            onChange={(e) => {
+              dispatch({ type: 'update_luminance_min', payload: Number.parseInt(e.target.value) })
+            }}
+          />
+        </div>
+
+        <div
+          className={css({
+            display: 'flex',
+            width: 'full',
+            flex: '1',
+            gap: '4',
+            flexDirection: 'row',
+            smDown: {
+              flexDirection: 'column',
+            },
+          })}
+        >
+          <Input
+            label="x2"
+            type="range"
+            step="0.01"
+            min="0"
+            max="1"
+            defaultValue={p3}
+            onChange={(e) => {
+              dispatch({
+                type: 'update_interpolator_curve',
+                payload: { curve: [p1, p2, Number.parseFloat(e.target.value), p4] },
+              })
+            }}
+          />
+          <Input
+            label="y2"
+            type="range"
+            step="0.01"
+            min="0"
+            max="1"
+            defaultValue={p4}
+            onChange={(e) => {
+              dispatch({
+                type: 'update_interpolator_curve',
+                payload: { curve: [p1, p2, p3, Number.parseFloat(e.target.value)] },
+              })
+            }}
+          />
+          <Input
+            label="Max Lightness"
+            defaultValue={state.luminanceMax || 0}
+            type="number"
+            step="1"
+            min="0"
+            max="100"
+            onChange={(e) => {
+              dispatch({ type: 'update_luminance_max', payload: Number.parseInt(e.target.value) })
+            }}
+          />
+        </div>
+        <div
+          className={css({
+            fontSize: 'sm',
+            color: 'gray.fg1',
+          })}
+        >
+          {`[ ${p1}, ${p2}, ${p3}, ${p4} ]`}
+        </div>
+      </div>
+      <LigthnessCurveCanvas />
     </div>
   )
 }
@@ -377,7 +571,7 @@ export function PaletteSwatches() {
   )
 }
 
-function ColorScalePreviewer({ colorConfig }: { colorConfig: ColorSystemStateColorConfig }) {
+function ColorStopsPreviewer({ colorConfig }: { colorConfig: ColorSystemStateColorConfig }) {
   return (
     <div>
       <div
@@ -429,7 +623,7 @@ function ColorScalePreviewer({ colorConfig }: { colorConfig: ColorSystemStateCol
         suppressHydrationWarning={true}
         id={`C_${colorConfig.id}`}
         className={css({
-          display: 'flex',
+          display: 'none',
           width: 'full',
           flexDirection: 'row',
           gap: '0',
@@ -528,12 +722,12 @@ export function PaletteEditorActions() {
         <GrayButton
           variant="outline"
           size="sm"
-          title="Clear all colors"
           onClick={() => {
-            if (window.confirm('Are you sure you want to clear all colors?')) dispatch({ type: 'clear_colors' })
+            if (window.confirm('Are you sure you want to reset all colors to the defaults?'))
+              dispatch({ type: 'clear_colors' })
           }}
         >
-          Reset All Colors
+          Reset to defaults
         </GrayButton>
 
         <GrayButton
